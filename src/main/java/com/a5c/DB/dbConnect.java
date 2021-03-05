@@ -1,4 +1,4 @@
-package com.a5c.db;
+package com.a5c.DB;
 
 import java.net.URI;
 import java.net.URISyntaxException;
