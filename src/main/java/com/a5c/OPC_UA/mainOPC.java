@@ -40,9 +40,9 @@ public class mainOPC {
     private static final int nsIndex = 4;
 
 
-    public void mainOPC() {
+    public mainOPC() {
         try {
-            clientOPC.create(endpointURL);
+            this.clientOPC = OpcUaClient.create(endpointURL);
             clientOPC.connect().get();
         } catch (InterruptedException | ExecutionException | UaException e) {
             e.printStackTrace();
