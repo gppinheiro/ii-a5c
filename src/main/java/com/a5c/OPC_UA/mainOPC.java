@@ -2,14 +2,35 @@ package com.a5c.OPC_UA;
 
 // LINK: https://github.com/eclipse/milo
 
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.util.HashedWheelTimer;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
+import org.eclipse.milo.opcua.sdk.client.api.config.OpcUaClientConfig;
+import org.eclipse.milo.opcua.sdk.client.api.config.OpcUaClientConfigBuilder;
+import org.eclipse.milo.opcua.sdk.client.api.identity.IdentityProvider;
+import org.eclipse.milo.opcua.stack.client.DiscoveryClient;
+import org.eclipse.milo.opcua.stack.client.UaStackClientConfig;
+import org.eclipse.milo.opcua.stack.client.security.ClientCertificateValidator;
+import org.eclipse.milo.opcua.stack.core.UaException;
+import org.eclipse.milo.opcua.stack.core.channel.MessageLimits;
+import org.eclipse.milo.opcua.stack.core.serialization.EncodingLimits;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
+import org.eclipse.milo.opcua.stack.core.types.builtin.LocalizedText;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
 import org.eclipse.milo.opcua.stack.core.types.enumerated.TimestampsToReturn;
+import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
 
+import java.security.KeyPair;
+import java.security.cert.X509Certificate;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.function.Supplier;
 
-public class mainOPC implements ClientOPC_UA {
+public class mainOPC {
 
     private OpcUaClient clientOPC;
 
@@ -18,15 +39,14 @@ public class mainOPC implements ClientOPC_UA {
     private static final String endpointURL = "opc.tcp://localhost:4840";
     private static final int nsIndex = 4;
 
-    @Override
-    public void run(OpcUaClient client, CompletableFuture<OpcUaClient> future) throws Exception {
-        //synchronous connect
-        client.connect().get();
-        setClientOPC(client);
-    }
 
-    public void setClientOPC(OpcUaClient clientOPC) {
-        this.clientOPC = clientOPC;
+    public void mainOPC() {
+        try {
+            clientOPC.create(endpointURL);
+            clientOPC.connect().get();
+        } catch (InterruptedException | ExecutionException | UaException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

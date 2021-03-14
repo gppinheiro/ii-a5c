@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="add UDP Server">
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="add OPC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/mainOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/mainOPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +116,7 @@
       <workItem from="1614965719612" duration="80000" />
       <workItem from="1614965852625" duration="1034000" />
       <workItem from="1615749559768" duration="830000" />
-      <workItem from="1615750400940" duration="2331000" />
+      <workItem from="1615750400940" duration="4389000" />
     </task>
     <task id="LOCAL-00001" summary="add UDP Server">
       <created>1614976231408</created>
@@ -127,7 +125,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614976231408</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add OPC">
+      <created>1615757006134</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1615757006134</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add OPC">
+      <created>1615757031094</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1615757031094</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +159,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add UDP Server" />
-    <option name="LAST_COMMIT_MESSAGE" value="add UDP Server" />
+    <MESSAGE value="add OPC" />
+    <option name="LAST_COMMIT_MESSAGE" value="add OPC" />
   </component>
 </project>
