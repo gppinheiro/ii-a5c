@@ -1,36 +1,16 @@
 package com.a5c.OPC_UA;
 
 // LINK: https://github.com/eclipse/milo
-
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.util.HashedWheelTimer;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
-import org.eclipse.milo.opcua.sdk.client.api.config.OpcUaClientConfig;
-import org.eclipse.milo.opcua.sdk.client.api.config.OpcUaClientConfigBuilder;
-import org.eclipse.milo.opcua.sdk.client.api.identity.IdentityProvider;
-import org.eclipse.milo.opcua.stack.client.DiscoveryClient;
-import org.eclipse.milo.opcua.stack.client.UaStackClientConfig;
-import org.eclipse.milo.opcua.stack.client.security.ClientCertificateValidator;
 import org.eclipse.milo.opcua.stack.core.UaException;
-import org.eclipse.milo.opcua.stack.core.channel.MessageLimits;
-import org.eclipse.milo.opcua.stack.core.serialization.EncodingLimits;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
-import org.eclipse.milo.opcua.stack.core.types.builtin.LocalizedText;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
-import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
+import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
 import org.eclipse.milo.opcua.stack.core.types.enumerated.TimestampsToReturn;
-import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
 
-import java.security.KeyPair;
-import java.security.cert.X509Certificate;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.function.Supplier;
 
-public class mainOPC {
+public class clientOPC_UA {
 
     private OpcUaClient clientOPC;
 
@@ -39,8 +19,10 @@ public class mainOPC {
     private static final String endpointURL = "opc.tcp://localhost:4840";
     private static final int nsIndex = 4;
 
-
-    public mainOPC() {
+    /**
+     * Constructor to create a new OPC Client connection
+     */
+    public clientOPC_UA() {
         try {
             this.clientOPC = OpcUaClient.create(endpointURL);
             clientOPC.connect().get();
@@ -66,6 +48,50 @@ public class mainOPC {
 
         assert value != null;
         return value.getValue().getValue();
+    }
+
+    /**
+     * Set Boolean Variable Value
+     * @param Variable - Variable's Name
+     * @param SetValue - Variable's Value
+     * @return true if sets ok
+     */
+    public boolean setValue(String Variable, boolean SetValue) {
+        NodeId nodeIDString = new NodeId(nsIndex, Identifier+Variable);
+
+        Variant var = new Variant(SetValue);
+        DataValue dv = new DataValue(var);
+
+        try {
+            clientOPC.writeValue(nodeIDString, dv).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Set Boolean Variable Value
+     * @param Variable - Variable's Name
+     * @param SetValue - Variable's Value
+     * @return true if sets ok
+     */
+    public boolean setValue(String Variable, int SetValue) {
+        NodeId nodeIDString = new NodeId(nsIndex, Identifier+Variable);
+
+        Variant var = new Variant((short) SetValue);
+        DataValue dv = new DataValue(var);
+
+        try {
+            clientOPC.writeValue(nodeIDString, dv).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 
 }
