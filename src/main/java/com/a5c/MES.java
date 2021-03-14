@@ -9,6 +9,5 @@ public class MES {
         // Just to test if reads everything ok
         System.out.println("PLC program, variable bool:" + opc.getValue("BOOL_var"));
         System.out.println("PLC program, variable int:" + opc.getValue("int_var"));
-        System.out.println("Global, variable bool:" + opc.getValue("global_bool_var"));
     }
 }
