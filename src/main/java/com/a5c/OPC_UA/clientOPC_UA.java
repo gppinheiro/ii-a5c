@@ -58,19 +58,7 @@ public class clientOPC_UA {
      * @return true if sets ok
      */
     public boolean setValue(String Variable, boolean SetValue) {
-        NodeId nodeIDString = new NodeId(nsIndex, Identifier+Variable);
-
-        Variant var = new Variant(SetValue);
-        DataValue dv = new DataValue(var);
-
-        try {
-            clientOPC.writeValue(nodeIDString, dv).get();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
+        return SET(Variable,new Variant(SetValue));
     }
 
     /**
@@ -80,19 +68,7 @@ public class clientOPC_UA {
      * @return true if sets ok
      */
     public boolean setValue(String Variable, int SetValue) {
-        NodeId nodeIDString = new NodeId(nsIndex, Identifier+Variable);
-
-        Variant var = new Variant((short) SetValue);
-        DataValue dv = new DataValue(var);
-
-        try {
-            clientOPC.writeValue(nodeIDString, dv).get();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
+        return SET(Variable,new Variant((short) SetValue));
     }
 
     /**
@@ -102,15 +78,24 @@ public class clientOPC_UA {
      * @return true if sets ok
      */
     public boolean setValue(String Variable, int[] SetValue) {
-        NodeId nodeIDString = new NodeId(nsIndex, Identifier+Variable);
         short[] SetValueShort = new short[3];
 
         for(int j = 0; j < 3; j++) {
             SetValueShort[j] = (short) SetValue[j];
         }
 
-        Variant v = new Variant(SetValueShort);
-        DataValue dv = new DataValue(v);
+        return SET(Variable,new Variant(SetValueShort));
+    }
+
+    /**
+     * SET Value
+     * @param Variable - Variable's Name
+     * @param var - Variant Class to Set
+     * @return true if ok
+     */
+    public boolean SET(String Variable, Variant var) {
+        NodeId nodeIDString = new NodeId(nsIndex, Identifier+Variable);
+        DataValue dv = new DataValue(var);
 
         try {
             clientOPC.writeValue(nodeIDString, dv).get();
