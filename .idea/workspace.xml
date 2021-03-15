@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test OPC">
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="write OPC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/ClientOPC_UA.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/mainOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,19 +91,6 @@
       <recent name="com.a5c.server" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -119,7 +104,9 @@
       <workItem from="1614965719612" duration="80000" />
       <workItem from="1614965852625" duration="1034000" />
       <workItem from="1615749559768" duration="830000" />
-      <workItem from="1615750400940" duration="6838000" />
+      <workItem from="1615750400940" duration="7479000" />
+      <workItem from="1615797850870" duration="1863000" />
+      <workItem from="1615830858654" duration="944000" />
     </task>
     <task id="LOCAL-00001" summary="add UDP Server">
       <created>1614976231408</created>
@@ -163,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615761113028</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="write OPC">
+      <created>1615762037362</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615762037362</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,6 +179,7 @@
     <MESSAGE value="add UDP Server" />
     <MESSAGE value="add OPC" />
     <MESSAGE value="test OPC" />
-    <option name="LAST_COMMIT_MESSAGE" value="test OPC" />
+    <MESSAGE value="write OPC" />
+    <option name="LAST_COMMIT_MESSAGE" value="write OPC" />
   </component>
 </project>
