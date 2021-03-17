@@ -1,5 +1,8 @@
 package com.a5c.DB;
 
+import com.a5c.DATA.Transform;
+import com.a5c.DATA.Unload;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
@@ -55,6 +58,34 @@ public class dbConnect {
      */
     public Connection getConn() {
         return this.conn;
+    }
+
+    public void searchPath() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SET search_path TO ii;");
+        s.executeUpdate();
+    }
+
+    public void addTransform(Transform tf) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO Transform VALUES (?,?,?,?,?,?,?,?);");
+        s.setInt(1,tf.getOrderNumber());
+        s.setInt(2,tf.getFrom());
+        s.setInt(3,tf.getTo());
+        s.setInt(4,tf.getQuantity());
+        s.setInt(5,tf.getTime());
+        s.setInt(6,tf.getMaxDelay());
+        s.setInt(7,tf.getPenalty());
+        s.setTimestamp(8,new Timestamp(System.currentTimeMillis()));
+        s.executeUpdate();
+    }
+
+    public void addUnload(Unload un) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO Unload VALUES (?,?,?,?,?);");
+        s.setInt(1,un.getOrderNumber());
+        s.setInt(2,un.getType());
+        s.setInt(3,un.getDestination());
+        s.setInt(4,un.getQuantity());
+        s.setTimestamp(5,new Timestamp(System.currentTimeMillis()));
+        s.executeUpdate();
     }
 
 }
