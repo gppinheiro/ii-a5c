@@ -9,11 +9,13 @@ TODO list:
             - Read OK
             - Write OK
   [ ]  UDP Communication
-            - UDP Client
-            - File XML
+            - UDP Client OK
+            - File XML Need test
   [ ]  Statics
   [ ]  Unload
-  [ ]  XML
+  [.]  XML
+            - READ Need test
+            - WRITE
   [ ]  Transformation
   [ ]  Thread
 

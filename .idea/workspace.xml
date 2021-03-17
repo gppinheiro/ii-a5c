@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="add UDP">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="read XML">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/threadedUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/threadedUDP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +123,7 @@
       <workItem from="1615830858654" duration="2017000" />
       <workItem from="1615847863231" duration="201000" />
       <workItem from="1615848089178" duration="2614000" />
-      <workItem from="1615990239307" duration="5044000" />
+      <workItem from="1615990239307" duration="5158000" />
     </task>
     <task id="LOCAL-00001" summary="add UDP Server">
       <created>1614976231408</created>
@@ -192,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615850697108</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="read XML">
+      <created>1615995429417</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1615995429417</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +220,7 @@
     <MESSAGE value="write OPC" />
     <MESSAGE value="test array OPC" />
     <MESSAGE value="add UDP" />
-    <option name="LAST_COMMIT_MESSAGE" value="add UDP" />
+    <MESSAGE value="read XML" />
+    <option name="LAST_COMMIT_MESSAGE" value="read XML" />
   </component>
 </project>
