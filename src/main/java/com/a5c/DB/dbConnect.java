@@ -88,4 +88,40 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    public Transform[] getTransform() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Transform\";");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        Transform[] Transforms = new Transform[rs.getInt(1)];
+
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty  FROM ii.\"Transform\";");
+        rs = s.executeQuery();
+
+        int i=0;
+        while (rs.next()) {
+            Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+            i++;
+        }
+
+        return Transforms;
+    }
+
+    public Unload[] getUnload() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Unload\";");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        Unload[] Unloads = new Unload[rs.getInt(1)];
+
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", type, destination, quantity FROM ii.\"Unload\";");
+        rs = s.executeQuery();
+
+        int i=0;
+        while (rs.next()) {
+            Unloads[i] = new Unload(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4));
+            i++;
+        }
+
+        return Unloads;
+    }
+
 }

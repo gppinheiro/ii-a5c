@@ -35,7 +35,6 @@ public class receiveUDP implements Runnable {
     @Override
     public void run() {
         try {
-            // TODO: TEST THIS SHIT - NEED TO KNOW IF PORT AND ADDRESS WILL BE THE SAME AS CLIENT - IF IT IS, WE CAN USE clientUDP class
             // SocketAddress - I don't know if it is localhost or not. So we must play on the safe side.
             SocketAddress SocketAddr = packUDP.getSocketAddress();
             // Address + Port
@@ -47,19 +46,10 @@ public class receiveUDP implements Runnable {
             // InetAddress with the before result
             address = InetAddress.getByName(addressServer);
 
-            // TODO: WHAT I SAID BEFORE
-            if ( address.equals(client.address) ){
-                System.out.println("Address is the same.");
-            }
-            else {
-                System.out.println("Everything not the same.");
-            }
-
             // Receive Orders XML
             byte[] buffer2 = Arrays.copyOfRange(packUDP.getData(), 0, packUDP.getLength());
             Files.write(Paths.get("receiveOrdersXML.xml"), buffer2);
 
-            // TODO: READ XML - needs to test it too
             readXML();
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,7 +72,6 @@ public class receiveUDP implements Runnable {
             NodeList requestOrdersList = doc.getElementsByTagName("Request_Orders");
             // <Request_Stores/>
             NodeList requestStoresList = doc.getElementsByTagName("Request_Stores");
-            // TODO: Test IT
             // <Order/>
             NodeList orderList = doc.getElementsByTagName("Order");
 
