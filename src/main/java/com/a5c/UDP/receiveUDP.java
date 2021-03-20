@@ -21,30 +21,20 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-public class threadedUDP implements Runnable {
-    public Thread threadUDP;
+public class receiveUDP implements Runnable {
     public clientUDP client;
     public InetAddress address;
+    public DatagramPacket packUDP;
 
-    public threadedUDP() {
-        threadUDP = new Thread(this,"Threaded UDP");
-        client = new clientUDP();
-        threadUDP.start();
+    // Meter a thread na MAIN
+    public receiveUDP(clientUDP cl, DatagramPacket pk) {
+        this.client = cl;
+        this.packUDP = pk;
     }
 
     @Override
     public void run() {
         try {
-            // Fill with 0s -  Byte Array
-            byte[] buffer = new byte[65536];
-            Arrays.fill(buffer , (byte) 0);
-
-            // DatagramPacker
-            DatagramPacket packUDP = new DatagramPacket(buffer, 0, buffer.length);
-
-            // Receive what Mario sent to us
-            client.socket.receive(packUDP);
-
             // TODO: TEST THIS SHIT - NEED TO KNOW IF PORT AND ADDRESS WILL BE THE SAME AS CLIENT - IF IT IS, WE CAN USE clientUDP class
             // SocketAddress - I don't know if it is localhost or not. So we must play on the safe side.
             SocketAddress SocketAddr = packUDP.getSocketAddress();
@@ -58,8 +48,8 @@ public class threadedUDP implements Runnable {
             address = InetAddress.getByName(addressServer);
 
             // TODO: WHAT I SAID BEFORE
-            if ( address==client.address && portServer==client.port){
-                System.out.println("Everything the same.");
+            if ( address.equals(client.address) ){
+                System.out.println("Address is the same.");
             }
             else {
                 System.out.println("Everything not the same.");
@@ -84,7 +74,7 @@ public class threadedUDP implements Runnable {
             // Create the document
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse("ReceiveOrdersXML.xml");
+            Document doc = docBuilder.parse("receiveOrdersXML.xml");
 
             // Search on document
             // TODO: WriteXML
