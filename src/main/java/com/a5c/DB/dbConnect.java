@@ -66,7 +66,7 @@ public class dbConnect {
     }
 
     public void addTransform(Transform tf) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO Transform VALUES (?,?,?,?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Transform\" VALUES (?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
@@ -79,7 +79,7 @@ public class dbConnect {
     }
 
     public void addUnload(Unload un) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO Unload VALUES (?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Unload\" VALUES (?,?,?,?,?);");
         s.setInt(1,un.getOrderNumber());
         s.setInt(2,un.getType());
         s.setInt(3,un.getDestination());

@@ -15,6 +15,7 @@ dependencies {
     implementation group: 'org.eclipse.milo', name: 'sdk-client', version: '0.5.4'
     implementation group: 'org.eclipse.milo', name: 'stack-client', version: '0.5.4'
     implementation group: 'org.eclipse.milo', name: 'stack-core', version: '0.5.4'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
 }
 
 test {

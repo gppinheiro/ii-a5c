@@ -33,22 +33,8 @@ Legend:
 
 public class MES {
     public static void main(final String[] args) {
-        clientOPC_UA opc = new clientOPC_UA();
+        //clientOPC_UA opc = new clientOPC_UA();
         clientUDP udp = new clientUDP();
-
-        // Just to test if reads everything ok
-        System.out.println("Before writing:");
-        System.out.println("PLC program, variable:" + opc.getValue("v1"));
-
-        int[] test = new int[3];
-        test[0]=1;
-        test[1]=1;
-        test[2]=1;
-        opc.setValue("v1",test);
-
-        System.out.println("After writing:");
-        System.out.println("PLC program, variable:" + opc.getValue("v1"));
-
 
         while(true) {
             // Fill with 0s -  Byte Array
