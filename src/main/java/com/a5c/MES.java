@@ -41,30 +41,13 @@ public class MES {
         clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
 
-        try {
-            // TODO: É PRECISO CRIAR UMA THREAD PARA ESTAR SEMPRE A LER ISTO
-            Transform[] tfs = db.getTransform();
-            Unload[] unls = db.getUnload();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        // ERP -> Ler DB -> Definir Caminho -> Comunicar com OPC
+        // ERP
+        new receiveUDP(udp,db).start();
 
-        /*while(true) {
-            // Fill with 0s -  Byte Array
-            byte[] buffer = new byte[65536];
-            Arrays.fill(buffer , (byte) 0);
+        // Controlo propriamente dito - O que fazer com base em tudo
+        // Ler DB Transformações e Unloads -> Definir Caminho
+        new whatToDo(db).start();
 
-            // DatagramPacker
-            DatagramPacket packUDP = new DatagramPacket(buffer, 0, buffer.length);
-
-            try {
-                // Receive what ERP sent to us
-                udp.socket.receive(packUDP);
-
-                new Thread(new receiveUDP(udp,packUDP)).start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
     }
 }

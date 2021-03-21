@@ -22,44 +22,61 @@ import java.sql.SQLException;
 import java.util.Arrays;
 
 public class receiveUDP implements Runnable {
-    public clientUDP client;
-    public InetAddress address;
-    public DatagramPacket packUDP;
+    private clientUDP client;
+    public dbConnect db;
+    private InetAddress address;
+    private Thread thrUDP;
 
-    // Meter a thread na MAIN
-    public receiveUDP(clientUDP cl, DatagramPacket pk) {
+    public receiveUDP(clientUDP cl, dbConnect db) {
         this.client = cl;
-        this.packUDP = pk;
+        this.db = db;
     }
 
     @Override
     public void run() {
         try {
-            // SocketAddress - I don't know if it is localhost or not. So we must play on the safe side.
-            SocketAddress SocketAddr = packUDP.getSocketAddress();
-            // Address + Port
-            String aux = SocketAddr.toString();
-            // Address
-            String addressServer = aux.substring(1, aux.indexOf(":"));
-            // Port
-            int portServer = Integer.parseInt(aux.substring(aux.indexOf(":") + 1));
-            // InetAddress with the before result
-            address = InetAddress.getByName(addressServer);
+            // Fill with 0s -  Byte Array
+            byte[] buffer = new byte[65536];
+            Arrays.fill(buffer , (byte) 0);
 
-            // Receive Orders XML
-            byte[] buffer2 = Arrays.copyOfRange(packUDP.getData(), 0, packUDP.getLength());
-            Files.write(Paths.get("receiveOrdersXML.xml"), buffer2);
+            // DatagramPacker
+            DatagramPacket packUDP = new DatagramPacket(buffer, 0, buffer.length);
 
-            readXML();
+            while(true) {
+                // Receive what ERP sent to us
+                client.socket.receive(packUDP);
+
+                // SocketAddress - I don't know if it is localhost or not. So we must play on the safe side.
+                /*SocketAddress SocketAddr = packUDP.getSocketAddress();
+                // Address + Port
+                String aux = SocketAddr.toString();
+                // Address
+                String addressServer = aux.substring(1, aux.indexOf(":"));
+                // Port
+                int portServer = Integer.parseInt(aux.substring(aux.indexOf(":") + 1));
+                // InetAddress with the before result
+                address = InetAddress.getByName(addressServer);*/
+
+                // Receive Orders XML
+                byte[] buffer2 = Arrays.copyOfRange(packUDP.getData(), 0, packUDP.getLength());
+                Files.write(Paths.get("receiveOrdersXML.xml"), buffer2);
+
+                readXML();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void start() {
+        if(thrUDP==null) {
+            thrUDP = new Thread(this);
+            thrUDP.start();
+        }
+    }
+
     public void readXML() {
-
-        dbConnect db = new dbConnect();
-
         try {
             // Create the document
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
