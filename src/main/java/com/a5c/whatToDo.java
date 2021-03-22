@@ -30,10 +30,23 @@ public class whatToDo implements Runnable{
                 Transform[] tfs = db.getTransform();
                 Unload[] unls = db.getUnload();
 
+                // CAETANO:
+                // LER
+                // Bools para cada maquina
+                // Bools para tapetes de carga
+
+                // MANDAR
+                // Transformação: 0
+                // Unload: 1
+
+                // Prioridade:
+                // Penalty - Se for grande, fazer esta primeiro
+                // MaxDelay - Se for pequeno, fazer esta primeiro
+
+                // Temos que definir lado de esquerdo (peças mais dificeis) e direito(peças mais faceis)
+
                 //TODO:
-                // WE HAVE TFS AND UNLS
-                // NEED INFORMATION FROM OPC
-                // WE NEED TO DEFINE PRIOR
+                // DEFINE PRIOR
 
             } catch (SQLException e) {
                 e.printStackTrace();

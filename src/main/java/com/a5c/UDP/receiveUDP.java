@@ -24,7 +24,7 @@ import java.util.Arrays;
 public class receiveUDP implements Runnable {
     private clientUDP client;
     public dbConnect db;
-    private InetAddress address;
+    //private InetAddress address;
     private Thread thrUDP;
 
     public receiveUDP(clientUDP cl, dbConnect db) {
@@ -46,6 +46,7 @@ public class receiveUDP implements Runnable {
                 // Receive what ERP sent to us
                 client.socket.receive(packUDP);
 
+                // ESTA MERDA JA NAO DEVE SER PRECISA MAIS
                 // SocketAddress - I don't know if it is localhost or not. So we must play on the safe side.
                 /*SocketAddress SocketAddr = packUDP.getSocketAddress();
                 // Address + Port
