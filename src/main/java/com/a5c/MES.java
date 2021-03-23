@@ -1,33 +1,48 @@
 package com.a5c;
 
-import com.a5c.DATA.Transform;
-import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
-import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.UDP.clientUDP;
 import com.a5c.UDP.receiveUDP;
-
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.sql.SQLException;
-import java.util.Arrays;
 
 /*
 TODO list:
 
   [X]  OPC Communication
-            - Read OK
+            - Read OK 
             - Write OK
+
   [X]  UDP Communication
             - UDP Client OK
             - File XML OK
+
   [ ]  Statics
+
   [ ]  Unload
+
   [.]  XML
             - READ OK
-            - WRITE
-  [ ]  Transformation
-  [ ]  Thread
+            - WRITE CurrentStores OK
+            //TODO
+            - WRITE OrderSchedule
+            - Send XML OK
+
+  [.]  Transformation
+            //TODO
+            - Choose Path
+            //TODO
+            - Choose Left or Right
+
+  [.]  Thread
+            - UDP OK
+            - WhatToDo OK
+            //TODO
+            - OPC
+
+  [.]  DB
+            - Connection OK
+            - Add and Get Transform OK
+            - Add and Get Unload OK
+            - Get CurrentStores OK
 
 Legend:
    X   Done
@@ -41,12 +56,8 @@ public class MES {
         clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
 
-        // ERP -> Ler DB -> Definir Caminho -> Comunicar com OPC
-        // ERP
         new receiveUDP(udp,db).start();
 
-        // Controlo propriamente dito - O que fazer com base em tudo
-        // Ler DB Transformações e Unloads -> Definir Caminho
         new whatToDo(db).start();
 
     }

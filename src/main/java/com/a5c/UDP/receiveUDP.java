@@ -3,15 +3,18 @@ package com.a5c.UDP;
 import com.a5c.DATA.Transform;
 import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -22,9 +25,11 @@ import java.sql.SQLException;
 import java.util.Arrays;
 
 public class receiveUDP implements Runnable {
-    private clientUDP client;
+    private final clientUDP client;
     public dbConnect db;
-    //private InetAddress address;
+    private InetAddress addressServer;
+    private int portServer;
+    private DatagramPacket packUDP;
     private Thread thrUDP;
 
     public receiveUDP(clientUDP cl, dbConnect db) {
@@ -40,23 +45,22 @@ public class receiveUDP implements Runnable {
             Arrays.fill(buffer , (byte) 0);
 
             // DatagramPacker
-            DatagramPacket packUDP = new DatagramPacket(buffer, 0, buffer.length);
+            packUDP = new DatagramPacket(buffer, 0, buffer.length);
 
             while(true) {
                 // Receive what ERP sent to us
                 client.socket.receive(packUDP);
 
-                // ESTA MERDA JA NAO DEVE SER PRECISA MAIS
-                // SocketAddress - I don't know if it is localhost or not. So we must play on the safe side.
-                /*SocketAddress SocketAddr = packUDP.getSocketAddress();
+                // SocketAddress - This value are need to send back to server some information, if only necessary.
+                SocketAddress SocketAddr = packUDP.getSocketAddress();
                 // Address + Port
                 String aux = SocketAddr.toString();
                 // Address
-                String addressServer = aux.substring(1, aux.indexOf(":"));
+                String address = aux.substring(1, aux.indexOf(":"));
                 // Port
-                int portServer = Integer.parseInt(aux.substring(aux.indexOf(":") + 1));
+                portServer = Integer.parseInt(aux.substring(aux.indexOf(":") + 1));
                 // InetAddress with the before result
-                address = InetAddress.getByName(addressServer);*/
+                addressServer = InetAddress.getByName(address);
 
                 // Receive Orders XML
                 byte[] buffer2 = Arrays.copyOfRange(packUDP.getData(), 0, packUDP.getLength());
@@ -92,6 +96,11 @@ public class receiveUDP implements Runnable {
             NodeList requestStoresList = doc.getElementsByTagName("Request_Stores");
             // <Order/>
             NodeList orderList = doc.getElementsByTagName("Order");
+
+            if(requestStoresList.getLength()!=0) {
+                writeCurrentStores();
+                sendXML("sendCurrentStores.xml");
+            }
 
             // Lets search on order
             for (int i=0; i< orderList.getLength(); i++) {
@@ -162,6 +171,65 @@ public class receiveUDP implements Runnable {
             e.printStackTrace();
         }
 
+    }
+
+    public void writeCurrentStores() {
+        try {
+            // Create the document
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            Document doc = docBuilder.newDocument();
+
+            //<Current_Stores> - Quantity of each piece
+            Element CSelem = doc.createElement("Current_Stores");
+            doc.appendChild(CSelem);
+
+            // P1 to P9
+            //<WorkPiece type="Px" quantity="XX"/>
+            Integer[] npieces = db.getCurrentStores();
+            for(int i=1; i<10; i++) {
+                //<WorkPiece/>
+                Element WPelem = doc.createElement("WorkPiece");
+                CSelem.appendChild(WPelem);
+
+                //type
+                Attr Tattr = doc.createAttribute("type");
+                Tattr.setValue("P"+i);
+                WPelem.setAttributeNode(Tattr);
+
+                //quantity
+                Attr Qattr = doc.createAttribute("quantity");
+                Qattr.setValue(npieces[i].toString());
+                WPelem.setAttributeNode(Qattr);
+
+            }
+
+            //Create file XML
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("sendCurrentStores.xml"));
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException | SQLException | TransformerException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //TODO
+    public void writeOrderSchedule() {
+
+    }
+
+    public void sendXML(String file) {
+        try {
+            byte[] buffer = Files.readAllBytes(Paths.get(file));
+            packUDP = new DatagramPacket(buffer, buffer.length, addressServer, portServer);
+            client.socket.send(packUDP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -6,10 +6,10 @@ com/a5c/UDP/clientUDP.java
  com.a5c.UDP.clientUDP
 com/a5c/OPC_UA/clientOPC_UA.java
  com.a5c.OPC_UA.clientOPC_UA
-com/a5c/DB/dbConnect.java
- com.a5c.DB.dbConnect
 com/a5c/whatToDo.java
  com.a5c.whatToDo
+com/a5c/DB/dbConnect.java
+ com.a5c.DB.dbConnect
 com/a5c/UDP/receiveUDP.java
  com.a5c.UDP.receiveUDP
 com/a5c/MES.java

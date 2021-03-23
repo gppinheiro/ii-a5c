@@ -124,4 +124,17 @@ public class dbConnect {
         return Unloads;
     }
 
+    public Integer[] getCurrentStores() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT type, quantity FROM ii.\"CurrentStores\";");
+        ResultSet rs = s.executeQuery();
+
+        Integer[] pieces = new Integer[10];
+        pieces[0]=0;
+        while (rs.next()) {
+            pieces[rs.getInt(1)] = rs.getInt(2);
+        }
+
+        return pieces;
+    }
+
 }
