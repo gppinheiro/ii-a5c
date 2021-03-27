@@ -16,7 +16,6 @@ public class clientOPC_UA {
 
     // Probably we will need to change Node Identifier, endpointURL and nsIndex -> UA Expert shows
     //private static final String Identifier = "|var|CODESYS Control Win V3 x64.Application.PLC_PRG.";
-    private static final String Identifier = "|var|CODESYS Control Win V3 x64.Application.GVL.";
     private static final String endpointURL = "opc.tcp://localhost:4840";
     private static final int nsIndex = 4;
 
@@ -34,11 +33,11 @@ public class clientOPC_UA {
 
     /**
      * Get Variable Value
-     * @param Variable - Variable's Name.
+     * @param Identifier - Identifier's Name.
      * @return an object - it can be int, boolean, String, etc. Depends on what we need.
      */
-    public Object getValue(String Variable) {
-        NodeId nodeIDString = new NodeId(nsIndex, Identifier+Variable);
+    public Object getValue(String Identifier) {
+        NodeId nodeIDString = new NodeId(nsIndex, Identifier);
         DataValue value = null;
 
         try {
@@ -89,12 +88,12 @@ public class clientOPC_UA {
 
     /**
      * SET Value
-     * @param Variable - Variable's Name
+     * @param Identifier - Identifier's Name
      * @param var - Variant Class to Set
      * @return true if ok
      */
-    public boolean SET(String Variable, Variant var) {
-        NodeId nodeIDString = new NodeId(nsIndex, Identifier+Variable);
+    public boolean SET(String Identifier, Variant var) {
+        NodeId nodeIDString = new NodeId(nsIndex, Identifier);
         DataValue dv = new DataValue(var);
 
         try {

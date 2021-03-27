@@ -4,16 +4,21 @@ import com.a5c.DATA.Transform;
 import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
 import com.a5c.OPC_UA.clientOPC_UA;
+import com.a5c.OPC_UA.readOPC;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class whatToDo implements Runnable{
     public dbConnect db;
     private clientOPC_UA opc;
+    private readOPC opcR;
     private Thread thrWTD;
 
-    public whatToDo(dbConnect dbc) {
+    public whatToDo(clientOPC_UA cl,dbConnect dbc) {
+        this.opc = cl;
         this.db = dbc;
+        this.opcR = new readOPC(opc);
     }
 
     public void start() {
@@ -54,6 +59,8 @@ public class whatToDo implements Runnable{
                         }
                     }
                 }
+
+                System.out.println(Arrays.toString(opcR.getMachinesLeft()));
 
                 // If we don't have unloads, we make transformations
                 if (unls.length==0) {

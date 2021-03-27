@@ -1,6 +1,7 @@
 package com.a5c;
 
 import com.a5c.DB.dbConnect;
+import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.UDP.clientUDP;
 import com.a5c.UDP.receiveUDP;
 
@@ -52,13 +53,12 @@ Legend:
 
 public class MES {
     public static void main(final String[] args) {
-        //clientOPC_UA opc = new clientOPC_UA();
+        clientOPC_UA opc = new clientOPC_UA();
         clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
 
         new receiveUDP(udp,db).start();
-
-        new whatToDo(db).start();
+        new whatToDo(opc,db).start();
 
     }
 }
