@@ -40,6 +40,8 @@ public class whatToDo implements Runnable{
                 Transform[] tfs = db.getTransform();
                 Unload[] unls = db.getUnload();
 
+                int[] fabric = new int[] {0,0,0,0};
+
                 // Prioridade:
                 // Penalty - Se for grande, fazer esta primeiro
                 // MaxDelay - Se for pequeno, fazer esta primeiro
@@ -58,18 +60,337 @@ public class whatToDo implements Runnable{
                 // If we don't have unloads, we make transformations
                 if (unls.length==0) {
                     //Select the first one tfs[0]
-                    //Choose path:
-                    // If difficult, send to left side
-                    // If easy, send to right side
-                    // Select path
-                    //Create vector to send fabric
-                    //Remove transformation from db
+                    //tfs[0] = P1
+                    if (tfs[0].getFrom()==1 && tfs[0].getTo()==2){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=1;
+                        fabric[1]=15;
+                        fabric[2]=0;
+                        fabric[3]=0;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==1 && tfs[0].getTo()==3){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=1;
+                        fabric[1]=15;
+                        fabric[2]=15;
+                        fabric[3]=0;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==1 && tfs[0].getTo()==4){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=1;
+                        fabric[1]=15;
+                        fabric[2]=15;
+                        fabric[3]=15;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==1 && tfs[0].getTo()==5){
+                        //Choose path
+                        //Create vector to send fabric
+
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==1 && tfs[0].getTo()==6){
+                        //Choose path
+                        //Create vector to send fabric
+
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==1 && tfs[0].getTo()==9){
+                        //Choose path
+                        //Create vector to send fabric
+
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==1 && tfs[0].getTo()==7){
+                        //Choose path
+                        //Create vector to send fabric
+
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==1 && tfs[0].getTo()==8){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    //tfs[0] = P2
+                    else if (tfs[0].getFrom()==2 && tfs[0].getTo()==3){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=2;
+                        fabric[1]=0;
+                        fabric[2]=15;
+                        fabric[3]=0;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==2 && tfs[0].getTo()==4){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=2;
+                        fabric[1]=0;
+                        fabric[2]=15;
+                        fabric[3]=15;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==2 && tfs[0].getTo()==5){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=2;
+                        fabric[1]=15;
+                        fabric[2]=15;
+                        fabric[3]=15;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==2 && tfs[0].getTo()==6){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==2 && tfs[0].getTo()==9){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==2 && tfs[0].getTo()==7){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==2 && tfs[0].getTo()==8){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    //tfs[0] = P3
+                    else if (tfs[0].getFrom()==3 && tfs[0].getTo()==4){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=3;
+                        fabric[1]=0;
+                        fabric[2]=0;
+                        fabric[3]=15;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==3 && tfs[0].getTo()==5){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=3;
+                        fabric[1]=15;
+                        fabric[2]=0;
+                        fabric[3]=15;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==3 && tfs[0].getTo()==6){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=3;
+                        fabric[1]=15;
+                        fabric[2]=15;
+                        fabric[3]=15;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==3 && tfs[0].getTo()==9){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==3 && tfs[0].getTo()==7){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==3 && tfs[0].getTo()==8){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    //tfs[0] = P4
+                    else if (tfs[0].getFrom()==4 && tfs[0].getTo()==5){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=4;
+                        fabric[1]=15;
+                        fabric[2]=0;
+                        fabric[3]=0;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==4 && tfs[0].getTo()==6){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=4;
+                        fabric[1]=15;
+                        fabric[2]=30;
+                        fabric[3]=0;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==4 && tfs[0].getTo()==9){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=4;
+                        fabric[1]=15;
+                        fabric[2]=0;
+                        fabric[3]=30;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    } else if (tfs[0].getFrom()==4 && tfs[0].getTo()==7){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=4;
+                        fabric[1]=15;
+                        fabric[2]=30;
+                        fabric[3]=30;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==4 && tfs[0].getTo()==8){
+                        //Choose path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    //tfs[0] = P5
+                    else if (tfs[0].getFrom()==5 && tfs[0].getTo()==6){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=5;
+                        fabric[1]=0;
+                        fabric[2]=30;
+                        fabric[3]=0;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==5 && tfs[0].getTo()==9){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=5;
+                        fabric[1]=0;
+                        fabric[2]=0;
+                        fabric[3]=30;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==5 && tfs[0].getTo()==7){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=5;
+                        fabric[1]=0;
+                        fabric[2]=30;
+                        fabric[3]=30;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==5 && tfs[0].getTo()==8){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=5;
+                        fabric[1]=15;
+                        fabric[2]=30;
+                        fabric[3]=0;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    //tfs[0] = P6
+                    else if (tfs[0].getFrom()==6 && tfs[0].getTo()==7){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=6;
+                        fabric[1]=0;
+                        fabric[2]=0;
+                        fabric[3]=30;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+                    else if (tfs[0].getFrom()==6 && tfs[0].getTo()==8){
+                        //Choose path
+                        //Create vector to send fabric
+                        fabric[0]=6;
+                        fabric[1]=15;
+                        fabric[2]=0;
+                        fabric[3]=0;
+                        //Remove transformation from db
+                        //Put on unfinished transformations
+                    }
+
                 }
+
                 // If not we prioritize unloads
                 else {
                     //Select the first one unls[0]
-                    //Create vector to send fabric
-                    //Remove unload from db
+                    //unls[0]=P1
+                    if(unls[0].getDestination()==1){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+                    if(unls[0].getDestination()==2){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+                    if(unls[0].getDestination()==3){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+                    if(unls[0].getDestination()==4){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+                    if(unls[0].getDestination()==5){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+                    if(unls[0].getDestination()==6){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+                    if(unls[0].getDestination()==7){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+                    if(unls[0].getDestination()==8){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+                    if(unls[0].getDestination()==9){
+                        //Create vector to send fabric
+                        //Remove unload from db
+                        //Put on unfinished unloads
+                    }
+
+
                 }
 
                 // Create waiting lines (?)
