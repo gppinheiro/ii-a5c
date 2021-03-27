@@ -40,7 +40,7 @@ public class whatToDo implements Runnable{
                 Transform[] tfs = db.getTransform();
                 Unload[] unls = db.getUnload();
 
-                int[] fabric = new int[] {0,0,0,0};
+                int[] fabric = new int[] {0,0,0,0,0};
 
                 // Prioridade:
                 // Penalty - Se for grande, fazer esta primeiro
@@ -68,6 +68,7 @@ public class whatToDo implements Runnable{
                         fabric[1]=15;
                         fabric[2]=0;
                         fabric[3]=0;
+                        fabric[4]=0;
                         //Remove transformation from db
                         //Put on unfinished transformations
                     }
@@ -78,6 +79,7 @@ public class whatToDo implements Runnable{
                         fabric[1]=15;
                         fabric[2]=15;
                         fabric[3]=0;
+                        fabric[4]=0;
                         //Remove transformation from db
                         //Put on unfinished transformations
                     }
@@ -88,13 +90,18 @@ public class whatToDo implements Runnable{
                         fabric[1]=15;
                         fabric[2]=15;
                         fabric[3]=15;
+                        fabric[4]=0;
                         //Remove transformation from db
                         //Put on unfinished transformations
                     }
                     else if (tfs[0].getFrom()==1 && tfs[0].getTo()==5){
                         //Choose path
                         //Create vector to send fabric
-
+                        fabric[0]=1;
+                        fabric[1]=15;
+                        fabric[2]=15;
+                        fabric[3]=15;
+                        fabric[4]=15;
                         //Remove transformation from db
                         //Put on unfinished transformations
                     }
@@ -359,36 +366,7 @@ public class whatToDo implements Runnable{
                         //Remove unload from db
                         //Put on unfinished unloads
                     }
-                    if(unls[0].getDestination()==4){
-                        //Create vector to send fabric
-                        //Remove unload from db
-                        //Put on unfinished unloads
-                    }
-                    if(unls[0].getDestination()==5){
-                        //Create vector to send fabric
-                        //Remove unload from db
-                        //Put on unfinished unloads
-                    }
-                    if(unls[0].getDestination()==6){
-                        //Create vector to send fabric
-                        //Remove unload from db
-                        //Put on unfinished unloads
-                    }
-                    if(unls[0].getDestination()==7){
-                        //Create vector to send fabric
-                        //Remove unload from db
-                        //Put on unfinished unloads
-                    }
-                    if(unls[0].getDestination()==8){
-                        //Create vector to send fabric
-                        //Remove unload from db
-                        //Put on unfinished unloads
-                    }
-                    if(unls[0].getDestination()==9){
-                        //Create vector to send fabric
-                        //Remove unload from db
-                        //Put on unfinished unloads
-                    }
+
 
 
                 }
