@@ -5,6 +5,7 @@ import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
 import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.OPC_UA.readOPC;
+import com.a5c.OPC_UA.sendOPC;
 
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -13,12 +14,14 @@ public class whatToDo implements Runnable{
     public dbConnect db;
     private clientOPC_UA opc;
     private readOPC opcR;
+    private sendOPC opcS;
     private Thread thrWTD;
 
     public whatToDo(clientOPC_UA cl,dbConnect dbc) {
         this.opc = cl;
         this.db = dbc;
         this.opcR = new readOPC(opc);
+        this.opcS = new sendOPC(opc);
     }
 
     public void start() {
@@ -35,8 +38,8 @@ public class whatToDo implements Runnable{
                 // CAETANO:
                 // LER
                 // Bools para cada maquina
-                // Bools para tapetes de carga
-                // Quantidade de cada peça (P1 até P9)
+                // Bools para tapetes de carga - Falta fazer
+                // Quantidade de cada peça (P1 até P9) - Falta testar
 
                 // MANDAR
                 // Transformação: 0
@@ -60,11 +63,24 @@ public class whatToDo implements Runnable{
                     }
                 }
 
-                System.out.println(Arrays.toString(opcR.getMachinesLeft()));
-
                 // If we don't have unloads, we make transformations
                 if (unls.length==0) {
+                    int[] LeftMachines = new int[4];
+                    LeftMachines[0]=1;
+                    LeftMachines[1]=1;
+                    LeftMachines[2]=1;
+                    LeftMachines[3]=1;
+
+                    opcS.sendLeftMachinesVector(LeftMachines);
+
                     //Select the first one tfs[0]
+                    int[] trans = new int[3];
+                    trans[0] = tfs[0].getFrom();
+                    trans[1] = tfs[0].getTo();
+                    trans[2] = tfs[0].getQuantity();
+
+                    opcS.sendTransform(trans);
+
                     //Choose path:
                     // If difficult, send to left side
                     // If easy, send to right side

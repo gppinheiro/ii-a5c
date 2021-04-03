@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="comments and writeXML and sort">
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="read OPC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/sendOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/sendOPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/whatToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/whatToDo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,19 +105,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MES" />
@@ -156,7 +142,8 @@
       <workItem from="1616494742586" duration="342000" />
       <workItem from="1616496627403" duration="140000" />
       <workItem from="1616782719842" duration="1052000" />
-      <workItem from="1616861860890" duration="1838000" />
+      <workItem from="1616861860890" duration="3630000" />
+      <workItem from="1617458340072" duration="1026000" />
     </task>
     <task id="LOCAL-00001" summary="add UDP Server">
       <created>1614976231408</created>
@@ -291,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616496702577</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="read OPC">
+      <created>1616864503498</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1616864503498</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,6 +317,7 @@
     <MESSAGE value="threads novas" />
     <MESSAGE value="comments" />
     <MESSAGE value="comments and writeXML and sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="comments and writeXML and sort" />
+    <MESSAGE value="read OPC" />
+    <option name="LAST_COMMIT_MESSAGE" value="read OPC" />
   </component>
 </project>
