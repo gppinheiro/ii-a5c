@@ -74,7 +74,7 @@ public class whatToDo implements Runnable{
 
                 // GAJO ENVIA PARA O LADO ESQUERDO
 
-                if ( opcR.getLeftSide() || !opcR.getACKLeft() ) {
+                if ( !opcR.getACKLeft() ) {
                     // 1 dificil
                     if ( tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  ) ) {
                         Transform tf1 = new Transform(tfs[0].getOrderNumber(),1,5,tfs[0].getQuantity(),0,0,0);
