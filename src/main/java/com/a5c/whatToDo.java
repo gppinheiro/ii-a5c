@@ -8,6 +8,7 @@ import com.a5c.OPC_UA.readOPC;
 import com.a5c.OPC_UA.sendOPC;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class whatToDo implements Runnable{
     public dbConnect db;
@@ -125,6 +126,7 @@ public class whatToDo implements Runnable{
                         }
                         else if (this.State3==1 && opcR.getACKLeft() ) {
                             this.State3=2;
+                            System.out.println(Arrays.toString(this.zeros));
                             opcS.sendLeft(this.zeros);
                         }
                         else if (this.State3==2 && !opcR.getACKLeft()) {
