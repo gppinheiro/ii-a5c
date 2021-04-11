@@ -12,11 +12,12 @@ import java.sql.SQLException;
 public class whatToDo implements Runnable{
     public dbConnect db;
     private clientOPC_UA opc;
-    private readOPC opcR;
-    private sendOPC opcS;
+    private final readOPC opcR;
+    private final sendOPC opcS;
     private Thread thrWTD;
     private int State1;
     private int State2;
+    private int State3;
 
     public whatToDo(clientOPC_UA cl,dbConnect dbc) {
         this.opc = cl;
@@ -25,6 +26,7 @@ public class whatToDo implements Runnable{
         this.opcS = new sendOPC(opc);
         this.State1 = 0;
         this.State2 = 0;
+        this.State3 = 0;
     }
 
     public void start() {
@@ -70,7 +72,7 @@ public class whatToDo implements Runnable{
 
                 // GAJO ENVIA PARA O LADO ESQUERDO
 
-                if ( !opcR.getLeftSide() || !opcR.getACKLeft() ) {
+                if ( opcR.getLeftSide() || !opcR.getACKLeft() ) {
                     // 1 dificil
                     if ( tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  ) ) {
                         Transform tf1 = new Transform(tfs[0].getOrderNumber(),1,5,tfs[0].getQuantity(),0,0,0);
@@ -80,15 +82,19 @@ public class whatToDo implements Runnable{
                             this.State1=1;
                             opcS.sendLeft(tf1.getPath());
                         }
-                        else if (this.State1==1 && !opcR.getACKLeft() ) {
+                        else if (this.State1==1 && opcR.getACKLeft() ) {
                             this.State1=2;
+                            opcS.sendLeft(new int[]{0, 0, 0, 0});
+                        }
+                        else if (this.State1==2 && !opcR.getACKLeft()) {
+                            this.State1=3;
                             opcS.sendLeft(tf2.getPath());
                         }
-                        else if (this.State1==2 && opcR.getACKLeft()) {
+                        else if (this.State1==3 && !opcR.getACKLeft()) {
                             this.State1=0;
                         }
-
                     }
+
                     // 2 dificil
                     else if ( tfs[0].getFrom()==2 && ( tfs[0].getTo()==7 || tfs[0].getTo()==8 ) ) {
                         Transform tf1 = new Transform(tfs[0].getOrderNumber(),2,6,tfs[0].getQuantity(),0,0,0);
@@ -98,17 +104,32 @@ public class whatToDo implements Runnable{
                             this.State2=1;
                             opcS.sendLeft(tf1.getPath());
                         }
-                        else if (this.State2==1 && !opcR.getACKLeft() ) {
+                        else if (this.State2==1 && opcR.getACKLeft() ) {
                             this.State2=2;
+                            opcS.sendLeft(new int[]{0, 0, 0, 0});
+                        }
+                        else if (this.State2==2 && !opcR.getACKLeft()) {
+                            this.State2=3;
                             opcS.sendLeft(tf2.getPath());
                         }
-                        else if (this.State2==2 && opcR.getACKLeft()) {
+                        else if (this.State2==3 && !opcR.getACKLeft()) {
                             this.State2=0;
                         }
                     }
                     // facil
                     else {
                         opcS.sendLeft(tfs[0].getPath());
+                        if ( this.State3==0 && !opcR.getACKLeft() ) {
+                            this.State3=1;
+                            opcS.sendLeft(tfs[0].getPath());
+                        }
+                        else if (this.State3==1 && opcR.getACKLeft() ) {
+                            this.State3=2;
+                            opcS.sendLeft(new int[]{0, 0, 0, 0});
+                        }
+                        else if (this.State3==2 && !opcR.getACKLeft()) {
+                            this.State3=0;
+                        }
                     }
                 }
 
