@@ -40,11 +40,6 @@ public class whatToDo implements Runnable{
 
     @Override
     public void run() {
-        try {
-            db.addTransform(new Transform(0,1,8,2,0,0,0));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         while(true) {
             try {
                 // CAETANO:
