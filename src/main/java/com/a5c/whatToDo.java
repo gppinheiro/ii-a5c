@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class whatToDo implements Runnable{
     public dbConnect db;
-    private clientOPC_UA opc;
+    private final clientOPC_UA opc;
     private final readOPC opcR;
     private final sendOPC opcS;
     private Thread thrWTD;
@@ -51,6 +51,7 @@ public class whatToDo implements Runnable{
                 // MANDAR
                 // Transformação: 0
                 // Unload: 1
+                db.addTransform(new Transform(0,1,8,2,0,0,0));
                 
                 Transform[] tfs = db.getTransform();
                 Unload[] unls = db.getUnload();
