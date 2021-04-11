@@ -18,6 +18,7 @@ public class whatToDo implements Runnable{
     private int State1;
     private int State2;
     private int State3;
+    private final int[] zeros = {0,0,0,0};
 
     public whatToDo(clientOPC_UA cl,dbConnect dbc) {
         this.opc = cl;
@@ -84,7 +85,7 @@ public class whatToDo implements Runnable{
                         }
                         else if (this.State1==1 && opcR.getACKLeft() ) {
                             this.State1=2;
-                            opcS.sendLeft(new int[]{0, 0, 0, 0});
+                            opcS.sendLeft(this.zeros);
                         }
                         else if (this.State1==2 && !opcR.getACKLeft()) {
                             this.State1=3;
@@ -106,7 +107,7 @@ public class whatToDo implements Runnable{
                         }
                         else if (this.State2==1 && opcR.getACKLeft() ) {
                             this.State2=2;
-                            opcS.sendLeft(new int[]{0, 0, 0, 0});
+                            opcS.sendLeft(this.zeros);
                         }
                         else if (this.State2==2 && !opcR.getACKLeft()) {
                             this.State2=3;
@@ -124,7 +125,7 @@ public class whatToDo implements Runnable{
                         }
                         else if (this.State3==1 && opcR.getACKLeft() ) {
                             this.State3=2;
-                            opcS.sendLeft(new int[]{0, 0, 0, 0});
+                            opcS.sendLeft(this.zeros);
                         }
                         else if (this.State3==2 && !opcR.getACKLeft()) {
                             this.State3=0;
