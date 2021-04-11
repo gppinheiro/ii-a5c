@@ -130,7 +130,6 @@ public class whatToDo implements Runnable{
                         }
                         else if (this.State3==1 && opcR.getACKLeft() ) {
                             this.State3=2;
-                            System.out.println(Arrays.toString(this.zeros));
                             opcS.sendLeft(this.zeros);
                         }
                         else if (this.State3==2 && !opcR.getACKLeft()) {
