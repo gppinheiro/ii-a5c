@@ -7,12 +7,12 @@ public class sendOPC {
         this.client = cl;
     }
 
-    public boolean sendLeftMachinesVector(int[] vi) {
-        return client.setValue("|var|CODESYS Control Win V3 x64.Application.GVL.mach_pl",vi);
+    public boolean sendLeft(int[] vi) {
+        return client.setValue("|var|CODESYS Control Win V3 x64.Application.GVL.order_l",vi);
     }
 
-    public boolean sendTransform(int[] vi) {
-        return client.setValue("|var|CODESYS Control Win V3 x64.Application.GVL.order_l",vi);
+    public boolean sendRight(int[] vi) {
+        return client.setValue("|var|CODESYS Control Win V3 x64.Application.GVL.order_r",vi);
     }
 
 }

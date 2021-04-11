@@ -13,6 +13,16 @@ public class Transform {
         this.penalty = penalty;
     }
 
+    public int[] getPath() {
+        int[] factory = new int[]{0, 0, 0, 0};
+
+        factory[0] = this.from;
+        factory[1] = this.to;
+        factory[2] = this.quantity;
+
+        return factory;
+    }
+
     public int getOrderNumber() {
         return orderNumber;
     }
@@ -40,4 +50,5 @@ public class Transform {
     public int getPenalty() {
         return penalty;
     }
+
 }

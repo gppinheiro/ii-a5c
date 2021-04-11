@@ -77,9 +77,9 @@ public class clientOPC_UA {
      * @return true if sets ok
      */
     public boolean setValue(String Variable, int[] SetValue) {
-        short[] SetValueShort = new short[3];
+        short[] SetValueShort = new short[SetValue.length];
 
-        for(int j = 0; j < 3; j++) {
+        for(int j = 0; j < SetValue.length; j++) {
             SetValueShort[j] = (short) SetValue[j];
         }
 

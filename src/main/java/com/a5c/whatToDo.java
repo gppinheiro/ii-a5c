@@ -8,7 +8,6 @@ import com.a5c.OPC_UA.readOPC;
 import com.a5c.OPC_UA.sendOPC;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 
 public class whatToDo implements Runnable{
     public dbConnect db;
@@ -16,12 +15,16 @@ public class whatToDo implements Runnable{
     private readOPC opcR;
     private sendOPC opcS;
     private Thread thrWTD;
+    private int State1;
+    private int State2;
 
     public whatToDo(clientOPC_UA cl,dbConnect dbc) {
         this.opc = cl;
         this.db = dbc;
         this.opcR = new readOPC(opc);
         this.opcS = new sendOPC(opc);
+        this.State1 = 0;
+        this.State2 = 0;
     }
 
     public void start() {
@@ -63,36 +66,76 @@ public class whatToDo implements Runnable{
                     }
                 }
 
-                // If we don't have unloads, we make transformations
-                if (unls.length==0) {
-                    int[] LeftMachines = new int[4];
-                    LeftMachines[0]=1;
-                    LeftMachines[1]=1;
-                    LeftMachines[2]=1;
-                    LeftMachines[3]=1;
+                // PODE ENVIAR PARA UM OU PARA OUTRO OU PARA AMBOS OU PARA NENHUM
 
-                    opcS.sendLeftMachinesVector(LeftMachines);
+                // GAJO ENVIA PARA O LADO ESQUERDO
 
-                    //Select the first one tfs[0]
-                    int[] trans = new int[3];
-                    trans[0] = tfs[0].getFrom();
-                    trans[1] = tfs[0].getTo();
-                    trans[2] = tfs[0].getQuantity();
+                if ( !opcR.getLeftSide() || !opcR.getACKLeft() ) {
+                    // 1 dificil
+                    if ( tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  ) ) {
+                        Transform tf1 = new Transform(tfs[0].getOrderNumber(),1,5,tfs[0].getQuantity(),0,0,0);
+                        Transform tf2 = new Transform(tfs[0].getOrderNumber(),5,tfs[0].getTo(),tfs[0].getQuantity(),tfs[0].getTime(),tfs[0].getMaxDelay(),tfs[0].getPenalty());
 
-                    opcS.sendTransform(trans);
+                        if ( this.State1==0 && !opcR.getACKLeft() ) {
+                            this.State1=1;
+                            opcS.sendLeft(tf1.getPath());
+                        }
+                        else if (this.State1==1 && !opcR.getACKLeft() ) {
+                            this.State1=2;
+                            opcS.sendLeft(tf2.getPath());
+                        }
+                        else if (this.State1==2 && opcR.getACKLeft()) {
+                            this.State1=0;
+                        }
 
-                    //Choose path:
-                    // If difficult, send to left side
-                    // If easy, send to right side
-                    // Select path
-                    //Create vector to send fabric
-                    //Remove transformation from db
+                    }
+                    // 2 dificil
+                    else if ( tfs[0].getFrom()==2 && ( tfs[0].getTo()==7 || tfs[0].getTo()==8 ) ) {
+                        Transform tf1 = new Transform(tfs[0].getOrderNumber(),2,6,tfs[0].getQuantity(),0,0,0);
+                        Transform tf2 = new Transform(tfs[0].getOrderNumber(),6,tfs[0].getTo(),tfs[0].getQuantity(),tfs[0].getTime(),tfs[0].getMaxDelay(),tfs[0].getPenalty());
+
+                        if ( this.State2==0 && !opcR.getACKLeft() ) {
+                            this.State2=1;
+                            opcS.sendLeft(tf1.getPath());
+                        }
+                        else if (this.State2==1 && !opcR.getACKLeft() ) {
+                            this.State2=2;
+                            opcS.sendLeft(tf2.getPath());
+                        }
+                        else if (this.State2==2 && opcR.getACKLeft()) {
+                            this.State2=0;
+                        }
+                    }
+                    // facil
+                    else {
+                        opcS.sendLeft(tfs[0].getPath());
+                    }
                 }
-                // If not we prioritize unloads
-                else {
-                    //Select the first one unls[0]
-                    //Create vector to send fabric
-                    //Remove unload from db
+
+                // GAJO ENVIA PARA O LADO DIREITO
+                if ( !opcR.getRightSide() || !opcR.getACKRight() ) {
+                    // If we don't have unloads, we make transformations
+                    if (unls.length==0) {
+
+                        // It's difficult so we don't do on right side
+                        if ( !( (tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  )) || ( tfs[0].getFrom()==2 && ( tfs[0].getTo()==7 || tfs[0].getTo()==8 ) ) ) ) {
+
+                        }
+
+                        //Choose path:
+                        // If difficult, send to left side
+                        // If easy, send to right side
+                        // Select path
+                        //Create vector to send fabric
+                        //Remove transformation from db
+                    }
+                    // If not we prioritize unloads
+                    else {
+                        //Select the first one unls[0]
+                        //Create vector to send fabric
+                        opcS.sendRight(unls[0].getPath());
+                        //Remove unload from db
+                    }
                 }
 
                 // Create waiting lines (?)
