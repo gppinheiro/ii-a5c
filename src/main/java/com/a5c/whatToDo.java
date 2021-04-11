@@ -96,7 +96,7 @@ public class whatToDo implements Runnable{
                             this.State1=3;
                             opcS.sendLeft(tf2.getPath());
                         }
-                        else if (this.State1==3 && !opcR.getACKLeft()) {
+                        else if (this.State1==3 && opcR.getACKLeft()) {
                             this.State1=0;
                         }
                     }
@@ -118,7 +118,7 @@ public class whatToDo implements Runnable{
                             this.State2=3;
                             opcS.sendLeft(tf2.getPath());
                         }
-                        else if (this.State2==3 && !opcR.getACKLeft()) {
+                        else if (this.State2==3 && opcR.getACKLeft()) {
                             this.State2=0;
                         }
                     }
@@ -132,7 +132,7 @@ public class whatToDo implements Runnable{
                             this.State3=2;
                             opcS.sendLeft(this.zeros);
                         }
-                        else if (this.State3==2 && !opcR.getACKLeft()) {
+                        else if (this.State3==2 && opcR.getACKLeft()) {
                             this.State3=0;
                         }
                     }
