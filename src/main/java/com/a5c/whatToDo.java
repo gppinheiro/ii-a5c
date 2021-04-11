@@ -134,7 +134,7 @@ public class whatToDo implements Runnable{
                 }
 
                 // GAJO ENVIA PARA O LADO DIREITO
-                if ( !opcR.getRightSide() || !opcR.getACKRight() ) {
+                /*if ( !opcR.getRightSide() || !opcR.getACKRight() ) {
                     // If we don't have unloads, we make transformations
                     if (unls.length==0) {
 
@@ -154,10 +154,10 @@ public class whatToDo implements Runnable{
                     else {
                         //Select the first one unls[0]
                         //Create vector to send fabric
-                        opcS.sendRight(unls[0].getPath());
+                        //opcS.sendRight(unls[0].getPath());
                         //Remove unload from db
                     }
-                }
+                } */
 
                 // Create waiting lines (?)
                 // When machines are available, send to fabric
