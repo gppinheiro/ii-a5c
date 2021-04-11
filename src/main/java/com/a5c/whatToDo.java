@@ -118,7 +118,6 @@ public class whatToDo implements Runnable{
                     }
                     // facil
                     else {
-                        opcS.sendLeft(tfs[0].getPath());
                         if ( this.State3==0 && !opcR.getACKLeft() ) {
                             this.State3=1;
                             opcS.sendLeft(tfs[0].getPath());
