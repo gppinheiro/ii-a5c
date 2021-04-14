@@ -66,17 +66,18 @@ public class ControlTU implements Runnable{
     @Override
     public void run() {
         try {
-            Transform tf_test = new Transform(1,1,2,4,0,0,0);
-            Transform tf_test2 = new Transform(2,1,2,1,0,0,2);
+            Transform tf_test = new Transform(1,1,2,1,0,0,0);
+            //Transform tf_test2 = new Transform(2,1,2,1,0,0,2);
             db.addTransform(tf_test);
-            db.addTransform(tf_test2);
+            //db.addTransform(tf_test2);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         while(true) {
             try {
-                if ( opcR.getLeftSide() && !opcR.getACKLeft() && endTransformLeft ) {
+
+                if ( opcR.getLeftSide() && !opcR.getACKLeft() && endTransformLeft && db.TransformLength()!=0 ) {
                     this.tfs = db.getTransform();
                     endTransformLeft=false;
 
@@ -99,11 +100,49 @@ public class ControlTU implements Runnable{
                     }
                 }
 
+                boolean PenaltyLS=false;
+
+                while (!endTransformLeft) {
+                    // Machine to control this transformation
+                    if ( this.StateEasyLS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
+                        this.StateEasyLS=1;
+                        opcS.sendLeft(tfs[0].getPath());
+                        db.addElapseTransform(tfs[0],"left");
+                    }
+                    else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
+                        this.StateEasyLS=2;
+                        opcS.sendLeft(zeros);
+                    }
+                    else if ( this.StateEasyLS==2 && opcR.getLeftSide() && PenaltyLS ) {
+                        this.StateEasyLS=0;
+                        endTransformLeft=true;
+                    }
+
+                    if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && this.StateEasyLS==2 ) {
+                        timeLS = opcR.getLeftTimer();
+                        tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
+                        // When end, we add it into a new table and delete from other
+                        db.addEndTransform(tfs[0],"left",timeLS);
+                        db.deleteTransform(tfs[0],"Transform");
+                        db.deleteTransform(tfs[0],"ElapseTransform");
+                    }
+                    else if (this.StatePenaltyLS==1 && timeLS!=0) {
+                        this.StatePenaltyLS=2;
+                        opcS.sendNewTimerLeft(true);
+                    }
+                    else if (this.StatePenaltyLS==2 && !opcR.getNewTimerLeft()) {
+                        this.StatePenaltyLS=0;
+                        PenaltyLS=true;
+                        opcS.sendNewTimerLeft(false);
+                        timeLS=0;
+                    }
+
+                }
+
                 // Send both or neither or left or right only - TODO: Implement this conditions
 
-                if (tfs.length!=0) {
                     // Send Left Side
-                    boolean difficultLS = false;
+                    /*boolean difficultLS = false;
 
                     // All difficult ones from piece 1
                     if ( tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  ) ) {
@@ -205,8 +244,8 @@ public class ControlTU implements Runnable{
                         tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                         db.addEndTransform(tfs[0],"left",timeLS);
                         db.deleteTransform(tfs[0],"ElapseTransform");
-                    }
-                }
+                    }*/
+
 
                 // GAJO ENVIA PARA O LADO DIREITO
                 /*if ( !opcR.getRightSide() || !opcR.getACKRight() ) {

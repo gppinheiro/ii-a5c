@@ -91,6 +91,13 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    public int TransformLength() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Transform\";");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+
     public Transform[] getTransform() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Transform\";");
         ResultSet rs = s.executeQuery();
