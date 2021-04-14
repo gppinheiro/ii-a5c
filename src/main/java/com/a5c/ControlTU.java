@@ -203,7 +203,6 @@ public class ControlTU implements Runnable{
                         db.deleteTransform(tfs[0],"ElapseTransform");
                     }
                 }
-                else { break; }
 
                 // GAJO ENVIA PARA O LADO DIREITO
                 /*if ( !opcR.getRightSide() || !opcR.getACKRight() ) {
