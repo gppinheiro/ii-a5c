@@ -16,7 +16,7 @@ TODO list:
             - UDP Client OK
             - File XML OK
 
-  [ ]  Statics
+  [.]  Statics //TODO
 
   [ ]  Unload
 
@@ -28,16 +28,14 @@ TODO list:
             - Send XML OK
 
   [.]  Transformation
-            //TODO
-            - Choose Path
+            - Choose Path OK
             //TODO
             - Choose Left or Right
 
   [.]  Thread
             - UDP OK
             - WhatToDo OK
-            //TODO
-            - OPC
+            - OPC OK
 
   [.]  DB
             - Connection OK
@@ -58,7 +56,8 @@ public class MES {
         dbConnect db = new dbConnect();
 
         new receiveUDP(udp,db).start();
-        new whatToDo(opc,db).start();
+        new ControlTU(opc,db).start();
+        new ControlStatics(db).start();
 
     }
 }

@@ -52,19 +52,6 @@ public class dbConnect {
         return DriverManager.getConnection(dbUrl, username, password);
     }
 
-    /**
-     * Method to get DB Connection.
-     * @return DB Connection.
-     */
-    public Connection getConn() {
-        return this.conn;
-    }
-
-    public void searchPath() throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("SET search_path TO ii;");
-        s.executeUpdate();
-    }
-
     public void addTransform(Transform tf) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Transform\" VALUES (?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
@@ -78,31 +65,29 @@ public class dbConnect {
         s.executeUpdate();
     }
 
-    public void addTransform(Transform tf, String side) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?);");
+    public void addElapseTransform(Transform tf, String side) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
         s.setInt(4,tf.getQuantity());
-        s.setInt(5,tf.getTime());
-        s.setInt(6,tf.getMaxDelay());
-        s.setInt(7,tf.getPenalty());
-        s.setTimestamp(8,new Timestamp(System.currentTimeMillis()));
-        s.setString(9,side);
+        s.setInt(5,tf.getMaxDelay());
+        s.setInt(6,tf.getPenalty());
+        s.setTimestamp(7,new Timestamp(System.currentTimeMillis()));
+        s.setString(8,side);
         s.executeUpdate();
     }
 
-    public void addEndTransform(Transform tf, int ft) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?);");
+    public void addEndTransform(Transform tf, String side, int ft) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
         s.setInt(4,tf.getQuantity());
-        s.setInt(5,tf.getTime());
-        s.setInt(6,tf.getMaxDelay());
-        s.setInt(7,tf.getPenalty());
-        s.setInt(8,ft);
-        s.setTimestamp(9,new Timestamp(System.currentTimeMillis()));
+        s.setInt(5,tf.getPenalty());
+        s.setInt(6,ft);
+        s.setTimestamp(7,new Timestamp(System.currentTimeMillis()));
+        s.setString(8,side);
         s.executeUpdate();
     }
 
