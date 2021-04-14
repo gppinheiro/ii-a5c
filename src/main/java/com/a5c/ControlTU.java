@@ -118,6 +118,7 @@ public class ControlTU implements Runnable{
                     }
 
                     if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && this.StateEasyLS==2 && !PenaltyLS) {
+                        this.StatePenaltyLS=1;
                         timeLS = opcR.getLeftTimer();
                         tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                         // When end, we add it into a new table and delete from other
