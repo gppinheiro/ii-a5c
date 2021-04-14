@@ -8,8 +8,6 @@ import com.a5c.OPC_UA.readOPC;
 import com.a5c.OPC_UA.sendOPC;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Arrays;
 
 public class whatToDo implements Runnable{
     public dbConnect db;
@@ -20,6 +18,7 @@ public class whatToDo implements Runnable{
     private int State1;
     private int State2;
     private int State3;
+    private int StatePenaltyL;
     private final int[] zeros = {0,0,0,0};
 
     public whatToDo(clientOPC_UA cl,dbConnect dbc) {
@@ -30,6 +29,7 @@ public class whatToDo implements Runnable{
         this.State1 = 0;
         this.State2 = 0;
         this.State3 = 0;
+        this.StatePenaltyL = 0;
     }
 
     public void start() {
@@ -101,10 +101,14 @@ public class whatToDo implements Runnable{
                             this.State1=0;
                         }
 
-                        if ( opcR.getNewTimerLeft() ) {
+                        if ( this.StatePenaltyL==0 && opcR.getNewTimerLeft() ) {
+                            this.StatePenaltyL=1;
                             difficult=true;
                             time += opcR.getLeftTimer();
                             opcS.sendNewTimerLeft(false);
+                        }
+                        else if ( this.StatePenaltyL==1 && !opcR.getNewTimerLeft() ) {
+                            this.StatePenaltyL=0;
                         }
 
                     }
@@ -130,10 +134,14 @@ public class whatToDo implements Runnable{
                             this.State2=0;
                         }
 
-                        if ( opcR.getNewTimerLeft() ) {
+                        if ( this.StatePenaltyL==0 && opcR.getNewTimerLeft() ) {
+                            this.StatePenaltyL=1;
                             difficult=true;
                             time += opcR.getLeftTimer();
                             opcS.sendNewTimerLeft(false);
+                        }
+                        else if ( this.StatePenaltyL==1 && !opcR.getNewTimerLeft() ) {
+                            this.StatePenaltyL=0;
                         }
 
                     }
@@ -151,11 +159,15 @@ public class whatToDo implements Runnable{
                             this.State3=0;
                         }
 
-                        if ( opcR.getNewTimerLeft() ) {
+                        if ( this.StatePenaltyL==0 && opcR.getNewTimerLeft() ) {
+                            this.StatePenaltyL=1;
                             time = opcR.getLeftTimer();
                             tfs[0].setPenalty( time/50 * tfs[0].getPenalty() );
                             db.addEndTransform(tfs[0],time);
                             opcS.sendNewTimerLeft(false);
+                        }
+                        else if ( this.StatePenaltyL==1 && !opcR.getNewTimerLeft() ) {
+                            this.StatePenaltyL=0;
                         }
 
                     }
