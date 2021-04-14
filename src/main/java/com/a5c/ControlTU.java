@@ -169,7 +169,6 @@ public class ControlTU implements Runnable{
                             this.StateEasyLS=1;
                             opcS.sendLeft(tfs[0].getPath());
                             db.addElapseTransform(tfs[0],"left");
-                            db.deleteTransform(tfs[0],"Transform");
                         }
                         else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
                             this.StateEasyLS=2;
@@ -177,19 +176,29 @@ public class ControlTU implements Runnable{
                         }
                         else if ( this.StateEasyLS==2 && opcR.getLeftSide() ) {
                             this.StateEasyLS=0;
+
                             endTransformLeft=true;
                             difficultLS=false;
-                        }
 
-                        // Get Timer and with that select the correspondent penalty
-                        if ( opcR.getNewTimerLeft() ) {
                             timeLS = opcR.getLeftTimer();
                             tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                             // When end, we add it into a new table and delete from other
                             db.addEndTransform(tfs[0],"left",timeLS);
+                            db.deleteTransform(tfs[0],"Transform");
                             db.deleteTransform(tfs[0],"ElapseTransform");
                             opcS.sendNewTimerLeft(true);
                         }
+
+                        // Get Timer and with that select the correspondent penalty
+                        /*if ( opcR.getNewTimerLeft() ) {
+                            timeLS = opcR.getLeftTimer();
+                            tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
+                            // When end, we add it into a new table and delete from other
+                            db.addEndTransform(tfs[0],"left",timeLS);
+                            db.deleteTransform(tfs[0],"Transform");
+                            db.deleteTransform(tfs[0],"ElapseTransform");
+                            opcS.sendNewTimerLeft(true);
+                        }*/
 
                     }
 
