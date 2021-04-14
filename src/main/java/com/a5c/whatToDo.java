@@ -43,16 +43,6 @@ public class whatToDo implements Runnable{
     public void run() {
         while(true) {
             try {
-                // CAETANO:
-                // LER
-                // Bools para cada maquina
-                // Bools para tapetes de carga - Falta fazer
-                // Quantidade de cada peça (P1 até P9) - Falta testar
-
-                // MANDAR
-                // Transformação: 0
-                // Unload: 1
-                
                 Transform[] tfs = db.getTransform();
                 Unload[] unls = db.getUnload();
 
@@ -99,16 +89,17 @@ public class whatToDo implements Runnable{
                         }
                         else if (this.State1==3 && opcR.getACKLeft()) {
                             this.State1=0;
+                            difficult=true;
                         }
 
                         if ( this.StatePenaltyL==0 && opcR.getNewTimerLeft() ) {
                             this.StatePenaltyL=1;
-                            difficult=true;
                             time += opcR.getLeftTimer();
-                            opcS.sendNewTimerLeft(false);
+                            opcS.sendNewTimerLeft(true);
                         }
                         else if ( this.StatePenaltyL==1 && !opcR.getNewTimerLeft() ) {
                             this.StatePenaltyL=0;
+                            opcS.sendNewTimerLeft(false);
                         }
 
                     }
@@ -132,16 +123,17 @@ public class whatToDo implements Runnable{
                         }
                         else if (this.State2==3 && opcR.getACKLeft()) {
                             this.State2=0;
+                            difficult=true;
                         }
 
                         if ( this.StatePenaltyL==0 && opcR.getNewTimerLeft() ) {
                             this.StatePenaltyL=1;
-                            difficult=true;
                             time += opcR.getLeftTimer();
-                            opcS.sendNewTimerLeft(false);
+                            opcS.sendNewTimerLeft(true);
                         }
                         else if ( this.StatePenaltyL==1 && !opcR.getNewTimerLeft() ) {
                             this.StatePenaltyL=0;
+                            opcS.sendNewTimerLeft(false);
                         }
 
                     }
@@ -164,10 +156,11 @@ public class whatToDo implements Runnable{
                             time = opcR.getLeftTimer();
                             tfs[0].setPenalty( time/50 * tfs[0].getPenalty() );
                             db.addEndTransform(tfs[0],time);
-                            opcS.sendNewTimerLeft(false);
+                            opcS.sendNewTimerLeft(true);
                         }
                         else if ( this.StatePenaltyL==1 && !opcR.getNewTimerLeft() ) {
                             this.StatePenaltyL=0;
+                            opcS.sendNewTimerLeft(false);
                         }
 
                     }
