@@ -67,7 +67,7 @@ public class ControlTU implements Runnable{
     public void run() {
         try {
             Transform tf_test = new Transform(1,1,2,1,0,0,0);
-            Transform tf_test2 = new Transform(2,1,2,1,0,0,2);
+            Transform tf_test2 = new Transform(2,1,2,2,0,0,0);
             db.addTransform(tf_test);
             db.addTransform(tf_test2);
         } catch (SQLException throwables) {
@@ -101,7 +101,6 @@ public class ControlTU implements Runnable{
                 }
 
                 boolean PenaltyLS=false;
-
                 while (!endTransformLeft) {
                     // Machine to control this transformation
                     if ( this.StateEasyLS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
@@ -125,12 +124,9 @@ public class ControlTU implements Runnable{
                         db.addEndTransform(tfs[0],"left",timeLS);
                         db.deleteTransform(tfs[0],"Transform");
                         db.deleteTransform(tfs[0],"ElapseTransform");
-                    }
-                    else if (this.StatePenaltyLS==1 && timeLS!=0) {
-                        this.StatePenaltyLS=2;
                         opcS.sendNewTimerLeft(true);
                     }
-                    else if (this.StatePenaltyLS==2 && !opcR.getNewTimerLeft()) {
+                    else if (this.StatePenaltyLS==1 && !opcR.getNewTimerLeft()) {
                         this.StatePenaltyLS=0;
                         PenaltyLS=true;
                         opcS.sendNewTimerLeft(false);
