@@ -94,115 +94,114 @@ public class ControlTU implements Runnable{
                     }
                 }
 
-                if ( tfs.length != 0 ) {
-                    // Send both or neither or left or right only - TODO: Implement this conditions
+                // Send both or neither or left or right only - TODO: Implement this conditions
 
-                    // Send Left Side
-                    boolean difficultLS = false;
-                    int timeLS=0;
+                // Send Left Side
+                boolean difficultLS = false;
+                int timeLS=0;
 
-                    // All difficult ones from piece 1
-                    if ( tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  ) ) {
-                        // Divide into 2 transformations, we keep the essential equilibrium requested by Mario
-                        Transform tf1 = new Transform(tfs[0].getOrderNumber(),1,5,tfs[0].getQuantity(),0,0,0);
-                        Transform tf2 = new Transform(tfs[0].getOrderNumber(),5,tfs[0].getTo(),tfs[0].getQuantity(),tfs[0].getTime(),tfs[0].getMaxDelay(),tfs[0].getPenalty());
+                // All difficult ones from piece 1
+                if ( tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  ) ) {
+                    // Divide into 2 transformations, we keep the essential equilibrium requested by Mario
+                    Transform tf1 = new Transform(tfs[0].getOrderNumber(),1,5,tfs[0].getQuantity(),0,0,0);
+                    Transform tf2 = new Transform(tfs[0].getOrderNumber(),5,tfs[0].getTo(),tfs[0].getQuantity(),tfs[0].getTime(),tfs[0].getMaxDelay(),tfs[0].getPenalty());
 
-                        // Machine to send both tfs
-                        if ( this.StateDifficult1LS==0 && !opcR.getACKLeft() ) {
-                            this.StateDifficult1LS=1;
-                            opcS.sendLeft(tf1.getPath());
-                            db.addElapseTransform(tfs[0],"left");
-                            db.deleteTransform(tfs[0],"Transform");
-                        }
-                        else if (this.StateDifficult1LS==1 && opcR.getACKLeft() ) {
-                            this.StateDifficult1LS=2;
-                            opcS.sendLeft(zeros);
-                        }
-                        else if (this.StateDifficult1LS==2 && !opcR.getACKLeft()) {
-                            this.StateDifficult1LS=3;
-                            opcS.sendLeft(tf2.getPath());
-                        }
-                        else if (this.StateDifficult1LS==3 && opcR.getACKLeft()) {
-                            this.StateDifficult1LS=0;
-                            difficultLS=true;
-                        }
-
-                        // Read the final value - TODO: TEST IT
-                        timeLS = TimeLeftSideDiff();
+                    // Machine to send both tfs
+                    if ( this.StateDifficult1LS==0 && !opcR.getACKLeft() ) {
+                        this.StateDifficult1LS=1;
+                        opcS.sendLeft(tf1.getPath());
+                        db.addElapseTransform(tfs[0],"left");
+                        db.deleteTransform(tfs[0],"Transform");
+                    }
+                    else if (this.StateDifficult1LS==1 && opcR.getACKLeft() ) {
+                        this.StateDifficult1LS=2;
+                        opcS.sendLeft(zeros);
+                    }
+                    else if (this.StateDifficult1LS==2 && !opcR.getACKLeft()) {
+                        this.StateDifficult1LS=3;
+                        opcS.sendLeft(tf2.getPath());
+                    }
+                    else if (this.StateDifficult1LS==3 && opcR.getACKLeft()) {
+                        this.StateDifficult1LS=0;
+                        difficultLS=true;
                     }
 
-                    // All dificults from piece 2
-                    else if ( tfs[0].getFrom()==2 && ( tfs[0].getTo()==7 || tfs[0].getTo()==8 ) ) {
-                        Transform tf1 = new Transform(tfs[0].getOrderNumber(),2,6,tfs[0].getQuantity(),0,0,0);
-                        Transform tf2 = new Transform(tfs[0].getOrderNumber(),6,tfs[0].getTo(),tfs[0].getQuantity(),tfs[0].getTime(),tfs[0].getMaxDelay(),tfs[0].getPenalty());
+                    // Read the final value - TODO: TEST IT
+                    timeLS = TimeLeftSideDiff();
+                }
 
-                        if ( this.StateDifficult2LS==0 && !opcR.getACKLeft() ) {
-                            this.StateDifficult2LS=1;
-                            opcS.sendLeft(tf1.getPath());
-                            db.addElapseTransform(tfs[0],"left");
-                            db.deleteTransform(tfs[0],"Transform");
-                        }
-                        else if (this.StateDifficult2LS==1 && opcR.getACKLeft() ) {
-                            this.StateDifficult2LS=2;
-                            opcS.sendLeft(zeros);
-                        }
-                        else if (this.StateDifficult2LS==2 && !opcR.getACKLeft()) {
-                            this.StateDifficult2LS=3;
-                            opcS.sendLeft(tf2.getPath());
-                        }
-                        else if (this.StateDifficult2LS==3 && opcR.getACKLeft()) {
-                            this.StateDifficult2LS=0;
-                            difficultLS=true;
-                        }
+                // All dificults from piece 2
+                else if ( tfs[0].getFrom()==2 && ( tfs[0].getTo()==7 || tfs[0].getTo()==8 ) ) {
+                    Transform tf1 = new Transform(tfs[0].getOrderNumber(),2,6,tfs[0].getQuantity(),0,0,0);
+                    Transform tf2 = new Transform(tfs[0].getOrderNumber(),6,tfs[0].getTo(),tfs[0].getQuantity(),tfs[0].getTime(),tfs[0].getMaxDelay(),tfs[0].getPenalty());
 
-                        timeLS = TimeLeftSideDiff();
+                    if ( this.StateDifficult2LS==0 && !opcR.getACKLeft() ) {
+                        this.StateDifficult2LS=1;
+                        opcS.sendLeft(tf1.getPath());
+                        db.addElapseTransform(tfs[0],"left");
+                        db.deleteTransform(tfs[0],"Transform");
+                    }
+                    else if (this.StateDifficult2LS==1 && opcR.getACKLeft() ) {
+                        this.StateDifficult2LS=2;
+                        opcS.sendLeft(zeros);
+                    }
+                    else if (this.StateDifficult2LS==2 && !opcR.getACKLeft()) {
+                        this.StateDifficult2LS=3;
+                        opcS.sendLeft(tf2.getPath());
+                    }
+                    else if (this.StateDifficult2LS==3 && opcR.getACKLeft()) {
+                        this.StateDifficult2LS=0;
+                        difficultLS=true;
                     }
 
-                    // The others are easy for us
-                    else {
-                        // Machine to control this transformation
-                        if ( this.StateEasyLS==0 && !opcR.getACKLeft() ) {
-                            this.StateEasyLS=1;
-                            opcS.sendLeft(tfs[0].getPath());
-                            db.addElapseTransform(tfs[0],"left");
-                            db.deleteTransform(tfs[0],"Transform");
-                        }
-                        else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
-                            this.StateEasyLS=2;
-                            opcS.sendLeft(zeros);
-                        }
-                        else if ( this.StateEasyLS==2 && opcR.getLeftSide() ) {
-                            this.StateEasyLS=0;
-                            difficultLS=false;
-                        }
+                    timeLS = TimeLeftSideDiff();
+                }
 
-                        // Get Timer and with that select the correspondent penalty
-                        if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() ) {
-                            this.StatePenaltyLS=1;
-                            timeLS = opcR.getLeftTimer();
-                            tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
-                            // When end, we add it into a new table and delete from other
-                            db.addEndTransform(tfs[0],"left",timeLS);
-                            db.deleteTransform(tfs[0],"ElapseTransform");
-                            opcS.sendNewTimerLeft(true);
-                        }
-                        else if ( this.StatePenaltyLS==1 && !opcR.getNewTimerLeft() ) {
-                            this.StatePenaltyLS=0;
-                            opcS.sendNewTimerLeft(false);
-                        }
-
-                        System.out.println("Easy State: "+ StateEasyLS);
-                        System.out.println("Penalty State: "+ StatePenaltyLS);
-
+                // The others are easy for us
+                else {
+                    // Machine to control this transformation
+                    if ( this.StateEasyLS==0 && !opcR.getACKLeft() ) {
+                        this.StateEasyLS=1;
+                        opcS.sendLeft(tfs[0].getPath());
+                        db.addElapseTransform(tfs[0],"left");
+                        db.deleteTransform(tfs[0],"Transform");
+                    }
+                    else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
+                        this.StateEasyLS=2;
+                        opcS.sendLeft(zeros);
+                    }
+                    else if ( this.StateEasyLS==2 && opcR.getLeftSide() ) {
+                        this.StateEasyLS=0;
+                        difficultLS=false;
                     }
 
-                    // Penalty - TODO: TEST IT, I think this will not work unfortunately
-                    if (difficultLS) {
+                    // Get Timer and with that select the correspondent penalty
+                    if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() ) {
+                        this.StatePenaltyLS=1;
+                        timeLS = opcR.getLeftTimer();
                         tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
+                        // When end, we add it into a new table and delete from other
                         db.addEndTransform(tfs[0],"left",timeLS);
                         db.deleteTransform(tfs[0],"ElapseTransform");
+                        opcS.sendNewTimerLeft(true);
                     }
+                    else if ( this.StatePenaltyLS==1 && !opcR.getNewTimerLeft() ) {
+                        this.StatePenaltyLS=0;
+                        opcS.sendNewTimerLeft(false);
+                    }
+
+                    System.out.println("Easy State: "+ StateEasyLS);
+                    System.out.println("Penalty State: "+ StatePenaltyLS);
+
                 }
+
+                // Penalty - TODO: TEST IT, I think this will not work unfortunately
+                if (difficultLS) {
+                    tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
+                    db.addEndTransform(tfs[0],"left",timeLS);
+                    db.deleteTransform(tfs[0],"ElapseTransform");
+                }
+
 
                 // GAJO ENVIA PARA O LADO DIREITO
                 /*if ( !opcR.getRightSide() || !opcR.getACKRight() ) {
