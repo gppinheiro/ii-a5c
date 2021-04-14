@@ -17,6 +17,7 @@ public class ControlTU implements Runnable{
 
     // Global var
     private static final int[] zeros = {0,0,0,0};
+    private Transform[] tfs = null;
 
     // Global Variables for State Machines
     // LS - Left Side
@@ -69,22 +70,24 @@ public class ControlTU implements Runnable{
 
         while(true) {
             try {
-                Transform[] tfs = db.getTransform();
+                if ( opcR.getLeftSide() ) {
+                    this.tfs = db.getTransform();
 
-                // TODO - Implement Unloads
-                //Unload[] unls = db.getUnload();
+                    // TODO - Implement Unloads
+                    //Unload[] unls = db.getUnload();
 
-                // Prioridade:
-                // Penalty - Se for grande, fazer esta primeiro
-                // MaxDelay - Se for pequeno, fazer esta primeiro
-                // Sort tfs vector with base on MaxDelay and Penalty
-                Transform temp;
-                for (int i=1; i< tfs.length; i++) {
-                    for (int j=i; j>0; j--) {
-                        if( (tfs[j].getMaxDelay() < tfs[j-1].getMaxDelay()) || (tfs[j].getMaxDelay() == tfs[j-1].getMaxDelay() && tfs[j].getPenalty()>tfs[j-1].getPenalty()) ) {
-                            temp = tfs[j];
-                            tfs[j] = tfs[j-1];
-                            tfs[j-1] = temp;
+                    // Prioridade:
+                    // Penalty - Se for grande, fazer esta primeiro
+                    // MaxDelay - Se for pequeno, fazer esta primeiro
+                    // Sort tfs vector with base on MaxDelay and Penalty
+                    Transform temp;
+                    for (int i=1; i< tfs.length; i++) {
+                        for (int j=i; j>0; j--) {
+                            if( (tfs[j].getMaxDelay() < tfs[j-1].getMaxDelay()) || (tfs[j].getMaxDelay() == tfs[j-1].getMaxDelay() && tfs[j].getPenalty()>tfs[j-1].getPenalty()) ) {
+                                temp = tfs[j];
+                                tfs[j] = tfs[j-1];
+                                tfs[j-1] = temp;
+                            }
                         }
                     }
                 }
