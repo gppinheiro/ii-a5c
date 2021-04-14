@@ -67,9 +67,9 @@ public class ControlTU implements Runnable{
     public void run() {
         try {
             Transform tf_test = new Transform(1,1,2,1,0,0,0);
-            //Transform tf_test2 = new Transform(2,1,2,1,0,0,2);
+            Transform tf_test2 = new Transform(2,1,2,1,0,0,2);
             db.addTransform(tf_test);
-            //db.addTransform(tf_test2);
+            db.addTransform(tf_test2);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -118,7 +118,7 @@ public class ControlTU implements Runnable{
                         endTransformLeft=true;
                     }
 
-                    if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && this.StateEasyLS==2 ) {
+                    if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && this.StateEasyLS==2 && !PenaltyLS) {
                         timeLS = opcR.getLeftTimer();
                         tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                         // When end, we add it into a new table and delete from other
