@@ -134,6 +134,8 @@ public class ControlTU implements Runnable{
                         timeLS=0;
                     }
 
+                    System.out.println(this.StatePenaltyLS);
+
                 }
 
                 // Send both or neither or left or right only - TODO: Implement this conditions
