@@ -19,20 +19,42 @@ public class readOPC {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ms_right");
     }
 
-    public boolean getACKLeft() {
-        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ack_left");
-    }
-
     public boolean getACKRight() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ack_right");
+    }
+
+    public boolean getRightSide() {
+        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.free_right");
+    }
+
+    public boolean getNewTimerRight() {
+        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.nt_right");
+    }
+
+    public boolean getACKLeft() {
+        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ack_left");
     }
 
     public boolean getLeftSide() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.free_left");
     }
 
-    public boolean getRightSide() {
-        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.free_right");
+    public boolean getNewTimerLeft() {
+        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.nt_left");
+    }
+
+    public int getLeftTimer() {
+        String s = (String) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.timer_l");
+        s = s.replace("T#","");
+        String[] sparts = s.split("s");
+
+        if (sparts[0].contains("m")) {
+            String[] mparts = sparts[0].split("m");
+            return Integer.parseInt(mparts[0])*60 + Integer.parseInt(mparts[1]);
+        }
+        else {
+            return Integer.parseInt(sparts[0]);
+        }
     }
 
 }

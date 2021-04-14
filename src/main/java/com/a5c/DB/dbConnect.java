@@ -78,13 +78,31 @@ public class dbConnect {
         s.executeUpdate();
     }
 
-    public void addUnload(Unload un) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Unload\" VALUES (?,?,?,?,?);");
-        s.setInt(1,un.getOrderNumber());
-        s.setInt(2,un.getType());
-        s.setInt(3,un.getDestination());
-        s.setInt(4,un.getQuantity());
-        s.setTimestamp(5,new Timestamp(System.currentTimeMillis()));
+    public void addTransform(Transform tf, String side) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?);");
+        s.setInt(1,tf.getOrderNumber());
+        s.setInt(2,tf.getFrom());
+        s.setInt(3,tf.getTo());
+        s.setInt(4,tf.getQuantity());
+        s.setInt(5,tf.getTime());
+        s.setInt(6,tf.getMaxDelay());
+        s.setInt(7,tf.getPenalty());
+        s.setTimestamp(8,new Timestamp(System.currentTimeMillis()));
+        s.setString(9,side);
+        s.executeUpdate();
+    }
+
+    public void addEndTransform(Transform tf, int ft) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?);");
+        s.setInt(1,tf.getOrderNumber());
+        s.setInt(2,tf.getFrom());
+        s.setInt(3,tf.getTo());
+        s.setInt(4,tf.getQuantity());
+        s.setInt(5,tf.getTime());
+        s.setInt(6,tf.getMaxDelay());
+        s.setInt(7,tf.getPenalty());
+        s.setInt(8,ft);
+        s.setTimestamp(9,new Timestamp(System.currentTimeMillis()));
         s.executeUpdate();
     }
 
@@ -104,6 +122,28 @@ public class dbConnect {
         }
 
         return Transforms;
+    }
+
+    public void deleteTransform(Transform tf, String table_name) throws SQLException {
+        PreparedStatement s = null;
+        if (table_name.equals("Transform")) {
+            s = this.conn.prepareStatement("DELETE FROM ii.\"Transform\" WHERE \"OrderNumber\"==;"+tf.getOrderNumber());
+        }
+        else if (table_name.equals("ElapseTransform")) {
+            s = this.conn.prepareStatement("DELETE FROM ii.\"ElapseTransform\" WHERE \"OrderNumber\"==;"+tf.getOrderNumber());
+        }
+        assert s != null;
+        s.executeUpdate();
+    }
+
+    public void addUnload(Unload un) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Unload\" VALUES (?,?,?,?,?);");
+        s.setInt(1,un.getOrderNumber());
+        s.setInt(2,un.getType());
+        s.setInt(3,un.getDestination());
+        s.setInt(4,un.getQuantity());
+        s.setTimestamp(5,new Timestamp(System.currentTimeMillis()));
+        s.executeUpdate();
     }
 
     public Unload[] getUnload() throws SQLException {

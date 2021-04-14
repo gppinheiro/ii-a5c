@@ -1,7 +1,13 @@
 package com.a5c.DATA;
 
 public class Transform {
-    private final int orderNumber, from, to, quantity, time, maxDelay, penalty;
+    private final int orderNumber;
+    private final int from;
+    private final int to;
+    private final int quantity;
+    private final int time;
+    private final int maxDelay;
+    private int penalty;
 
     public Transform(int orderNumber, int from, int to, int quantity, int time, int maxDelay, int penalty) {
         this.orderNumber = orderNumber;
@@ -49,6 +55,10 @@ public class Transform {
 
     public int getPenalty() {
         return penalty;
+    }
+
+    public void setPenalty(int p) {
+        this.penalty = p;
     }
 
 }
