@@ -63,14 +63,16 @@ public class ControlTU implements Runnable{
     public void run() {
         try {
             Transform tf_test = new Transform(1,1,8,1,0,0,0);
+            Transform tf_test2 = new Transform(2,1,2,5,0,0,2);
             db.addTransform(tf_test);
+            db.addTransform(tf_test2);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         while(true) {
             try {
-                if ( opcR.getLeftSide() ) {
+                if ( opcR.getLeftSide() && !opcR.getACKLeft() ) {
                     this.tfs = db.getTransform();
 
                     // TODO - Implement Unloads
