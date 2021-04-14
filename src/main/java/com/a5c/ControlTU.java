@@ -26,6 +26,8 @@ public class ControlTU implements Runnable{
     private int StateEasyLS;
     private int StatePenaltyLS;
 
+    private boolean endTransformLeft;
+
     public ControlTU(clientOPC_UA cl, dbConnect dbc) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
@@ -34,6 +36,7 @@ public class ControlTU implements Runnable{
         this.StateDifficult2LS = 0;
         this.StateEasyLS = 0;
         this.StatePenaltyLS = 0;
+        this.endTransformLeft = true;
     }
 
     public void start() {
@@ -72,8 +75,9 @@ public class ControlTU implements Runnable{
 
         while(true) {
             try {
-                if ( opcR.getLeftSide() && !opcR.getACKLeft() ) {
+                if ( opcR.getLeftSide() && !opcR.getACKLeft() && endTransformLeft) {
                     this.tfs = db.getTransform();
+                    endTransformLeft=false;
 
                     // TODO - Implement Unloads
                     //Unload[] unls = db.getUnload();
@@ -173,6 +177,7 @@ public class ControlTU implements Runnable{
                     else if ( this.StateEasyLS==2 && opcR.getLeftSide() ) {
                         this.StateEasyLS=0;
                         difficultLS=false;
+                        endTransformLeft=true;
                     }
 
                     // Get Timer and with that select the correspondent penalty
