@@ -18,6 +18,8 @@ public class ControlTU implements Runnable{
     // Global var
     private static final int[] zeros = {0,0,0,0};
     private Transform[] tfs = null;
+    private boolean endTransformLeft;
+    private int timeLS;
 
     // Global Variables for State Machines
     // LS - Left Side
@@ -25,8 +27,6 @@ public class ControlTU implements Runnable{
     private int StateDifficult2LS;
     private int StateEasyLS;
     private int StatePenaltyLS;
-
-    private boolean endTransformLeft;
 
     public ControlTU(clientOPC_UA cl, dbConnect dbc) {
         this.db = dbc;
@@ -37,6 +37,7 @@ public class ControlTU implements Runnable{
         this.StateEasyLS = 0;
         this.StatePenaltyLS = 0;
         this.endTransformLeft = true;
+        this.timeLS = 0;
     }
 
     public void start() {
@@ -103,7 +104,6 @@ public class ControlTU implements Runnable{
                 if (tfs.length!=0) {
                     // Send Left Side
                     boolean difficultLS = false;
-                    int timeLS=0;
 
                     // All difficult ones from piece 1
                     if ( tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  ) ) {
@@ -176,29 +176,27 @@ public class ControlTU implements Runnable{
                         }
                         else if ( this.StateEasyLS==2 && opcR.getLeftSide() ) {
                             this.StateEasyLS=0;
-
-                            endTransformLeft=true;
                             difficultLS=false;
-
-                            timeLS = opcR.getLeftTimer();
-                            tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
-                            // When end, we add it into a new table and delete from other
-                            db.addEndTransform(tfs[0],"left",timeLS);
-                            db.deleteTransform(tfs[0],"Transform");
-                            db.deleteTransform(tfs[0],"ElapseTransform");
-                            opcS.sendNewTimerLeft(true);
                         }
 
-                        // Get Timer and with that select the correspondent penalty
-                        /*if ( opcR.getNewTimerLeft() ) {
+                        if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() ) {
                             timeLS = opcR.getLeftTimer();
                             tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                             // When end, we add it into a new table and delete from other
                             db.addEndTransform(tfs[0],"left",timeLS);
                             db.deleteTransform(tfs[0],"Transform");
                             db.deleteTransform(tfs[0],"ElapseTransform");
+                        }
+                        else if (this.StatePenaltyLS==1 && timeLS!=0) {
+                            this.StatePenaltyLS=2;
                             opcS.sendNewTimerLeft(true);
-                        }*/
+                        }
+                        else if (this.StatePenaltyLS==2 && !opcR.getNewTimerLeft()) {
+                            this.StatePenaltyLS=0;
+                            opcS.sendNewTimerLeft(false);
+                            endTransformLeft=true;
+                            timeLS=0;
+                        }
 
                     }
 
