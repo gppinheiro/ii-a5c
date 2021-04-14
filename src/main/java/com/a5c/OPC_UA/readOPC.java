@@ -11,10 +11,6 @@ public class readOPC {
         return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.warehouse");
     }
 
-    public boolean getMachinesLeft() {
-        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ms_left");
-    }
-
     public boolean getMachinesRight() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ms_right");
     }
@@ -29,6 +25,10 @@ public class readOPC {
 
     public boolean getNewTimerRight() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.nt_right");
+    }
+
+    public boolean getMachinesLeft() {
+        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ms_left");
     }
 
     public boolean getACKLeft() {
