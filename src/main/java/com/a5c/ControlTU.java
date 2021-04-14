@@ -94,7 +94,7 @@ public class ControlTU implements Runnable{
                     }
                 }
 
-                if ( tfs.length != 0) {
+                if ( tfs.length != 0 ) {
                     // Send both or neither or left or right only - TODO: Implement this conditions
 
                     // Send Left Side
@@ -203,6 +203,7 @@ public class ControlTU implements Runnable{
                         db.deleteTransform(tfs[0],"ElapseTransform");
                     }
                 }
+                else { break; }
 
                 // GAJO ENVIA PARA O LADO DIREITO
                 /*if ( !opcR.getRightSide() || !opcR.getACKRight() ) {
