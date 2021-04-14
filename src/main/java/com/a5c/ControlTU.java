@@ -75,7 +75,7 @@ public class ControlTU implements Runnable{
 
         while(true) {
             try {
-                if ( opcR.getLeftSide() && !opcR.getACKLeft() && endTransformLeft) {
+                if ( opcR.getLeftSide() && !opcR.getACKLeft() && endTransformLeft ) {
                     this.tfs = db.getTransform();
                     endTransformLeft=false;
 
@@ -177,6 +177,7 @@ public class ControlTU implements Runnable{
                         }
                         else if ( this.StateEasyLS==2 && opcR.getLeftSide() ) {
                             this.StateEasyLS=0;
+                            endTransformLeft=true;
                             difficultLS=false;
                         }
 
@@ -188,7 +189,6 @@ public class ControlTU implements Runnable{
                             db.addEndTransform(tfs[0],"left",timeLS);
                             db.deleteTransform(tfs[0],"ElapseTransform");
                             opcS.sendNewTimerLeft(true);
-                            endTransformLeft=true;
                         }
 
                     }
