@@ -66,7 +66,7 @@ public class ControlTU implements Runnable{
     public void run() {
         try {
             //Transform tf_test = new Transform(1,1,8,1,0,0,0);
-            Transform tf_test2 = new Transform(2,1,2,4,0,0,2);
+            Transform tf_test2 = new Transform(2,1,2,1,0,0,2);
             //db.addTransform(tf_test);
             db.addTransform(tf_test2);
         } catch (SQLException throwables) {
@@ -177,22 +177,17 @@ public class ControlTU implements Runnable{
                     else if ( this.StateEasyLS==2 && opcR.getLeftSide() ) {
                         this.StateEasyLS=0;
                         difficultLS=false;
-                        endTransformLeft=true;
                     }
 
                     // Get Timer and with that select the correspondent penalty
-                    if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() ) {
-                        this.StatePenaltyLS=1;
+                    if ( opcR.getNewTimerLeft() ) {
                         timeLS = opcR.getLeftTimer();
                         tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                         // When end, we add it into a new table and delete from other
                         db.addEndTransform(tfs[0],"left",timeLS);
                         db.deleteTransform(tfs[0],"ElapseTransform");
                         opcS.sendNewTimerLeft(true);
-                    }
-                    else if ( this.StatePenaltyLS==1 && !opcR.getNewTimerLeft() ) {
-                        this.StatePenaltyLS=0;
-                        opcS.sendNewTimerLeft(false);
+                        endTransformLeft=true;
                     }
 
                     System.out.println("Easy State: "+ StateEasyLS);
