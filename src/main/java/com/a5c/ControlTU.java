@@ -60,6 +60,13 @@ public class ControlTU implements Runnable{
 
     @Override
     public void run() {
+        try {
+            Transform tf_test = new Transform(1,1,8,1,0,0,0);
+            db.addTransform(tf_test);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         while(true) {
             try {
                 Transform[] tfs = db.getTransform();
