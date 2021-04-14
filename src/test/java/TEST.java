@@ -1,3 +1,7 @@
+import com.a5c.DB.dbConnect;
+
+import java.sql.SQLException;
+
 public class TEST {
     public static int getLeftTimer() {
         //String s = (String) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.timer_l");
@@ -16,7 +20,17 @@ public class TEST {
 
     }
 
+    public static int getTFdb() {
+        dbConnect db = new dbConnect();
+        try {
+            return db.getTransform().length;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 1000;
+    }
+
     public static void main(final String[] args) {
-        System.out.println(getLeftTimer());
+        System.out.println(getTFdb());
     }
 }
