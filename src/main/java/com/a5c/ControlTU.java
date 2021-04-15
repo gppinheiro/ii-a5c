@@ -102,11 +102,13 @@ public class ControlTU implements Runnable{
 
                 boolean PenaltyLS=false;
                 while (!endTransformLeft) {
+
                     // Machine to control this transformation
                     if ( this.StateEasyLS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
                         this.StateEasyLS=1;
                         opcS.sendLeft(tfs[0].getPath());
                         db.addElapseTransform(tfs[0],"left");
+                        db.deleteTransform(tfs[0],"Transform");
                     }
                     else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
                         this.StateEasyLS=2;
@@ -123,7 +125,6 @@ public class ControlTU implements Runnable{
                         tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                         // When end, we add it into a new table and delete from other
                         db.addEndTransform(tfs[0],"left",timeLS);
-                        db.deleteTransform(tfs[0],"Transform");
                         db.deleteTransform(tfs[0],"ElapseTransform");
                         opcS.sendNewTimerLeft(true);
                     }
@@ -134,12 +135,7 @@ public class ControlTU implements Runnable{
                         timeLS=0;
                     }
 
-                    System.out.println("State Easy: "+this.StateEasyLS);
-                    System.out.println("State Penalty: "+this.StatePenaltyLS);
-
                 }
-
-                System.out.println("End: "+endTransformLeft);
 
                 // Send both or neither or left or right only - TODO: Implement this conditions
 
