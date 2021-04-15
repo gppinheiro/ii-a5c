@@ -66,10 +66,10 @@ public class ControlTU implements Runnable{
     @Override
     public void run() {
         try {
-            Transform tf_test = new Transform(1,1,2,1,0,0,0);
-            Transform tf_test2 = new Transform(2,1,2,2,0,0,0);
+            Transform tf_test = new Transform(1,1,8,2,0,0,5);
+            //Transform tf_test2 = new Transform(2,1,2,2,0,0,0);
             db.addTransform(tf_test);
-            db.addTransform(tf_test2);
+            //db.addTransform(tf_test2);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -102,37 +102,92 @@ public class ControlTU implements Runnable{
 
                 boolean PenaltyLS=false;
                 while (!endTransformLeft) {
+                    // All difficult ones from piece 1
+                    if ( tfs[0].getFrom()==1 && ( tfs[0].getTo()==6 || tfs[0].getTo()==7 || tfs[0].getTo()==8 || tfs[0].getTo()==9  ) ) {
+                        // Divide into 2 transformations, we keep the essential equilibrium requested by Mario
+                        Transform tf1 = new Transform(tfs[0].getOrderNumber(),1,5,tfs[0].getQuantity(),0,0,0);
+                        Transform tf2 = new Transform(tfs[0].getOrderNumber(),5,tfs[0].getTo(),tfs[0].getQuantity(),tfs[0].getTime(),tfs[0].getMaxDelay(),tfs[0].getPenalty());
 
-                    // Machine to control this transformation
-                    if ( this.StateEasyLS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
-                        this.StateEasyLS=1;
-                        opcS.sendLeft(tfs[0].getPath());
-                        db.addElapseTransform(tfs[0],"left");
-                        db.deleteTransform(tfs[0],"Transform");
-                    }
-                    else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
-                        this.StateEasyLS=2;
-                        opcS.sendLeft(zeros);
-                    }
-                    else if ( this.StateEasyLS==2 && opcR.getLeftSide() && PenaltyLS ) {
-                        this.StateEasyLS=0;
-                        endTransformLeft=true;
+                        // Machine to control send both tfs
+                        if ( this.StateDifficult1LS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
+                            this.StateDifficult1LS=1;
+                            opcS.sendLeft(tf1.getPath());
+                            db.addElapseTransform(tfs[0],"left");
+                            db.deleteTransform(tfs[0],"Transform");
+                        }
+                        else if (this.StateDifficult1LS==1 && opcR.getACKLeft() ) {
+                            this.StateDifficult1LS=2;
+                            opcS.sendLeft(zeros);
+                        }
+                        else if (this.StateDifficult1LS==2 && !opcR.getACKLeft()) {
+                            this.StateDifficult1LS=3;
+                            opcS.sendLeft(tf2.getPath());
+                        }
+                        else if ( this.StateDifficult1LS==3 && opcR.getLeftSide() && PenaltyLS ) {
+                            this.StateDifficult1LS=0;
+                            endTransformLeft=true;
+                        }
+
+                        // Penalty
+                        if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && !PenaltyLS && this.StateDifficult1LS==3 ) {
+                            this.StatePenaltyLS=1;
+                            timeLS = opcR.getLeftTimer();
+                            opcS.sendNewTimerLeft(true);
+                        }
+                        else if (this.StatePenaltyLS==1 && !opcR.getNewTimerLeft()) {
+                            this.StatePenaltyLS=2;
+                            opcS.sendNewTimerLeft(false);
+                        }
+                        else if (this.StatePenaltyLS==2 && opcR.getNewTimerLeft() && !PenaltyLS && this.StateDifficult1LS==3 ) {
+                            this.StatePenaltyLS=3;
+                            timeLS += opcR.getLeftTimer();
+                            tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
+                            // When end, we add it into a new table and delete from other
+                            db.addEndTransform(tfs[0],"left",timeLS);
+                            db.deleteTransform(tfs[0],"ElapseTransform");
+                            opcS.sendNewTimerLeft(true);
+                        }
+                        else if (this.StatePenaltyLS==3 && !opcR.getNewTimerLeft()) {
+                            this.StatePenaltyLS=0;
+                            PenaltyLS=true;
+                            opcS.sendNewTimerLeft(false);
+                            timeLS=0;
+                        }
+
                     }
 
-                    if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && this.StateEasyLS==2 && !PenaltyLS) {
-                        this.StatePenaltyLS=1;
-                        timeLS = opcR.getLeftTimer();
-                        tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
-                        // When end, we add it into a new table and delete from other
-                        db.addEndTransform(tfs[0],"left",timeLS);
-                        db.deleteTransform(tfs[0],"ElapseTransform");
-                        opcS.sendNewTimerLeft(true);
-                    }
-                    else if (this.StatePenaltyLS==1 && !opcR.getNewTimerLeft()) {
-                        this.StatePenaltyLS=0;
-                        PenaltyLS=true;
-                        opcS.sendNewTimerLeft(false);
-                        timeLS=0;
+                    else {
+                        // Machine to control this transformation
+                        if ( this.StateEasyLS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
+                            this.StateEasyLS=1;
+                            opcS.sendLeft(tfs[0].getPath());
+                            db.addElapseTransform(tfs[0],"left");
+                            db.deleteTransform(tfs[0],"Transform");
+                        }
+                        else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
+                            this.StateEasyLS=2;
+                            opcS.sendLeft(zeros);
+                        }
+                        else if ( this.StateEasyLS==2 && opcR.getLeftSide() && PenaltyLS ) {
+                            this.StateEasyLS=0;
+                            endTransformLeft=true;
+                        }
+
+                        if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && this.StateEasyLS==2 && !PenaltyLS) {
+                            this.StatePenaltyLS=1;
+                            timeLS = opcR.getLeftTimer();
+                            tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
+                            // When end, we add it into a new table and delete from other
+                            db.addEndTransform(tfs[0],"left",timeLS);
+                            db.deleteTransform(tfs[0],"ElapseTransform");
+                            opcS.sendNewTimerLeft(true);
+                        }
+                        else if (this.StatePenaltyLS==1 && !opcR.getNewTimerLeft()) {
+                            this.StatePenaltyLS=0;
+                            PenaltyLS=true;
+                            opcS.sendNewTimerLeft(false);
+                            timeLS=0;
+                        }
                     }
 
                 }
