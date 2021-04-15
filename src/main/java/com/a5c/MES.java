@@ -1,6 +1,7 @@
 package com.a5c;
 
 import com.a5c.DATA.Transform;
+import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
 import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.UDP.clientUDP;
@@ -62,9 +63,11 @@ public class MES {
             Transform tf_test = new Transform(1,2,8,2,0,0,5);
             Transform tf_test2 = new Transform(2,1,6,4,0,0,2);
             Transform tf_test3 = new Transform(3,1,2,1,0,0,10);
+            Unload un_test = new Unload(4,1,2,1);
             db.addTransform(tf_test);
             db.addTransform(tf_test2);
             db.addTransform(tf_test3);
+            db.addUnload(un_test);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
