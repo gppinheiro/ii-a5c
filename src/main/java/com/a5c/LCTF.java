@@ -54,10 +54,10 @@ public class LCTF implements Runnable{
         boolean DifficultLS;
 
         try {
-            Transform tf_test = new Transform(1,1,8,2,0,0,5);
-            //Transform tf_test2 = new Transform(2,1,2,2,0,0,0);
+            Transform tf_test = new Transform(1,2,8,2,0,0,5);
+            Transform tf_test2 = new Transform(2,1,6,4,0,0,2);
             db.addTransform(tf_test);
-            //db.addTransform(tf_test2);
+            db.addTransform(tf_test2);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
