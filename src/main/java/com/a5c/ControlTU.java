@@ -134,7 +134,9 @@ public class ControlTU implements Runnable{
                         timeLS=0;
                     }
 
-                    System.out.println(this.StatePenaltyLS);
+                    System.out.println("State Easy: "+this.StateEasyLS);
+                    System.out.println("State Penalty: "+this.StatePenaltyLS);
+                    System.out.println("End: "+endTransformLeft);
 
                 }
 
