@@ -1,9 +1,12 @@
 package com.a5c;
 
+import com.a5c.DATA.Transform;
 import com.a5c.DB.dbConnect;
 import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.UDP.clientUDP;
 import com.a5c.UDP.receiveUDP;
+
+import java.sql.SQLException;
 
 /*
 TODO list:
@@ -55,8 +58,20 @@ public class MES {
         clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
 
+        try {
+            Transform tf_test = new Transform(1,2,8,2,0,0,5);
+            Transform tf_test2 = new Transform(2,1,6,4,0,0,2);
+            Transform tf_test3 = new Transform(3,1,2,1,0,0,10);
+            db.addTransform(tf_test);
+            db.addTransform(tf_test2);
+            db.addTransform(tf_test3);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         new receiveUDP(udp,db).start();
         new LCTF(opc,db).start();
+        new RCTFUN(opc,db).start();
         new ControlStatics(db).start();
 
         // GAJO ENVIA PARA O LADO DIREITO

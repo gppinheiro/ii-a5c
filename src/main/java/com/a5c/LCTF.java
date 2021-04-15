@@ -53,20 +53,9 @@ public class LCTF implements Runnable{
         boolean PenaltyLS;
         boolean DifficultLS;
 
-        try {
-            Transform tf_test = new Transform(1,2,8,2,0,0,5);
-            Transform tf_test2 = new Transform(2,1,6,4,0,0,2);
-            Transform tf_test3 = new Transform(3,1,2,1,0,0,10);
-            db.addTransform(tf_test);
-            db.addTransform(tf_test2);
-            db.addTransform(tf_test3);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
         while(true) {
             try {
-
+                // Get DB
                 if ( opcR.getLeftSide() && !opcR.getACKLeft() && endTransformLeft && db.TransformLength()!=0 ) {
                     this.tfs = db.getTransform();
                     endTransformLeft=false;
@@ -87,6 +76,7 @@ public class LCTF implements Runnable{
                     }
                 }
 
+                // Left Side Transform
                 PenaltyLS=false;
                 while (!endTransformLeft) {
                     // All difficult ones from piece 1
@@ -121,7 +111,6 @@ public class LCTF implements Runnable{
                         }
 
                     }
-
                     // All difficult ones from piece 1
                     else if ( tfs[0].getFrom()==2 && ( tfs[0].getTo()==7 || tfs[0].getTo()==8 ) ) {
                         DifficultLS=true;
@@ -154,7 +143,7 @@ public class LCTF implements Runnable{
                         }
 
                     }
-
+                    // All easy
                     else {
                         DifficultLS=false;
                         // Machine to control this transformation

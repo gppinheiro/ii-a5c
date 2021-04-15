@@ -138,6 +138,23 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    public void addEndUnload(Unload un) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndUnload\" VALUES (?,?,?,?,?);");
+        s.setInt(1,un.getOrderNumber());
+        s.setInt(2,un.getType());
+        s.setInt(3,un.getDestination());
+        s.setInt(4,un.getQuantity());
+        s.setTimestamp(5,new Timestamp(System.currentTimeMillis()));
+        s.executeUpdate();
+    }
+
+    public int UnloadLength() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Unload\";");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+
     public Unload[] getUnload() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Unload\";");
         ResultSet rs = s.executeQuery();
@@ -167,6 +184,11 @@ public class dbConnect {
         }
 
         return pieces;
+    }
+
+    public void deleteUnload(Unload un) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("DELETE FROM ii.\"Unload\" WHERE \"OrderNumber\"="+un.getOrderNumber()+";");
+        s.executeUpdate();
     }
 
 }
