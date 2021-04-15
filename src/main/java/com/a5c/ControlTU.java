@@ -136,9 +136,10 @@ public class ControlTU implements Runnable{
 
                     System.out.println("State Easy: "+this.StateEasyLS);
                     System.out.println("State Penalty: "+this.StatePenaltyLS);
-                    System.out.println("End: "+endTransformLeft);
 
                 }
+
+                System.out.println("End: "+endTransformLeft);
 
                 // Send both or neither or left or right only - TODO: Implement this conditions
 
