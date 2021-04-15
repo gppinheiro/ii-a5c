@@ -56,8 +56,10 @@ public class LCTF implements Runnable{
         try {
             Transform tf_test = new Transform(1,2,8,2,0,0,5);
             Transform tf_test2 = new Transform(2,1,6,4,0,0,2);
+            Transform tf_test3 = new Transform(3,1,2,1,0,0,10);
             db.addTransform(tf_test);
             db.addTransform(tf_test2);
+            db.addTransform(tf_test3);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
