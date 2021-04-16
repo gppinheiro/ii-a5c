@@ -247,6 +247,9 @@ public class RCTFUN implements Runnable {
                             timeRS = 0;
                         }
                     }
+
+                    System.out.println("State Right Easy: "+this.StateEasyRS);
+                    System.out.println("State Right Penalty: "+this.StatePenaltyRS);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
