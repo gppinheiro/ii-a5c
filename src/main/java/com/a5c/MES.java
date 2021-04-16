@@ -60,8 +60,8 @@ public class MES {
         dbConnect db = new dbConnect();
 
         try {
-            Transform tf_test = new Transform(1,1,3,2,0,0,5);
-            Transform tf_test2 = new Transform(2,2,4,4,0,0,2);
+            Transform tf_test = new Transform(1,1,2,2,0,0,0);
+            Transform tf_test2 = new Transform(2,2,3,2,0,0,0);
             //Transform tf_test3 = new Transform(3,1,2,1,0,0,10);
             //Unload un_test = new Unload(4,1,2,1);
             db.addTransform(tf_test);
@@ -73,8 +73,8 @@ public class MES {
         }
 
         new receiveUDP(udp,db).start();
-        new LCTF(opc,db).start();
         new RCTFUN(opc,db).start();
+        new LCTF(opc,db).start();
         new ControlStatics(db).start();
 
         // GAJO ENVIA PARA O LADO DIREITO
