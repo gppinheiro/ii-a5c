@@ -20,7 +20,7 @@ public class sendOPC {
     }
 
     public boolean sendNewTimerRight(boolean b) {
-        return client.setValue("|var|CODESYS Control Win V3 x64.Application.GVL.nt_right",b);
+        return client.setValue("|var|CODESYS Control Win V3 x64.Application.GVL.t_right",b);
     }
 
 }
