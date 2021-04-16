@@ -46,7 +46,7 @@ public class LCTF implements Runnable{
             thrLCTF = new Thread(this);
             thrLCTF.start();
             try {
-                Thread.sleep(2500);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
