@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test left side to init">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/LCTF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/RCTFUN.java" afterDir="false" />
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="final... Mariozito">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +122,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.TEST" />
@@ -174,14 +185,8 @@
       <workItem from="1618483009338" duration="4556000" />
       <workItem from="1618492812179" duration="4652000" />
       <workItem from="1618510220918" duration="1791000" />
-      <workItem from="1618591020833" duration="2310000" />
-    </task>
-    <task id="LOCAL-00028" summary="transform">
-      <created>1618153324789</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1618153324789</updated>
+      <workItem from="1618591020833" duration="2351000" />
+      <workItem from="1618759935264" duration="183000" />
     </task>
     <task id="LOCAL-00029" summary="transform">
       <created>1618153370285</created>
@@ -519,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618593111882</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="final... Mariozito">
+      <created>1618593413763</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1618593413763</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,7 +550,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add UDP Server" />
     <MESSAGE value="add OPC" />
     <MESSAGE value="test OPC" />
     <MESSAGE value="write OPC" />
@@ -563,6 +574,7 @@
     <MESSAGE value="implement right side" />
     <MESSAGE value="test" />
     <MESSAGE value="test left side to init" />
-    <option name="LAST_COMMIT_MESSAGE" value="test left side to init" />
+    <MESSAGE value="final... Mariozito" />
+    <option name="LAST_COMMIT_MESSAGE" value="final... Mariozito" />
   </component>
 </project>
