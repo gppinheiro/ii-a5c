@@ -55,6 +55,14 @@ public class RCTFUN implements Runnable {
         }
     }
 
+    public boolean isEndTransformRight() {
+        return endTransformRight;
+    }
+
+    public boolean isEndUnload() {
+        return endUnload;
+    }
+
     @Override
     public void run() {
         boolean PenaltyRS;

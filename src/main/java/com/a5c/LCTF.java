@@ -48,6 +48,10 @@ public class LCTF implements Runnable{
         }
     }
 
+    public boolean isEndTransformLeft() {
+        return endTransformLeft;
+    }
+
     @Override
     public void run() {
         boolean PenaltyLS;

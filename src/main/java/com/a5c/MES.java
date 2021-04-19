@@ -31,10 +31,9 @@ TODO list:
             - WRITE OrderSchedule
             - Send XML OK
 
-  [.]  Transformation
+  [X]  Transformation
             - Choose Path OK
-            //TODO
-            - Choose Left or Right
+            - Choose Left or Right OK
 
   [.]  Thread
             - UDP OK
@@ -63,11 +62,11 @@ public class MES {
             Transform tf_test = new Transform(1,1,8,2,0,0,0);
             Transform tf_test2 = new Transform(2,2,7,2,0,0,0);
             Transform tf_test3 = new Transform(3,1,2,5,0,0,0);
-            //Unload un_test = new Unload(4,1,2,1);
+            Unload un_test = new Unload(4,1,2,1);
             db.addTransform(tf_test);
             db.addTransform(tf_test2);
             db.addTransform(tf_test3);
-            //db.addUnload(un_test);
+            db.addUnload(un_test);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -75,17 +74,28 @@ public class MES {
         // Start UDP communication
         new receiveUDP(udp,db).start();
         // Start right side
-        new RCTFUN(opc,db).start();
-        // Wait to start Left Side and Statics after Right Side begin
+        RCTFUN rs = new RCTFUN(opc,db);
+        rs.start();
+        // Wait to start Left Side after Right Side begin
+        LCTF ls = new LCTF(opc,db);
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        new LCTF(opc,db).start();
-                        new ControlStatics(opc,db).start();
+                        ls.start();
                     }
                 },
                 5000
+        );
+        // Only starts when half a day passed
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        new CS(opc,db,rs,ls).start();
+                    }
+                },
+                10000
         );
 
     }

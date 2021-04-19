@@ -191,7 +191,44 @@ public class dbConnect {
         s.executeUpdate();
     }
 
-    public void updateCurrentStores(int[] wv) {
-
+    public void updateCurrentStores(int[] wv) throws SQLException {
+        PreparedStatement s;
+        for(int i=0; i<wv.length; i++) {
+            s = this.conn.prepareStatement("UPDATE ii.\"CurrentStores\" SET quantity=? WHERE \"type\"="+(i+1)+";");
+            s.setInt(1,wv[i]);
+            s.executeUpdate();
+        }
     }
+
+    public void resetMachinesStatistic(String str) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("truncate  table ii.\"MachinesStatistic\";");
+        s.executeUpdate();
+    }
+
+    public void updateMachinesStatistic (int id, int[] values) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"MachinesStatistic\" SET p1=?,p2=?,p3=?,p4=?,p5=?,p6=?,p7=?,p8=?,total=? WHERE machine=?;");
+        s.setInt(1,values[0]);
+        s.setInt(2,values[1]);
+        s.setInt(3,values[2]);
+        s.setInt(4,values[3]);
+        s.setInt(5,values[4]);
+        s.setInt(6,values[5]);
+        s.setInt(7,values[6]);
+        s.setInt(8,values[7]);
+        s.setInt(9,values[0]+values[1]+values[2]+values[3]+values[4]+values[5]+values[6]+values[7]);
+
+        String str = null;
+        if (id==1) { str="LM1"; }
+        else if (id==2) { str="LM2"; }
+        else if (id==3) { str="LM3"; }
+        else if (id==4) { str="LM4"; }
+        else if (id==5) { str="RM1"; }
+        else if (id==6) { str="RM2"; }
+        else if (id==7) { str="RM3"; }
+        else if (id==8) { str="RM4"; }
+        s.setString(10,str);
+
+        s.executeUpdate();
+    }
+
 }

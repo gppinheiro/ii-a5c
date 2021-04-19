@@ -7,10 +7,6 @@ public class readOPC {
         this.client = cl;
     }
 
-    public int[] getWareHouse() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.warehouse");
-    }
-
     public boolean getACKRight() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ack_right");
     }
@@ -61,6 +57,42 @@ public class readOPC {
         else {
             return Integer.parseInt(sparts[0]);
         }
+    }
+
+    public int[] getWareHouse() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.warehouse");
+    }
+
+    public int[] getMachine1Production() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p1");
+    }
+
+    public int[] getMachine2Production() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p2");
+    }
+
+    public int[] getMachine3Production() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p3");
+    }
+
+    public int[] getMachine4Production() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p4");
+    }
+
+    public int[] getMachine5Production() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p5");
+    }
+
+    public int[] getMachine6Production() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p6");
+    }
+
+    public int[] getMachine7Production() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p7");
+    }
+
+    public int[] getMachine8Production() {
+        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p8");
     }
 
 }
