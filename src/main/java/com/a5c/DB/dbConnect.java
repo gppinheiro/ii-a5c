@@ -191,4 +191,7 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    public void updateCurrentStores(int[] wv) {
+
+    }
 }
