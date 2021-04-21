@@ -24,9 +24,12 @@ TODO list:
             - UDP Client OK
             - File XML OK
 
-  [.]  Statics //TODO
+  [.]  Statics
+            - MACHINE OK
+            //TODO
+            - UNLOAD
 
-  [ ]  Unload
+  [X]  Unload
 
   [.]  XML
             - READ OK
@@ -39,16 +42,21 @@ TODO list:
             - Choose Path OK
             - Choose Left or Right OK
 
-  [.]  Thread
+  [X]  Thread
             - UDP OK
-            - WhatToDo OK
+            - Left Side OK
+            - Right Side OK
             - OPC OK
+            - Statistics OK
 
   [.]  DB
             - Connection OK
             - Add and Get Transform OK
             - Add and Get Unload OK
             - Get CurrentStores OK
+            - Statistics Machine OK
+            //TODO
+            - Statistics Unload
 
 Legend:
    X   Done

@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="final machines statistics">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/LCS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/LCS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="reorganize packages">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/RCS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,14 +189,7 @@
       <workItem from="1618759935264" duration="921000" />
       <workItem from="1618818905567" duration="3304000" />
       <workItem from="1618866481426" duration="2764000" />
-      <workItem from="1619021357342" duration="5584000" />
-    </task>
-    <task id="LOCAL-00037" summary="penalty">
-      <created>1618393755325</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1618393755325</updated>
+      <workItem from="1619021357342" duration="5874000" />
     </task>
     <task id="LOCAL-00038" summary="code refactoring">
       <created>1618408690385</created>
@@ -537,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619044911901</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="reorganize packages">
+      <created>1619045346923</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1619045346923</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -556,7 +553,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test array OPC" />
     <MESSAGE value="add UDP" />
     <MESSAGE value="read XML" />
     <MESSAGE value="update ToDo List" />
@@ -581,6 +577,7 @@
     <MESSAGE value="to test statistics" />
     <MESSAGE value="statistics" />
     <MESSAGE value="final machines statistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="final machines statistics" />
+    <MESSAGE value="reorganize packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="reorganize packages" />
   </component>
 </project>
