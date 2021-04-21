@@ -1,6 +1,7 @@
-package com.a5c;
+package com.a5c.DATA;
 
 import com.a5c.DB.dbConnect;
+import com.a5c.NEXT.LCTF;
 import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.OPC_UA.readOPC;
 

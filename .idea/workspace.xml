@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="statistics">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="final machines statistics">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/LCS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/LCS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/RCS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +110,7 @@
       <module name="ii-a5c.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.a5c.*" />
+          <option name="PATTERN" value="com.a5c.NEXT.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -188,14 +192,7 @@
       <workItem from="1618759935264" duration="921000" />
       <workItem from="1618818905567" duration="3304000" />
       <workItem from="1618866481426" duration="2764000" />
-      <workItem from="1619021357342" duration="5148000" />
-    </task>
-    <task id="LOCAL-00036" summary="penalty">
-      <created>1618393270120</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1618393270120</updated>
+      <workItem from="1619021357342" duration="5584000" />
     </task>
     <task id="LOCAL-00037" summary="penalty">
       <created>1618393755325</created>
@@ -533,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619044139246</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="final machines statistics">
+      <created>1619044911901</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1619044911901</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +556,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="write OPC" />
     <MESSAGE value="test array OPC" />
     <MESSAGE value="add UDP" />
     <MESSAGE value="read XML" />
@@ -577,6 +580,7 @@
     <MESSAGE value="test" />
     <MESSAGE value="to test statistics" />
     <MESSAGE value="statistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="statistics" />
+    <MESSAGE value="final machines statistics" />
+    <option name="LAST_COMMIT_MESSAGE" value="final machines statistics" />
   </component>
 </project>
