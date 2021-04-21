@@ -59,40 +59,49 @@ public class readOPC {
         }
     }
 
-    public void getWareHouse() {
-        System.out.println(client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.warehouse"));
+    public int[] transformOPCintoINT(String identifier) {
+        Object[] obj = (Object[]) client.getValue(identifier);
+        int[] nint = new int[obj.length];
+        for (int i=0; i<obj.length; i++) {
+            nint[i] = (short) obj[i];
+        }
+        return nint;
+    }
+
+    public int[] getWareHouse() {
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.warehouse");
     }
 
     public int[] getMachine1Production() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p1");
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p1");
     }
 
     public int[] getMachine2Production() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p2");
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p2");
     }
 
     public int[] getMachine3Production() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p3");
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p3");
     }
 
     public int[] getMachine4Production() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p4");
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p4");
     }
 
     public int[] getMachine5Production() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p5");
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p5");
     }
 
     public int[] getMachine6Production() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p6");
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p6");
     }
 
     public int[] getMachine7Production() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p7");
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p7");
     }
 
     public int[] getMachine8Production() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.p8");
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p8");
     }
 
 }

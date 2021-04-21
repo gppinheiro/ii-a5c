@@ -59,7 +59,7 @@ public class MES {
         dbConnect db = new dbConnect();
 
         try {
-            Transform tf_test3 = new Transform(3,1,2,5,0,0,0);
+            Transform tf_test3 = new Transform(3,1,2,4,0,0,0);
             Unload un_test = new Unload(4,1,2,1);
             db.addTransform(tf_test3);
             db.addUnload(un_test);
@@ -88,7 +88,8 @@ public class MES {
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        new CS(opc,db,rs,ls).start();
+                        new RCS(opc,db,rs).start();
+                        new LCS(opc,db,ls).start();
                     }
                 },
                 10000

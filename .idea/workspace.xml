@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="to test statistics">
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="statistics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/CS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/CS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/CS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/RCS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" afterDir="false" />
     </list>
@@ -191,14 +191,7 @@
       <workItem from="1618759935264" duration="921000" />
       <workItem from="1618818905567" duration="3304000" />
       <workItem from="1618866481426" duration="2764000" />
-      <workItem from="1619021357342" duration="2165000" />
-    </task>
-    <task id="LOCAL-00033" summary="transform">
-      <created>1618154050198</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1618154050198</updated>
+      <workItem from="1619021357342" duration="3745000" />
     </task>
     <task id="LOCAL-00034" summary="transform">
       <created>1618155183672</created>
@@ -536,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619040146103</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="statistics">
+      <created>1619041475388</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1619041475388</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +555,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test OPC" />
     <MESSAGE value="write OPC" />
     <MESSAGE value="test array OPC" />
     <MESSAGE value="add UDP" />
@@ -580,6 +579,7 @@
     <MESSAGE value="final... Mariozito" />
     <MESSAGE value="test" />
     <MESSAGE value="to test statistics" />
-    <option name="LAST_COMMIT_MESSAGE" value="to test statistics" />
+    <MESSAGE value="statistics" />
+    <option name="LAST_COMMIT_MESSAGE" value="statistics" />
   </component>
 </project>
