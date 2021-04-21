@@ -206,7 +206,7 @@ public class dbConnect {
     }
 
     public void updateMachinesStatistic (int id, int[] values) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"MachinesStatistic\" SET p1=?,p2=?,p3=?,p4=?,p5=?,p6=?,p7=?,p8=?,total=? WHERE machine=?;");
+        PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"MachinesStatistic\" SET t1=?,t2=?,t3=?,t4=?,t5=?,t6=?,t7=?,t8=?,total=? WHERE machine=?;");
         s.setInt(1,values[0]);
         s.setInt(2,values[1]);
         s.setInt(3,values[2]);
