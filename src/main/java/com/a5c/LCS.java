@@ -44,6 +44,8 @@ public class LCS implements Runnable {
                     this.StateTL=0;
                 }
 
+                System.out.println(this.StateTL);
+
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

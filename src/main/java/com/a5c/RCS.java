@@ -7,7 +7,7 @@ import com.a5c.OPC_UA.readOPC;
 import java.sql.SQLException;
 
 public class RCS implements Runnable {
-    private Thread thrCS;
+    private Thread thrRCS;
     private final dbConnect db;
     private final readOPC opcR;
     private final RCTFUN rs;
@@ -24,9 +24,9 @@ public class RCS implements Runnable {
     }
 
     public void start() {
-        if(thrCS==null) {
-            thrCS = new Thread(this);
-            thrCS.start();
+        if(thrRCS==null) {
+            thrRCS = new Thread(this);
+            thrRCS.start();
         }
     }
 
