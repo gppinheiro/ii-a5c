@@ -59,8 +59,8 @@ public class readOPC {
         }
     }
 
-    public int[] getWareHouse() {
-        return (int[]) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.warehouse");
+    public void getWareHouse() {
+        System.out.println(client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.warehouse"));
     }
 
     public int[] getMachine1Production() {

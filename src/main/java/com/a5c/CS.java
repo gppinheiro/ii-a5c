@@ -36,11 +36,13 @@ public class CS implements Runnable {
                     db.updateMachinesStatistic(6, opcR.getMachine6Production());
                     db.updateMachinesStatistic(7, opcR.getMachine7Production());
                     db.updateMachinesStatistic(8, opcR.getMachine8Production());
-                    db.updateCurrentStores(opcR.getWareHouse());
+                    //db.updateCurrentStores(opcR.getWareHouse());
+                    opcR.getWareHouse();
                 }
 
                 if (rs.isEndUnload()) {
-                    db.updateCurrentStores(opcR.getWareHouse());
+                    //db.updateCurrentStores(opcR.getWareHouse());
+                    opcR.getWareHouse();
                 }
 
                 if (ls.isEndTransformLeft()) {
@@ -48,7 +50,8 @@ public class CS implements Runnable {
                     db.updateMachinesStatistic(2, opcR.getMachine2Production());
                     db.updateMachinesStatistic(3, opcR.getMachine3Production());
                     db.updateMachinesStatistic(4, opcR.getMachine4Production());
-                    db.updateCurrentStores(opcR.getWareHouse());
+                    //db.updateCurrentStores(opcR.getWareHouse());
+                    opcR.getWareHouse();
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

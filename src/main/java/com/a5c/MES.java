@@ -59,12 +59,8 @@ public class MES {
         dbConnect db = new dbConnect();
 
         try {
-            Transform tf_test = new Transform(1,1,8,2,0,0,0);
-            Transform tf_test2 = new Transform(2,2,7,2,0,0,0);
             Transform tf_test3 = new Transform(3,1,2,5,0,0,0);
             Unload un_test = new Unload(4,1,2,1);
-            db.addTransform(tf_test);
-            db.addTransform(tf_test2);
             db.addTransform(tf_test3);
             db.addUnload(un_test);
         } catch (SQLException throwables) {
