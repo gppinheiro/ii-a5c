@@ -38,7 +38,8 @@ public class CS implements Runnable {
                     db.updateMachinesStatistic(8, opcR.getMachine8Production());
                     db.updateCurrentStores(opcR.getWareHouse());
                 }
-                else if (rs.isEndUnload()) {
+
+                if (rs.isEndUnload()) {
                     db.updateCurrentStores(opcR.getWareHouse());
                 }
 
