@@ -96,27 +96,11 @@ public class MES {
                     @Override
                     public void run() {
                         new LCTF(opc,db).start();
+                        new RCS(opc,db).start();
                     }
                 },
                 5000
         );
-
-        Timer timer = new Timer(25000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                // Unload Statistics
-                try {
-                    db.updatePushersStatistic(1,opcR.getPusher1());
-                    db.updatePushersStatistic(2,opcR.getPusher2());
-                    db.updatePushersStatistic(3,opcR.getPusher3());
-                    db.updateCurrentStores(opcR.getWareHouse());
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-        });
-        timer.setRepeats(true); // Only execute once
-        timer.start();
 
     }
 }
