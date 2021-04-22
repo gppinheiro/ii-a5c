@@ -7,7 +7,9 @@
     <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test pushers statistics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/LCS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/LCS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,14 +182,7 @@
       <workItem from="1618818905567" duration="3304000" />
       <workItem from="1618866481426" duration="2764000" />
       <workItem from="1619021357342" duration="5959000" />
-      <workItem from="1619079626782" duration="959000" />
-    </task>
-    <task id="LOCAL-00040" summary="delete db error">
-      <created>1618420699579</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1618420699580</updated>
+      <workItem from="1619079626782" duration="1324000" />
     </task>
     <task id="LOCAL-00041" summary="delete db error">
       <created>1618420895773</created>
@@ -525,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619080166752</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="test pushers statistics">
+      <created>1619080594363</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1619080594363</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

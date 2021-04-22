@@ -100,7 +100,7 @@ public class MES {
                 5000
         );
         // Only starts when half a day passed
-        new java.util.Timer().schedule(
+        /*new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
@@ -109,7 +109,7 @@ public class MES {
                     }
                 },
                 10000
-        );
+        );*/
 
     }
 }

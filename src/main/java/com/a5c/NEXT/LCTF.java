@@ -112,6 +112,12 @@ public class LCTF implements Runnable{
                         else if ( this.StateDifficult1LS==4 && opcR.getLeftSide() && PenaltyLS ) {
                             this.StateDifficult1LS=0;
                             endTransformLeft=true;
+                            // Statistics
+                            db.updateMachinesStatistic(1, opcR.getMachine1Production());
+                            db.updateMachinesStatistic(2, opcR.getMachine2Production());
+                            db.updateMachinesStatistic(3, opcR.getMachine3Production());
+                            db.updateMachinesStatistic(4, opcR.getMachine4Production());
+                            db.updateCurrentStores(opcR.getWareHouse());
                         }
 
                     }
