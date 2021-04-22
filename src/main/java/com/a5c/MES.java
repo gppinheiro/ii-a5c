@@ -6,9 +6,13 @@ import com.a5c.DB.dbConnect;
 import com.a5c.NEXT.LCTF;
 import com.a5c.NEXT.RCTFUN;
 import com.a5c.OPC_UA.clientOPC_UA;
+import com.a5c.OPC_UA.readOPC;
 import com.a5c.UDP.clientUDP;
 import com.a5c.UDP.receiveUDP;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 /*
@@ -67,6 +71,7 @@ public class MES {
         clientOPC_UA opc = new clientOPC_UA();
         clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
+        readOPC opcR = new readOPC(opc);
 
         try {
             //Transform tf_test3 = new Transform(3,1,2,4,0,0,0);
@@ -91,11 +96,27 @@ public class MES {
                     @Override
                     public void run() {
                         new LCTF(opc,db).start();
-                        new RCS(opc,db).start();
                     }
                 },
                 5000
         );
+
+        Timer timer = new Timer(25000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // Unload Statistics
+                try {
+                    db.updatePushersStatistic(1,opcR.getPusher3());
+                    db.updatePushersStatistic(2,opcR.getPusher3());
+                    db.updatePushersStatistic(3,opcR.getPusher3());
+                    db.updateCurrentStores(opcR.getWareHouse());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+        timer.setRepeats(true); // Only execute once
+        timer.start();
 
     }
 }
