@@ -49,6 +49,9 @@ public class RCS implements Runnable {
 
                 if (this.StateU==0 && rs.isEndUnload()) {
                     this.StateU=1;
+                    db.updatePushersStatistic(1,opcR.getPusher1());
+                    db.updatePushersStatistic(2,opcR.getPusher2());
+                    db.updatePushersStatistic(3,opcR.getPusher3());
                     db.updateCurrentStores(opcR.getWareHouse());
                 }
                 else if (this.StateU==1 && !rs.isEndUnload()) {

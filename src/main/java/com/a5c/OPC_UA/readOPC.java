@@ -104,4 +104,17 @@ public class readOPC {
         return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p8");
     }
 
+    public int[] getPusher1(){
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.pusher1");
+    }
+
+    public int[] getPusher2(){
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.pusher2");
+    }
+
+    public int[] getPusher3(){
+        return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.pusher3");
+    }
+
+
 }

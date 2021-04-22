@@ -71,10 +71,14 @@ public class MES {
         dbConnect db = new dbConnect();
 
         try {
-            Transform tf_test3 = new Transform(3,1,2,4,0,0,0);
-            Unload un_test = new Unload(4,1,2,1);
-            db.addTransform(tf_test3);
+            //Transform tf_test3 = new Transform(3,1,2,4,0,0,0);
+            Unload un_test = new Unload(4,1,1,1);
+            Unload un_test2 = new Unload(5,2,2,2);
+            Unload un_test3 = new Unload(6,3,3,1);
+            //db.addTransform(tf_test3);
             db.addUnload(un_test);
+            db.addUnload(un_test2);
+            db.addUnload(un_test3);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
