@@ -11,17 +11,17 @@ public class RCS implements Runnable {
     private Thread thrRCS;
     private final dbConnect db;
     private final readOPC opcR;
-    private final RCTFUN rs;
 
-    private int StateTR;
-    private int StateU;
+    private int StateP1;
+    private int StateP2;
+    private int StateP3;
 
-    public RCS (clientOPC_UA op, dbConnect db, RCTFUN r) {
+    public RCS (clientOPC_UA op, dbConnect db) {
         this.opcR = new readOPC(op);
         this.db = db;
-        this.rs=r;
-        this.StateTR=0;
-        this.StateU=0;
+        this.StateP1=0;
+        this.StateP2=0;
+        this.StateP3=0;
     }
 
     public void start() {
@@ -35,27 +35,32 @@ public class RCS implements Runnable {
     public void run() {
         while(true) {
             try {
-                if (this.StateTR==0 && !rs.isEndTransformRight()) {
-                    this.StateTR=1;
-                }
-                else if(this.StateTR==1 && rs.isEndTransformRight()) {
-                    this.StateTR=0;
-                    db.updateMachinesStatistic(5, opcR.getMachine5Production());
-                    db.updateMachinesStatistic(6, opcR.getMachine6Production());
-                    db.updateMachinesStatistic(7, opcR.getMachine7Production());
-                    db.updateMachinesStatistic(8, opcR.getMachine8Production());
+
+                if(this.StateP1==0 && opcR.getPusher1BOOL()) {
+                    this.StateP1=1;
+                    db.updatePushersStatistic(1,opcR.getPusher1());
                     db.updateCurrentStores(opcR.getWareHouse());
+                }
+                else if (this.StateP2==1 && !opcR.getPusher1BOOL()) {
+                    this.StateP1=0;
                 }
 
-                if (this.StateU==0 && !rs.isEndUnload()) {
-                    this.StateU=1;
-                }
-                else if (this.StateU==1 && rs.isEndUnload()) {
-                    this.StateU=0;
-                    db.updatePushersStatistic(1,opcR.getPusher1());
+                if(this.StateP2==0 && opcR.getPusher2BOOL()) {
+                    this.StateP2=1;
                     db.updatePushersStatistic(2,opcR.getPusher2());
+                    db.updateCurrentStores(opcR.getWareHouse());
+                }
+                else if (this.StateP2==1 && !opcR.getPusher2BOOL()) {
+                    this.StateP2=0;
+                }
+
+                if(this.StateP3==0 && opcR.getPusher3BOOL()) {
+                    this.StateP3=1;
                     db.updatePushersStatistic(3,opcR.getPusher3());
                     db.updateCurrentStores(opcR.getWareHouse());
+                }
+                else if (this.StateP3==1 && !opcR.getPusher3BOOL()) {
+                    this.StateP3=0;
                 }
 
             } catch (SQLException throwables) {

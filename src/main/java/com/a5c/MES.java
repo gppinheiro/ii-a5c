@@ -1,8 +1,6 @@
 package com.a5c;
 
-import com.a5c.DATA.LCS;
 import com.a5c.DATA.RCS;
-import com.a5c.DATA.Transform;
 import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
 import com.a5c.NEXT.LCTF;
@@ -95,21 +93,11 @@ public class MES {
                     @Override
                     public void run() {
                         ls.start();
+                        new RCS(opc,db).start();
                     }
                 },
                 5000
         );
-        // Only starts when half a day passed
-        /*new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        new RCS(opc,db,rs).start();
-                        new LCS(opc,db,ls).start();
-                    }
-                },
-                10000
-        );*/
 
     }
 }

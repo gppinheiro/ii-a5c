@@ -77,6 +77,7 @@ public class RCTFUN implements Runnable {
                         endUnload = false;
                         this.unls = db.getUnload();
                     }
+
                     // Next transform
                     else if (endTransformRight && db.TransformLength()!=0) {
                         endTransformRight = false;
@@ -132,9 +133,6 @@ public class RCTFUN implements Runnable {
                     else if ( this.StateUnload==2 && opcR.getRightSide() ) {
                         this.StateUnload=0;
                         endUnload=true;
-                        // Statistics
-                        db.updatePushersStatistic(unls[0].getDestination(),opcR.getPusher1());
-                        db.updateCurrentStores(opcR.getWareHouse());
                     }
                 }
 
