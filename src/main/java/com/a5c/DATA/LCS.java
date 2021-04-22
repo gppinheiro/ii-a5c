@@ -33,15 +33,15 @@ public class LCS implements Runnable {
     public void run() {
         while(true) {
             try {
-                if (this.StateTL==0 && ls.isEndTransformLeft()) {
+                if (this.StateTL==0 && !ls.isEndTransformLeft()) {
                     this.StateTL=1;
+                }
+                else if(this.StateTL==1 && ls.isEndTransformLeft()) {
                     db.updateMachinesStatistic(1, opcR.getMachine1Production());
                     db.updateMachinesStatistic(2, opcR.getMachine2Production());
                     db.updateMachinesStatistic(3, opcR.getMachine3Production());
                     db.updateMachinesStatistic(4, opcR.getMachine4Production());
                     db.updateCurrentStores(opcR.getWareHouse());
-                }
-                else if(this.StateTL==1 && !ls.isEndTransformLeft()) {
                     this.StateTL=0;
                 }
 
