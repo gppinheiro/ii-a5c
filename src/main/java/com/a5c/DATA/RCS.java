@@ -34,9 +34,8 @@ public class RCS implements Runnable {
     @Override
     public void run() {
         while(true) {
-            try {
 
-                if(this.StateP1==0 && opcR.getPusher1BOOL()) {
+                /*if(this.StateP1==0 && opcR.getPusher1BOOL()) {
                     this.StateP1=1;
                     db.updatePushersStatistic(1,opcR.getPusher1());
                     db.updateCurrentStores(opcR.getWareHouse());
@@ -61,11 +60,8 @@ public class RCS implements Runnable {
                 }
                 else if (this.StateP3==1 && !opcR.getPusher3BOOL()) {
                     this.StateP3=0;
-                }
+                }*/
 
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
         }
     }
 

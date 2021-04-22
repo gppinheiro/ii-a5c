@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,14 +181,7 @@
       <workItem from="1618818905567" duration="3304000" />
       <workItem from="1618866481426" duration="2764000" />
       <workItem from="1619021357342" duration="5959000" />
-      <workItem from="1619079626782" duration="4844000" />
-    </task>
-    <task id="LOCAL-00044" summary="clean error">
-      <created>1618423155627</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1618423155627</updated>
+      <workItem from="1619079626782" duration="5239000" />
     </task>
     <task id="LOCAL-00045" summary="clean error">
       <created>1618424587518</created>
@@ -525,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619084158178</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="test pushers statistics">
+      <created>1619085527230</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1619085527230</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

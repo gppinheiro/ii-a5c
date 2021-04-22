@@ -106,8 +106,8 @@ public class MES {
             public void actionPerformed(ActionEvent arg0) {
                 // Unload Statistics
                 try {
-                    db.updatePushersStatistic(1,opcR.getPusher3());
-                    db.updatePushersStatistic(2,opcR.getPusher3());
+                    db.updatePushersStatistic(1,opcR.getPusher1());
+                    db.updatePushersStatistic(2,opcR.getPusher2());
                     db.updatePushersStatistic(3,opcR.getPusher3());
                     db.updateCurrentStores(opcR.getWareHouse());
                 } catch (SQLException throwables) {
