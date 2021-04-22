@@ -84,15 +84,13 @@ public class MES {
         // Start UDP communication
         new receiveUDP(udp,db).start();
         // Start right side
-        RCTFUN rs = new RCTFUN(opc,db);
-        rs.start();
+        new RCTFUN(opc,db).start();
         // Wait to start Left Side after Right Side begin
-        LCTF ls = new LCTF(opc,db);
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        ls.start();
+                        new LCTF(opc,db).start();
                         new RCS(opc,db).start();
                     }
                 },
