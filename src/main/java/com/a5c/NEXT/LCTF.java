@@ -101,7 +101,7 @@ public class LCTF implements Runnable{
                             this.StateDifficult1LS=2;
                             opcS.sendLeft(zeros);
                         }
-                        else if (this.StateDifficult1LS==2 && !opcR.getACKLeft() && this.StatePenaltyLS==1) {
+                        else if (this.StateDifficult1LS==2 && !opcR.getACKLeft()) {
                             this.StateDifficult1LS=3;
                             opcS.sendLeft(tf2.getPath());
                         }
