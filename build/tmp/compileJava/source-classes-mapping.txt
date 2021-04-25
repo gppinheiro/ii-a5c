@@ -1,24 +1,25 @@
-com/a5c/UDP/clientUDP.java
- com.a5c.UDP.clientUDP
-com/a5c/OPC_UA/clientOPC_UA.java
- com.a5c.OPC_UA.clientOPC_UA
-com/a5c/DATA/Unload.java
- com.a5c.DATA.Unload
 com/a5c/DATA/Transform.java
  com.a5c.DATA.Transform
-com/a5c/OPC_UA/sendOPC.java
- com.a5c.OPC_UA.sendOPC
+com/a5c/DATA/Unload.java
+ com.a5c.DATA.Unload
+com/a5c/DATA/RCS.java
+ com.a5c.DATA.RCS
 com/a5c/DB/dbConnect.java
  com.a5c.DB.dbConnect
 com/a5c/UDP/receiveUDP.java
  com.a5c.UDP.receiveUDP
-com/a5c/RCTFUN.java
- com.a5c.RCTFUN
-com/a5c/ControlStatics.java
- com.a5c.ControlStatics
+com/a5c/NEXT/LCTF.java
+ com.a5c.NEXT.LCTF
+com/a5c/OPC_UA/clientOPC_UA.java
+ com.a5c.OPC_UA.clientOPC_UA
+com/a5c/UDP/clientUDP.java
+ com.a5c.UDP.clientUDP
+com/a5c/OPC_UA/sendOPC.java
+ com.a5c.OPC_UA.sendOPC
+com/a5c/NEXT/RCTFUN.java
+ com.a5c.NEXT.RCTFUN
 com/a5c/MES.java
  com.a5c.MES
-com/a5c/LCTF.java
- com.a5c.LCTF
+ com.a5c.MES$1
 com/a5c/OPC_UA/readOPC.java
  com.a5c.OPC_UA.readOPC

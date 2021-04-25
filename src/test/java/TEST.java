@@ -349,7 +349,7 @@ public class TEST {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("sendCurrentStores.xml"));
+            StreamResult result = new StreamResult(new File("sendRequestOrders.xml"));
             transformer.transform(source, result);
 
         } catch (ParserConfigurationException | SQLException | TransformerException e) {
