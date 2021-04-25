@@ -72,6 +72,17 @@ public class MES {
         clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
 
+        try {
+            db.addTransform(new Transform(1,1,2,1,0,10,10));
+            db.addTransform(new Transform(1,1,2,2,0,15,20));
+            db.addTransform(new Transform(1,1,2,3,0,20,30));
+            db.addTransform(new Transform(1,1,2,4,0,15,20));
+            db.addTransform(new Transform(1,1,2,5,0,20,30));
+            db.addTransform(new Transform(1,1,2,6,0,15,20));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         // Start UDP communication
         new receiveUDP(udp,db).start();
         // Start right side
