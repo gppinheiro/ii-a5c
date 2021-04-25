@@ -22,6 +22,7 @@ import java.net.SocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 public class receiveUDP implements Runnable {
@@ -31,10 +32,12 @@ public class receiveUDP implements Runnable {
     private int portServer;
     private DatagramPacket packUDP;
     private Thread thrUDP;
+    private Timestamp initTime;
 
     public receiveUDP(clientUDP cl, dbConnect db) {
         this.client = cl;
         this.db = db;
+        this.initTime = new Timestamp(System.currentTimeMillis());
     }
 
     @Override
@@ -89,7 +92,6 @@ public class receiveUDP implements Runnable {
             Document doc = docBuilder.parse("receiveOrdersXML.xml");
 
             // Search on document
-            // TODO: WriteXML
             // <Request_Orders/>
             NodeList requestOrdersList = doc.getElementsByTagName("Request_Orders");
             // <Request_Stores/>
@@ -146,6 +148,8 @@ public class receiveUDP implements Runnable {
 
                                 // New Transform Class
                                 Transform tf = new Transform(orderNumber,from,to,quantity,time,maxDelay,penalty);
+                                Timestamp ts = new Timestamp(System.currentTimeMillis());
+                                tf.setTimeMES((int) ( ts.getTime()-initTime.getTime())/1000 );
 
                                 // Add to DB
                                 db.addTransform(tf);
@@ -222,7 +226,6 @@ public class receiveUDP implements Runnable {
 
     }
 
-    //TODO
     public void writeOrderSchedule() {
         try {
             // Create the document
@@ -286,9 +289,9 @@ public class receiveUDP implements Runnable {
                 attr.setValue(String.valueOf(tfTODO[i].getTime()));
                 OrderElem.setAttributeNode(attr);
 
-                //time1 - Only 1s slower
+                //time1
                 attr = doc.createAttribute("Time1");
-                attr.setValue(String.valueOf(tfTODO[i].getTime()+1));
+                attr.setValue(String.valueOf(tfTODO[i].getTimeMES()));
                 OrderElem.setAttributeNode(attr);
 
                 //maxdelay
@@ -368,9 +371,9 @@ public class receiveUDP implements Runnable {
                 attr.setValue(String.valueOf(tfDOING[i].getTime()));
                 OrderElem.setAttributeNode(attr);
 
-                //time1 - Only 1s slower
+                //time1
                 attr = doc.createAttribute("Time1");
-                attr.setValue(String.valueOf(tfDOING[i].getTime()+1));
+                attr.setValue(String.valueOf(tfDOING[i].getTimeMES()));
                 OrderElem.setAttributeNode(attr);
 
                 //maxdelay
@@ -450,9 +453,9 @@ public class receiveUDP implements Runnable {
                 attr.setValue(String.valueOf(transform.getTime()));
                 OrderElem.setAttributeNode(attr);
 
-                //time1 - Only 1s slower
+                //time1
                 attr = doc.createAttribute("Time1");
-                attr.setValue(String.valueOf(transform.getTime() + 1));
+                attr.setValue(String.valueOf(transform.getTimeMES()));
                 OrderElem.setAttributeNode(attr);
 
                 //maxdelay

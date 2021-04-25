@@ -6,8 +6,10 @@ public class Transform {
     private final int to;
     private final int quantity;
     private final int time;
+    private int timeMES;
     private final int maxDelay;
     private int penalty;
+
     private int InitPenalty;
     private int ST;
     private int ET;
@@ -21,6 +23,7 @@ public class Transform {
         this.maxDelay = maxDelay;
         this.penalty = penalty;
         this.InitPenalty = penalty;
+        this.timeMES = time+1;
     }
 
     public int[] getPath() {
@@ -67,50 +70,6 @@ public class Transform {
         this.penalty = p;
     }
 
-    public int findTimeMachines(int from, int to) {
-        switch(from) {
-            case 1:
-                if(to==2) { return 15; }
-                else if(to==3) { return 30; }
-                else if(to==4) { return 45; }
-                else if(to==5) { return 60; }
-                else if(to==6) { return 90; }
-                else if(to==9) { return 90; }
-                else if(to==7) { return 120; }
-                else if(to==8) { return 105; }
-            case 2:
-                if(to==3) { return 15; }
-                else if(to==4) { return 30; }
-                else if(to==5) { return 45; }
-                else if(to==6) { return 75; }
-                else if(to==9) { return 75; }
-                else if(to==7) { return 105; }
-                else if(to==8) { return 90; }
-            case 3:
-                if(to==4) { return 15; }
-                else if(to==5) { return 30; }
-                else if(to==6) { return 60; }
-                else if(to==9) { return 60; }
-                else if(to==7) { return 90; }
-                else if(to==8) { return 75; }
-            case 4:
-                if(to==5) { return 15; }
-                else if(to==6) { return 45; }
-                else if(to==9) { return 45; }
-                else if(to==7) { return 75; }
-                else if(to==8) { return 60; }
-            case 5:
-                if(to==6) { return 30; }
-                else if(to==9) { return 30; }
-                else if(to==7) { return 60; }
-                else if(to==8) { return 45; }
-            case 6:
-                if(to==7) { return 30; }
-                else if(to==8) { return 15; }
-        }
-        return 0;
-    }
-
     public void setST(int ST) {
         this.ST = ST;
     }
@@ -129,5 +88,13 @@ public class Transform {
 
     public void setInitPenalty(int initPenalty) {
         InitPenalty = initPenalty;
+    }
+
+    public int getTimeMES() {
+        return timeMES;
+    }
+
+    public void setTimeMES(int timeMES) {
+        this.timeMES = timeMES;
     }
 }

@@ -55,7 +55,7 @@ public class dbConnect {
     }
 
     public void addTransform(Transform tf) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Transform\" VALUES (?,?,?,?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Transform\" VALUES (?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
@@ -64,11 +64,12 @@ public class dbConnect {
         s.setInt(6,tf.getMaxDelay());
         s.setInt(7,tf.getPenalty());
         s.setTimestamp(8,new Timestamp(System.currentTimeMillis()));
+        s.setInt(9,tf.getTimeMES());
         s.executeUpdate();
     }
 
     public Transform addElapseTransform(Transform tf, String side) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
@@ -81,21 +82,25 @@ public class dbConnect {
         s.setString(8,side);
         s.setInt(9,tf.getTime());
         s.setInt(10,tf.getST());
+        s.setInt(11,tf.getTimeMES());
         s.executeUpdate();
 
         return tf;
     }
 
     public void addEndTransform(Transform tf, String side, int ft) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        tf.setET((int) (ts.getTime()-initTime.getTime())/1000);
+        //tf.setPenalty( ft/50 * tf.getPenalty() );
+        tf.setPenalty( (tf.getET()-tf.getTimeMES())/50 * tf.getInitPenalty() );
+
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
         s.setInt(4,tf.getQuantity());
         s.setInt(5,tf.getPenalty());
         s.setInt(6,ft);
-        Timestamp ts = new Timestamp(System.currentTimeMillis());
-        tf.setET((int) (ts.getTime()-initTime.getTime())/1000);
         s.setTimestamp(7,ts);
         s.setString(8,side);
         s.setInt(9,tf.getTime());
@@ -103,6 +108,7 @@ public class dbConnect {
         s.setInt(11,tf.getInitPenalty());
         s.setInt(12,tf.getST());
         s.setInt(13,tf.getET());
+        s.setInt(14,tf.getTimeMES());
         s.executeUpdate();
     }
 
@@ -119,12 +125,13 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty  FROM ii.\"Transform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"timeMES\"  FROM ii.\"Transform\";");
         rs = s.executeQuery();
 
         int i=0;
         while (rs.next()) {
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+            Transforms[i].setTimeMES(rs.getInt(8));
             i++;
         }
 
@@ -137,13 +144,14 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st  FROM ii.\"ElapseTransform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\"  FROM ii.\"ElapseTransform\";");
         rs = s.executeQuery();
 
         int i=0;
         while (rs.next()) {
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
             Transforms[i].setST(rs.getInt(8));
+            Transforms[i].setTimeMES(rs.getInt(9));
             i++;
         }
 
@@ -156,7 +164,7 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"InitialPenalty\", st, et  FROM ii.\"EndTransform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"InitialPenalty\", st, et, \"timeMES\"  FROM ii.\"EndTransform\";");
         rs = s.executeQuery();
 
         int i=0;
@@ -165,6 +173,7 @@ public class dbConnect {
             Transforms[i].setInitPenalty(rs.getInt(8));
             Transforms[i].setST(rs.getInt(9));
             Transforms[i].setET(rs.getInt(10));
+            Transforms[i].setTimeMES(rs.getInt(11));
             i++;
         }
 

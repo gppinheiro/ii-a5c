@@ -234,7 +234,6 @@ public class RCTFUN implements Runnable {
                         } else if (this.StatePenaltyRS == 2 && opcR.getNewTimerRight() && !PenaltyRS && (this.StateDifficult1RS == 4 || this.StateDifficult2RS == 4)) {
                             this.StatePenaltyRS = 3;
                             timeRS += opcR.getRightTimer();
-                            tfs[0].setPenalty(timeRS / 50 * tfs[0].getPenalty());
                             // When end, we add it into a new table and delete from other
                             db.addEndTransform(tfs[0], "right", timeRS);
                             db.deleteTransform(tfs[0], "ElapseTransform");
@@ -251,7 +250,6 @@ public class RCTFUN implements Runnable {
                         if (this.StatePenaltyRS == 0 && opcR.getNewTimerRight() && this.StateEasyRS == 2 && !PenaltyRS) {
                             this.StatePenaltyRS = 1;
                             timeRS = opcR.getRightTimer();
-                            tfs[0].setPenalty(timeRS / 50 * tfs[0].getPenalty());
                             // When end, we add it into a new table and delete from other
                             db.addEndTransform(tfs[0], "right", timeRS);
                             db.deleteTransform(tfs[0], "ElapseTransform");

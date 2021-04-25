@@ -189,7 +189,6 @@ public class LCTF implements Runnable{
                         else if (this.StatePenaltyLS==2 && opcR.getNewTimerLeft() && (this.StateDifficult1LS==4 || this.StateDifficult2LS==4) ) {
                             this.StatePenaltyLS=3;
                             timeLS += opcR.getLeftTimer();
-                            tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                             // When end, we add it into a new table and delete from other
                             db.addEndTransform(tfs[0],"left",timeLS);
                             db.deleteTransform(tfs[0],"ElapseTransform");
@@ -207,7 +206,6 @@ public class LCTF implements Runnable{
                         if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && this.StateEasyLS==2 && !PenaltyLS) {
                             this.StatePenaltyLS=1;
                             timeLS = opcR.getLeftTimer();
-                            tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
                             // When end, we add it into a new table and delete from other
                             db.addEndTransform(tfs[0],"left",timeLS);
                             db.deleteTransform(tfs[0],"ElapseTransform");
