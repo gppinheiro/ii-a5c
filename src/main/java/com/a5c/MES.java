@@ -73,7 +73,7 @@ public class MES {
 
         try {
             // 1
-            db.addTransform(new Transform(1,1,2,1,0,0,0));
+            /*db.addTransform(new Transform(1,1,2,1,0,0,0));
             db.addTransform(new Transform(2,1,2,4,0,0,0));
             db.addTransform(new Transform(3,1,3,1,0,0,0));
             db.addTransform(new Transform(4,1,3,4,0,0,0));
@@ -88,7 +88,9 @@ public class MES {
             db.addTransform(new Transform(13,1,7,1,0,0,0));
             db.addTransform(new Transform(14,1,7,4,0,0,0));
             db.addTransform(new Transform(15,1,8,1,0,0,0));
-            db.addTransform(new Transform(16,1,8,4,0,0,0));
+            db.addTransform(new Transform(16,1,8,4,0,0,0));*/
+            db.addTransform(new Transform(9,1,6,1,0,0,0));
+            db.addTransform(new Transform(10,1,6,4,0,0,0));
 
             // 2
             /*db.addTransform(new Transform(17,2,3,1,0,0,0));
