@@ -176,7 +176,7 @@ public class LCTF implements Runnable{
                     //Penalty
                     if(DifficultLS) {
                         // Penalty for difficult
-                        if ( this.StatePenaltyLS==0 && !PenaltyLS && (this.StateDifficult1LS==3 || this.StateDifficult2LS==3) ) {
+                        if ( this.StatePenaltyLS==0 && opcR.getNewTimerLeft() && !PenaltyLS && (this.StateDifficult1LS==3 || this.StateDifficult2LS==3) ) {
                             this.StatePenaltyLS=1;
                             timeLS = opcR.getLeftTimer();
                             opcS.sendNewTimerLeft(true);
@@ -223,6 +223,7 @@ public class LCTF implements Runnable{
                     System.out.println("Difficult: "+ DifficultLS);
                     System.out.println("State : "+ this.StateDifficult1LS);
                     System.out.println("State Penalty: "+ this.StatePenaltyLS);
+                    System.out.println("New Timer Left: "+ opcR.getNewTimerLeft());
 
                 }
             } catch (SQLException e) {
