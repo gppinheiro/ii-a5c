@@ -97,6 +97,11 @@ public class receiveUDP implements Runnable {
             // <Order/>
             NodeList orderList = doc.getElementsByTagName("Order");
 
+            if(requestOrdersList.getLength()!=0) {
+                writeOrderSchedule();
+                sendXML("sendRequestOrders.xml");
+            }
+
             if(requestStoresList.getLength()!=0) {
                 writeCurrentStores();
                 sendXML("sendCurrentStores.xml");
@@ -219,6 +224,95 @@ public class receiveUDP implements Runnable {
 
     //TODO
     public void writeOrderSchedule() {
+        try {
+            // Create the document
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            Document doc = docBuilder.newDocument();
+
+            //<Order_Schedule>
+            Element CSelem = doc.createElement("Order_Schedule");
+            doc.appendChild(CSelem);
+
+            Transform[] tfTODO = db.getTransform();
+            Transform[] tfDOING = db.getElapseTransform();
+            Transform[] tfDONE = db.getEndTransform();
+
+
+            for (Transform transform : tfTODO) {
+                //<Order/>
+                Element OrderElem = doc.createElement("Order");
+                CSelem.appendChild(OrderElem);
+
+                //number
+                Attr attr = doc.createAttribute("Number");
+                attr.setValue(String.valueOf(transform.getOrderNumber()));
+                OrderElem.setAttributeNode(attr);
+
+                //from
+                attr = doc.createAttribute("From");
+                attr.setValue("P" + transform.getFrom());
+                OrderElem.setAttributeNode(attr);
+
+                //to
+                attr = doc.createAttribute("To");
+                attr.setValue("P" + transform.getTo());
+                OrderElem.setAttributeNode(attr);
+
+                //quantity
+                attr = doc.createAttribute("Quantity");
+                attr.setValue(String.valueOf(transform.getQuantity()));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity1
+                attr = doc.createAttribute("Quantity1");
+                attr.setValue(String.valueOf(0));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity2
+                attr = doc.createAttribute("Quantity2");
+                attr.setValue(String.valueOf(0));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity3
+                attr = doc.createAttribute("Quantity3");
+                attr.setValue(String.valueOf(transform.getQuantity()));
+                OrderElem.setAttributeNode(attr);
+
+                //time
+                attr = doc.createAttribute("Time");
+                attr.setValue(String.valueOf(transform.getTime()));
+                OrderElem.setAttributeNode(attr);
+
+                //time1 - Only 1s slower
+                attr = doc.createAttribute("Time1");
+                attr.setValue(String.valueOf(transform.getTime()+1));
+                OrderElem.setAttributeNode(attr);
+
+                //maxdelay
+                attr = doc.createAttribute("MaxDelay");
+                attr.setValue(String.valueOf(transform.getMaxDelay()));
+                OrderElem.setAttributeNode(attr);
+
+                //penalty
+                attr = doc.createAttribute("Penalty");
+                attr.setValue(String.valueOf(transform.getInitPenalty()));
+                OrderElem.setAttributeNode(attr);
+
+                //TODO: CONTINUE
+
+            }
+
+            //Create file XML
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("sendCurrentStores.xml"));
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException | SQLException | TransformerException e) {
+            e.printStackTrace();
+        }
 
     }
 

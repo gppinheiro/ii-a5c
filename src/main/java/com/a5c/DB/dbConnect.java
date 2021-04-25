@@ -66,7 +66,7 @@ public class dbConnect {
     }
 
     public void addElapseTransform(Transform tf, String side) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
@@ -75,11 +75,12 @@ public class dbConnect {
         s.setInt(6,tf.getPenalty());
         s.setTimestamp(7,new Timestamp(System.currentTimeMillis()));
         s.setString(8,side);
+        s.setInt(9,tf.getTime());
         s.executeUpdate();
     }
 
     public void addEndTransform(Transform tf, String side, int ft) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
@@ -88,6 +89,9 @@ public class dbConnect {
         s.setInt(6,ft);
         s.setTimestamp(7,new Timestamp(System.currentTimeMillis()));
         s.setString(8,side);
+        s.setInt(9,tf.getTime());
+        s.setInt(10,tf.getMaxDelay());
+        s.setInt(11,tf.getInitPenalty());
         s.executeUpdate();
     }
 
@@ -105,6 +109,42 @@ public class dbConnect {
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
         s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty  FROM ii.\"Transform\";");
+        rs = s.executeQuery();
+
+        int i=0;
+        while (rs.next()) {
+            Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+            i++;
+        }
+
+        return Transforms;
+    }
+
+    public Transform[] getElapseTransform() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"ElapseTransform\";");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        Transform[] Transforms = new Transform[rs.getInt(1)];
+
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty  FROM ii.\"ElapseTransform\";");
+        rs = s.executeQuery();
+
+        int i=0;
+        while (rs.next()) {
+            Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+            i++;
+        }
+
+        return Transforms;
+    }
+
+    public Transform[] getEndTransform() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"EndTransform\";");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        Transform[] Transforms = new Transform[rs.getInt(1)];
+
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty  FROM ii.\"EndTransform\";");
         rs = s.executeQuery();
 
         int i=0;
