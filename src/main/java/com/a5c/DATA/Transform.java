@@ -8,10 +8,9 @@ public class Transform {
     private final int time;
     private final int maxDelay;
     private int penalty;
-    private final int InitPenalty;
+    private int InitPenalty;
     private int ST;
     private int ET;
-    private int PI;
 
     public Transform(int orderNumber, int from, int to, int quantity, int time, int maxDelay, int penalty) {
         this.orderNumber = orderNumber;
@@ -112,8 +111,23 @@ public class Transform {
         return 0;
     }
 
-    public void predictST() {
-
+    public void setST(int ST) {
+        this.ST = ST;
     }
 
+    public int getST() {
+        return ST;
+    }
+
+    public int getET() {
+        return ET;
+    }
+
+    public void setET(int ET) {
+        this.ET = ET;
+    }
+
+    public void setInitPenalty(int initPenalty) {
+        InitPenalty = initPenalty;
+    }
 }

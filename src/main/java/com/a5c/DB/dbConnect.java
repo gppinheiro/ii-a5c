@@ -24,11 +24,13 @@ public class dbConnect {
      * Private - Nobody needs to know the db connection.
      */
     private Connection conn = null;
+    private final Timestamp initTime;
 
     /**
      * Constructor that creates connection with DataBase.
      */
     public dbConnect() {
+        this.initTime = new Timestamp(System.currentTimeMillis());
         try {
             this.conn = getConnection();
         } catch (Exception e) {
@@ -65,33 +67,42 @@ public class dbConnect {
         s.executeUpdate();
     }
 
-    public void addElapseTransform(Transform tf, String side) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?);");
+    public Transform addElapseTransform(Transform tf, String side) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
         s.setInt(4,tf.getQuantity());
         s.setInt(5,tf.getMaxDelay());
         s.setInt(6,tf.getPenalty());
-        s.setTimestamp(7,new Timestamp(System.currentTimeMillis()));
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        tf.setST((int) (ts.getTime()-initTime.getTime())/1000);
+        s.setTimestamp(7,ts);
         s.setString(8,side);
         s.setInt(9,tf.getTime());
+        s.setInt(10,tf.getST());
         s.executeUpdate();
+
+        return tf;
     }
 
     public void addEndTransform(Transform tf, String side, int ft) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
         s.setInt(4,tf.getQuantity());
         s.setInt(5,tf.getPenalty());
         s.setInt(6,ft);
-        s.setTimestamp(7,new Timestamp(System.currentTimeMillis()));
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        tf.setET((int) (ts.getTime()-initTime.getTime())/1000);
+        s.setTimestamp(7,ts);
         s.setString(8,side);
         s.setInt(9,tf.getTime());
         s.setInt(10,tf.getMaxDelay());
         s.setInt(11,tf.getInitPenalty());
+        s.setInt(12,tf.getST());
+        s.setInt(13,tf.getET());
         s.executeUpdate();
     }
 
@@ -126,12 +137,13 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty  FROM ii.\"ElapseTransform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st  FROM ii.\"ElapseTransform\";");
         rs = s.executeQuery();
 
         int i=0;
         while (rs.next()) {
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+            Transforms[i].setST(rs.getInt(8));
             i++;
         }
 
@@ -144,12 +156,15 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty  FROM ii.\"EndTransform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"InitialPenalty\", st, et  FROM ii.\"EndTransform\";");
         rs = s.executeQuery();
 
         int i=0;
         while (rs.next()) {
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+            Transforms[i].setInitPenalty(rs.getInt(8));
+            Transforms[i].setST(rs.getInt(9));
+            Transforms[i].setET(rs.getInt(10));
             i++;
         }
 
@@ -286,6 +301,17 @@ public class dbConnect {
         s.setString(11,str);
 
         s.executeUpdate();
+    }
+
+    public int getPenaltyExcepted(int from, int to, int quantity) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT tt, diff FROM ii.\"ExceptedPenalty\" WHERE \"from\"=? AND \"to\"=?;");
+        s.setInt(1,from);
+        s.setInt(2,to);
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        int tt = rs.getInt(1);
+        int diff = rs.getInt(2);
+        return (tt + diff*(quantity-1))/50;
     }
 
 }

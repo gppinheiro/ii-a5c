@@ -238,8 +238,174 @@ public class receiveUDP implements Runnable {
             Transform[] tfDOING = db.getElapseTransform();
             Transform[] tfDONE = db.getEndTransform();
 
+            // pi = Penalty Incurred or Excepted
+            int pi;
 
-            for (Transform transform : tfTODO) {
+            for (int i=0; i< tfTODO.length ; i++) {
+                //<Order/>
+                Element OrderElem = doc.createElement("Order");
+                CSelem.appendChild(OrderElem);
+
+                //number
+                Attr attr = doc.createAttribute("Number");
+                attr.setValue(String.valueOf(tfTODO[i].getOrderNumber()));
+                OrderElem.setAttributeNode(attr);
+
+                //from
+                attr = doc.createAttribute("From");
+                attr.setValue("P" + tfTODO[i].getFrom());
+                OrderElem.setAttributeNode(attr);
+
+                //to
+                attr = doc.createAttribute("To");
+                attr.setValue("P" + tfTODO[i].getTo());
+                OrderElem.setAttributeNode(attr);
+
+                //quantity
+                attr = doc.createAttribute("Quantity");
+                attr.setValue(String.valueOf(tfTODO[i].getQuantity()));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity1
+                attr = doc.createAttribute("Quantity1");
+                attr.setValue(String.valueOf(0));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity2
+                attr = doc.createAttribute("Quantity2");
+                attr.setValue(String.valueOf(0));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity3
+                attr = doc.createAttribute("Quantity3");
+                attr.setValue(String.valueOf(tfTODO[i].getQuantity()));
+                OrderElem.setAttributeNode(attr);
+
+                //time
+                attr = doc.createAttribute("Time");
+                attr.setValue(String.valueOf(tfTODO[i].getTime()));
+                OrderElem.setAttributeNode(attr);
+
+                //time1 - Only 1s slower
+                attr = doc.createAttribute("Time1");
+                attr.setValue(String.valueOf(tfTODO[i].getTime()+1));
+                OrderElem.setAttributeNode(attr);
+
+                //maxdelay
+                attr = doc.createAttribute("MaxDelay");
+                attr.setValue(String.valueOf(tfTODO[i].getMaxDelay()));
+                OrderElem.setAttributeNode(attr);
+
+                //penalty
+                attr = doc.createAttribute("Penalty");
+                attr.setValue(String.valueOf(tfTODO[i].getInitPenalty()));
+                OrderElem.setAttributeNode(attr);
+
+                pi=0;
+                for(int a=i; a>=i; a--){
+                    pi += db.getPenaltyExcepted(tfTODO[a].getFrom(),tfTODO[a].getTo(),tfTODO[a].getQuantity());
+                }
+
+                //start excepted
+                attr = doc.createAttribute("Start");
+                attr.setValue(String.valueOf( (pi-db.getPenaltyExcepted(tfTODO[i].getFrom(),tfTODO[i].getTo(),tfTODO[i].getQuantity()))*50 ));
+                OrderElem.setAttributeNode(attr);
+
+                //end excepted
+                attr = doc.createAttribute("End");
+                attr.setValue(String.valueOf(pi*50));
+                OrderElem.setAttributeNode(attr);
+
+                //penalty excepted
+                attr = doc.createAttribute("PenaltyIncurred");
+                attr.setValue(String.valueOf(pi));
+                OrderElem.setAttributeNode(attr);
+
+            }
+
+            for (int i=0; i< tfDOING.length ; i++) {
+                //<Order/>
+                Element OrderElem = doc.createElement("Order");
+                CSelem.appendChild(OrderElem);
+
+                //number
+                Attr attr = doc.createAttribute("Number");
+                attr.setValue(String.valueOf(tfDOING[i].getOrderNumber()));
+                OrderElem.setAttributeNode(attr);
+
+                //from
+                attr = doc.createAttribute("From");
+                attr.setValue("P" + tfDOING[i].getFrom());
+                OrderElem.setAttributeNode(attr);
+
+                //to
+                attr = doc.createAttribute("To");
+                attr.setValue("P" + tfDOING[i].getTo());
+                OrderElem.setAttributeNode(attr);
+
+                //quantity
+                attr = doc.createAttribute("Quantity");
+                attr.setValue(String.valueOf(tfDOING[i].getQuantity()));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity1
+                attr = doc.createAttribute("Quantity1");
+                attr.setValue(String.valueOf(0));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity2
+                attr = doc.createAttribute("Quantity2");
+                attr.setValue(String.valueOf(tfDOING[i].getQuantity()));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity3
+                attr = doc.createAttribute("Quantity3");
+                attr.setValue(String.valueOf(0));
+                OrderElem.setAttributeNode(attr);
+
+                //time
+                attr = doc.createAttribute("Time");
+                attr.setValue(String.valueOf(tfDOING[i].getTime()));
+                OrderElem.setAttributeNode(attr);
+
+                //time1 - Only 1s slower
+                attr = doc.createAttribute("Time1");
+                attr.setValue(String.valueOf(tfDOING[i].getTime()+1));
+                OrderElem.setAttributeNode(attr);
+
+                //maxdelay
+                attr = doc.createAttribute("MaxDelay");
+                attr.setValue(String.valueOf(tfDOING[i].getMaxDelay()));
+                OrderElem.setAttributeNode(attr);
+
+                //penalty
+                attr = doc.createAttribute("Penalty");
+                attr.setValue(String.valueOf(tfDOING[i].getInitPenalty()));
+                OrderElem.setAttributeNode(attr);
+
+                pi=0;
+                for(int a=i; a>=i; a--){
+                    pi += db.getPenaltyExcepted(tfDOING[a].getFrom(),tfDOING[a].getTo(),tfDOING[a].getQuantity());
+                }
+
+                //start
+                attr = doc.createAttribute("Start");
+                attr.setValue(String.valueOf(tfDOING[i].getST()));
+                OrderElem.setAttributeNode(attr);
+
+                //end excepted
+                attr = doc.createAttribute("End");
+                attr.setValue(String.valueOf(pi*50));
+                OrderElem.setAttributeNode(attr);
+
+                //penalty excepted
+                attr = doc.createAttribute("PenaltyIncurred");
+                attr.setValue(String.valueOf(pi));
+                OrderElem.setAttributeNode(attr);
+
+            }
+
+            for (Transform transform : tfDONE) {
                 //<Order/>
                 Element OrderElem = doc.createElement("Order");
                 CSelem.appendChild(OrderElem);
@@ -266,7 +432,7 @@ public class receiveUDP implements Runnable {
 
                 //quantity1
                 attr = doc.createAttribute("Quantity1");
-                attr.setValue(String.valueOf(0));
+                attr.setValue(String.valueOf(transform.getQuantity()));
                 OrderElem.setAttributeNode(attr);
 
                 //quantity2
@@ -276,7 +442,7 @@ public class receiveUDP implements Runnable {
 
                 //quantity3
                 attr = doc.createAttribute("Quantity3");
-                attr.setValue(String.valueOf(transform.getQuantity()));
+                attr.setValue(String.valueOf(0));
                 OrderElem.setAttributeNode(attr);
 
                 //time
@@ -286,7 +452,7 @@ public class receiveUDP implements Runnable {
 
                 //time1 - Only 1s slower
                 attr = doc.createAttribute("Time1");
-                attr.setValue(String.valueOf(transform.getTime()+1));
+                attr.setValue(String.valueOf(transform.getTime() + 1));
                 OrderElem.setAttributeNode(attr);
 
                 //maxdelay
@@ -299,7 +465,20 @@ public class receiveUDP implements Runnable {
                 attr.setValue(String.valueOf(transform.getInitPenalty()));
                 OrderElem.setAttributeNode(attr);
 
-                //TODO: CONTINUE
+                //start
+                attr = doc.createAttribute("Start");
+                attr.setValue(String.valueOf(transform.getST()));
+                OrderElem.setAttributeNode(attr);
+
+                //end
+                attr = doc.createAttribute("End");
+                attr.setValue(String.valueOf(transform.getET()));
+                OrderElem.setAttributeNode(attr);
+
+                //penalty incurred
+                attr = doc.createAttribute("PenaltyIncurred");
+                attr.setValue(String.valueOf(transform.getPenalty()));
+                OrderElem.setAttributeNode(attr);
 
             }
 

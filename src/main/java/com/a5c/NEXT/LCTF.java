@@ -7,6 +7,7 @@ import com.a5c.OPC_UA.readOPC;
 import com.a5c.OPC_UA.sendOPC;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 // LCTF -> Left Control Transforms
 public class LCTF implements Runnable{
@@ -94,7 +95,7 @@ public class LCTF implements Runnable{
                         if ( this.StateDifficult1LS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
                             this.StateDifficult1LS=1;
                             opcS.sendLeft(tf1.getPath());
-                            db.addElapseTransform(tfs[0],"left");
+                            tfs[0] = db.addElapseTransform(tfs[0],"left");
                             db.deleteTransform(tfs[0],"Transform");
                         }
                         else if (this.StateDifficult1LS==1 && opcR.getACKLeft() ) {
@@ -132,7 +133,7 @@ public class LCTF implements Runnable{
                         if ( this.StateDifficult2LS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
                             this.StateDifficult2LS=1;
                             opcS.sendLeft(tf1.getPath());
-                            db.addElapseTransform(tfs[0],"left");
+                            tfs[0] = db.addElapseTransform(tfs[0],"left");
                             db.deleteTransform(tfs[0],"Transform");
                         }
                         else if (this.StateDifficult2LS==1 && opcR.getACKLeft() ) {
@@ -160,7 +161,7 @@ public class LCTF implements Runnable{
                         if ( this.StateEasyLS==0 && !opcR.getACKLeft() && opcR.getLeftSide() ) {
                             this.StateEasyLS=1;
                             opcS.sendLeft(tfs[0].getPath());
-                            db.addElapseTransform(tfs[0],"left");
+                            tfs[0] = db.addElapseTransform(tfs[0],"left");
                             db.deleteTransform(tfs[0],"Transform");
                         }
                         else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {

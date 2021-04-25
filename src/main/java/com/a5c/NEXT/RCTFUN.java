@@ -8,6 +8,7 @@ import com.a5c.OPC_UA.readOPC;
 import com.a5c.OPC_UA.sendOPC;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -151,7 +152,7 @@ public class RCTFUN implements Runnable {
                         if (this.StateDifficult1RS == 0 && !opcR.getACKRight() && opcR.getRightSide()) {
                             this.StateDifficult1RS = 1;
                             opcS.sendRight(tf1.getPath());
-                            db.addElapseTransform(tfs[0], "right");
+                            tfs[0] = db.addElapseTransform(tfs[0], "right");
                             db.deleteTransform(tfs[0], "Transform");
                         } else if (this.StateDifficult1RS == 1 && opcR.getACKRight()) {
                             this.StateDifficult1RS = 2;
@@ -185,7 +186,7 @@ public class RCTFUN implements Runnable {
                         if (this.StateDifficult2RS == 0 && !opcR.getACKRight() && opcR.getRightSide()) {
                             this.StateDifficult2RS = 1;
                             opcS.sendRight(tf1.getPath());
-                            db.addElapseTransform(tfs[0], "right");
+                            tfs[0] = db.addElapseTransform(tfs[0], "right");
                             db.deleteTransform(tfs[0], "Transform");
                         } else if (this.StateDifficult2RS == 1 && opcR.getACKRight()) {
                             this.StateDifficult2RS = 2;
@@ -209,7 +210,7 @@ public class RCTFUN implements Runnable {
                         if (this.StateEasyRS == 0 && !opcR.getACKRight() && opcR.getRightSide()) {
                             this.StateEasyRS = 1;
                             opcS.sendRight(tfs[0].getPath());
-                            db.addElapseTransform(tfs[0], "right");
+                            tfs[0] = db.addElapseTransform(tfs[0], "right");
                             db.deleteTransform(tfs[0], "Transform");
                         } else if (this.StateEasyRS == 1 && opcR.getACKRight()) {
                             this.StateEasyRS = 2;
