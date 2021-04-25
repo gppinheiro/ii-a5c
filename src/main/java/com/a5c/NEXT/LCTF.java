@@ -220,11 +220,6 @@ public class LCTF implements Runnable{
                         }
                     }
 
-                    System.out.println("Difficult: "+ DifficultLS);
-                    System.out.println("State : "+ this.StateDifficult1LS);
-                    System.out.println("State Penalty: "+ this.StatePenaltyLS);
-                    System.out.println("New Timer Left: "+ opcR.getNewTimerLeft());
-
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

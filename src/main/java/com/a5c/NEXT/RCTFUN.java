@@ -226,10 +226,10 @@ public class RCTFUN implements Runnable {
                         if (this.StatePenaltyRS == 0 && opcR.getNewTimerRight() && !PenaltyRS && (this.StateDifficult1RS == 3 || this.StateDifficult2RS == 3)) {
                             this.StatePenaltyRS = 1;
                             timeRS = opcR.getRightTimer();
-                            opcS.sendNewTimerLeft(true);
+                            opcS.sendNewTimerRight(true);
                         } else if (this.StatePenaltyRS == 1 && !opcR.getNewTimerRight()) {
                             this.StatePenaltyRS = 2;
-                            opcS.sendNewTimerLeft(false);
+                            opcS.sendNewTimerRight(false);
                         } else if (this.StatePenaltyRS == 2 && opcR.getNewTimerRight() && !PenaltyRS && (this.StateDifficult1RS == 3 || this.StateDifficult2RS == 3)) {
                             this.StatePenaltyRS = 3;
                             timeRS += opcR.getRightTimer();
