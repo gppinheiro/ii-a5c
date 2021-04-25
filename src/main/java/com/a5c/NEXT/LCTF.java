@@ -185,7 +185,7 @@ public class LCTF implements Runnable{
                             this.StatePenaltyLS=2;
                             opcS.sendNewTimerLeft(false);
                         }
-                        else if (this.StatePenaltyLS==2 && opcR.getNewTimerLeft() && (this.StateDifficult1LS==3 || this.StateDifficult2LS==3) ) {
+                        else if (this.StatePenaltyLS==2 && opcR.getNewTimerLeft() && (this.StateDifficult1LS==4 || this.StateDifficult2LS==4) ) {
                             this.StatePenaltyLS=3;
                             timeLS += opcR.getLeftTimer();
                             tfs[0].setPenalty( timeLS/50 * tfs[0].getPenalty() );
