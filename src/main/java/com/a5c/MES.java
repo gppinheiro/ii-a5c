@@ -91,6 +91,7 @@ public class MES {
             db.addTransform(new Transform(16,1,8,4,0,0,0));*/
             db.addTransform(new Transform(9,1,6,1,0,0,0));
             db.addTransform(new Transform(10,1,6,1,0,0,0));
+            db.addTransform(new Transform(2,1,2,1,0,0,0));
 
             // 2
             /*db.addTransform(new Transform(17,2,3,1,0,0,0));
