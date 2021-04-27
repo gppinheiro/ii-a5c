@@ -69,7 +69,7 @@ Legend:
 public class MES {
     public static void main(final String[] args) {
         clientOPC_UA opc = new clientOPC_UA();
-        clientUDP udp = new clientUDP();
+        /*clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
 
         try {
@@ -84,7 +84,7 @@ public class MES {
         // Start UDP communication
         new receiveUDP(udp,db).start();
         // Start right side
-        new RCTFUN(opc,db).start();
+        new RCTFUN(opc,db,initTime).start();
         // Wait to start Left Side after Right Side begin
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -96,6 +96,6 @@ public class MES {
                 },
                 5000
         );
-
+        */
     }
 }

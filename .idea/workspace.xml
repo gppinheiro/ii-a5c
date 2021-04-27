@@ -4,31 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test penalty">
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="improve delay">
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/DATA/Transform.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/DATA/Transform.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/DB/dbConnect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/DB/dbConnect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/LCTF.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/LCTF.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/RCTFUN.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/RCTFUN.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/UDP/receiveUDP.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/UDP/receiveUDP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/TEST.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/TEST.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TEST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TEST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +126,7 @@
       <recent name="com.a5c.server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TEST">
+  <component name="RunManager" selected="Application.MES">
     <configuration name="MES" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.a5c.MES" />
       <module name="ii-a5c.main" />
@@ -229,14 +226,7 @@
       <workItem from="1619380773666" duration="1465000" />
       <workItem from="1619423332357" duration="485000" />
       <workItem from="1619510808834" duration="1558000" />
-      <workItem from="1619558233596" duration="1246000" />
-    </task>
-    <task id="LOCAL-00064" summary="new way of thinking">
-      <created>1618484279193</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1618484279193</updated>
+      <workItem from="1619558233596" duration="2996000" />
     </task>
     <task id="LOCAL-00065" summary="new way of thinking">
       <created>1618485359371</created>
@@ -574,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619510872549</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="improve delay">
+      <created>1619559678375</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1619559678376</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +590,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="comments and writeXML and sort" />
     <MESSAGE value="read OPC" />
     <MESSAGE value="transform" />
     <MESSAGE value="penalty" />
@@ -618,6 +614,7 @@
     <MESSAGE value="done States Difficults" />
     <MESSAGE value="test final xml" />
     <MESSAGE value="test penalty" />
-    <option name="LAST_COMMIT_MESSAGE" value="test penalty" />
+    <MESSAGE value="improve delay" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve delay" />
   </component>
 </project>

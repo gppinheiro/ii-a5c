@@ -26,6 +26,7 @@ public class RCTFUN implements Runnable {
     private boolean endTransformRight;
     private boolean endUnload;
     private int timeRS;
+    private final long MESInitTime;
 
     // Global Variables for State Machines
     // RS - Right Side
@@ -35,7 +36,7 @@ public class RCTFUN implements Runnable {
     private int StatePenaltyRS;
     private int StateUnload;
 
-    public RCTFUN(clientOPC_UA cl, dbConnect dbc) {
+    public RCTFUN(clientOPC_UA cl, dbConnect dbc, long ts) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
         this.opcS = new sendOPC(cl);
@@ -47,6 +48,7 @@ public class RCTFUN implements Runnable {
         this.endTransformRight = true;
         this.endUnload = true;
         this.timeRS = 0;
+        this.MESInitTime = ts;
     }
 
     public void start() {
@@ -54,14 +56,6 @@ public class RCTFUN implements Runnable {
             thrRCTFUN = new Thread(this);
             thrRCTFUN.start();
         }
-    }
-
-    public boolean isEndTransformRight() {
-        return endTransformRight;
-    }
-
-    public boolean isEndUnload() {
-        return endUnload;
     }
 
     @Override
@@ -84,10 +78,14 @@ public class RCTFUN implements Runnable {
                         endTransformRight = false;
                         this.tfs = db.getTransform();
 
+                        long nowTime = System.currentTimeMillis();
+
                         Transform temp;
+                        tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) );
                         for (int i = 1; i < tfs.length; i++) {
+                            tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) );
                             for (int j = i; j > 0; j--) {
-                                if ((tfs[j].getMaxDelay() < tfs[j - 1].getMaxDelay()) || (tfs[j].getMaxDelay() == tfs[j - 1].getMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
+                                if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
                                     temp = tfs[j];
                                     tfs[j] = tfs[j - 1];
                                     tfs[j-1] = temp;
