@@ -8,8 +8,8 @@ public class Transform {
     private final int time;
     private int timeMES;
     private final int maxDelay;
+    private int realMaxDelay;
     private int penalty;
-
     private int InitPenalty;
     private int ST;
     private int ET;
@@ -96,5 +96,31 @@ public class Transform {
 
     public void setTimeMES(int timeMES) {
         this.timeMES = timeMES;
+    }
+
+    public int getRealMaxDelay() {
+        return realMaxDelay;
+    }
+
+    public void setRealMaxDelay(int realDelay) {
+        this.realMaxDelay = realDelay;
+    }
+
+    @Override
+    public String toString() {
+        return "Transform{" +
+                "orderNumber=" + orderNumber +
+                ", from=" + from +
+                ", to=" + to +
+                ", quantity=" + quantity +
+                ", time=" + time +
+                ", timeMES=" + timeMES +
+                ", maxDelay=" + maxDelay +
+                ", realDelay=" + realMaxDelay +
+                ", penalty=" + penalty +
+                ", InitPenalty=" + InitPenalty +
+                ", ST=" + ST +
+                ", ET=" + ET +
+                '}';
     }
 }

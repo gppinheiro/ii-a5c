@@ -26,6 +26,10 @@ public class dbConnect {
     private Connection conn = null;
     private final Timestamp initTime;
 
+    public Connection getConn() {
+        return conn;
+    }
+
     /**
      * Constructor that creates connection with DataBase.
      */

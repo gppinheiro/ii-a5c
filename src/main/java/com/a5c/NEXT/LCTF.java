@@ -7,7 +7,6 @@ import com.a5c.OPC_UA.readOPC;
 import com.a5c.OPC_UA.sendOPC;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 // LCTF -> Left Control Transforms
 public class LCTF implements Runnable{
@@ -22,6 +21,7 @@ public class LCTF implements Runnable{
     private Transform[] tfs = null;
     private boolean endTransformLeft;
     private int timeLS;
+    private final long MESInitTime;
 
     // Global Variables for State Machines
     // LS - Left Side
@@ -30,7 +30,7 @@ public class LCTF implements Runnable{
     private int StateEasyLS;
     private int StatePenaltyLS;
 
-    public LCTF(clientOPC_UA cl, dbConnect dbc) {
+    public LCTF(clientOPC_UA cl, dbConnect dbc, long ts) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
         this.opcS = new sendOPC(cl);
@@ -40,6 +40,7 @@ public class LCTF implements Runnable{
         this.StatePenaltyLS = 0;
         this.endTransformLeft = true;
         this.timeLS = 0;
+        this.MESInitTime = ts;
     }
 
     public void start() {
@@ -47,10 +48,6 @@ public class LCTF implements Runnable{
             thrLCTF = new Thread(this);
             thrLCTF.start();
         }
-    }
-
-    public boolean isEndTransformLeft() {
-        return endTransformLeft;
     }
 
     @Override
@@ -69,16 +66,21 @@ public class LCTF implements Runnable{
                     // Penalty - Se for grande, fazer esta primeiro
                     // MaxDelay - Se for pequeno, fazer esta primeiro
                     // Sort tfs vector with base on MaxDelay and Penalty
+                    long nowTime = System.currentTimeMillis();
+
                     Transform temp;
-                    for (int i=1; i< tfs.length; i++) {
-                        for (int j=i; j>0; j--) {
-                            if( (tfs[j].getMaxDelay() < tfs[j-1].getMaxDelay()) || (tfs[j].getMaxDelay() == tfs[j-1].getMaxDelay() && tfs[j].getPenalty()>tfs[j-1].getPenalty()) ) {
+                    tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) );
+                    for (int i = 1; i < tfs.length; i++) {
+                        tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) );
+                        for (int j = i; j > 0; j--) {
+                            if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
                                 temp = tfs[j];
-                                tfs[j] = tfs[j-1];
+                                tfs[j] = tfs[j - 1];
                                 tfs[j-1] = temp;
                             }
                         }
                     }
+
                 }
 
                 // Left Side Transform
@@ -220,6 +222,7 @@ public class LCTF implements Runnable{
                     }
 
                 }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }

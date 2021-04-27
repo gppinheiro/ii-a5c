@@ -79,6 +79,8 @@ public class MES {
             throwables.printStackTrace();
         }
 
+        long initTime = System.currentTimeMillis();
+
         // Start UDP communication
         new receiveUDP(udp,db).start();
         // Start right side
@@ -88,7 +90,7 @@ public class MES {
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        new LCTF(opc,db).start();
+                        new LCTF(opc,db,initTime).start();
                         new RCS(opc,db).start();
                     }
                 },

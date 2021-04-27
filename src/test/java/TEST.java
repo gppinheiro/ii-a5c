@@ -13,6 +13,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -358,8 +360,64 @@ public class TEST {
 
     }
 
+    public static void getTransformOrderBy(dbConnect db) throws SQLException {
+        PreparedStatement s = db.getConn().prepareStatement("SELECT COUNT(*) FROM ii.\"Transform\";");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        Transform[] Transforms = new Transform[rs.getInt(1)];
+
+        s = db.getConn().prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"timeMES\"  FROM ii.\"Transform\" ORDER BY penalty DESC, \"MaxDelay\" ASC;");
+        rs = s.executeQuery();
+
+        int i=0;
+        while (rs.next()) {
+            Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+            Transforms[i].setTimeMES(rs.getInt(8));
+            i++;
+        }
+
+    }
+
+    public static void getTransformOld(dbConnect db) throws SQLException, InterruptedException {
+        Transform[] tfs = db.getTransform();
+        long initTime = System.currentTimeMillis();
+
+        Thread.sleep(5000);
+
+        long nowTime = System.currentTimeMillis();
+
+        Transform temp;
+        tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - initTime )/1000 ) );
+        for (int i = 1; i < tfs.length; i++) {
+            tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - initTime )/1000 ) );
+            for (int j = i; j > 0; j--) {
+                if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
+                    temp = tfs[j];
+                    tfs[j] = tfs[j - 1];
+                    tfs[j-1] = temp;
+                }
+            }
+        }
+
+        for (Transform tf: tfs) {
+            System.out.println(tf.toString());
+        }
+
+    }
+
     public static void main(final String[] args) {
         dbConnect db = new dbConnect();
-        writeOrderSchedule(db);
+
+        try {
+            /*db.addTransform(new Transform(1,1,2,1,0,10,10));
+            db.addTransform(new Transform(2,1,2,2,0,10,20));
+            db.addTransform(new Transform(3,1,2,2,0,15,20));
+            db.addTransform(new Transform(4,1,2,2,0,15,10));*/
+            //db.addTransform(new Transform(5,1,2,2,0,30,30));
+            getTransformOld(db);
+        } catch (SQLException | InterruptedException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }
