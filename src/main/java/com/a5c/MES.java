@@ -10,6 +10,8 @@ import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.OPC_UA.readOPC;
 import com.a5c.UDP.clientUDP;
 import com.a5c.UDP.receiveUDP;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -68,6 +70,8 @@ Legend:
 
 public class MES {
     public static void main(final String[] args) {
+        Logger logger = LoggerFactory.getLogger(MES.class);
+        logger.info("MES IS STARTING!");
         clientOPC_UA opc = new clientOPC_UA();
         /*clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
