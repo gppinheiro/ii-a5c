@@ -70,10 +70,8 @@ Legend:
 
 public class MES {
     public static void main(final String[] args) {
-        Logger logger = LoggerFactory.getLogger(MES.class);
-        logger.info("MES IS STARTING!");
         clientOPC_UA opc = new clientOPC_UA();
-        /*clientUDP udp = new clientUDP();
+        clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
 
         try {
@@ -100,6 +98,5 @@ public class MES {
                 },
                 5000
         );
-        */
     }
 }
