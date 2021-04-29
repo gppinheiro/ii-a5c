@@ -19,11 +19,4 @@ public class clientUDP {
         }
     }
 
-    /**
-     * Close Connection.
-     */
-    public void close() {
-        socket.close();
-    }
-
 }

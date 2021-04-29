@@ -13,6 +13,7 @@ public class Transform {
     private int InitPenalty;
     private int ST;
     private int ET;
+    private int ExceptedTT;
 
     public Transform(int orderNumber, int from, int to, int quantity, int time, int maxDelay, int penalty) {
         this.orderNumber = orderNumber;
@@ -106,6 +107,14 @@ public class Transform {
         this.realMaxDelay = realDelay;
     }
 
+    public int getExceptedTT() {
+        return ExceptedTT;
+    }
+
+    public void setExceptedTT(int exceptedTT) {
+        ExceptedTT = exceptedTT;
+    }
+
     @Override
     public String toString() {
         return "Transform{" +
@@ -116,11 +125,12 @@ public class Transform {
                 ", time=" + time +
                 ", timeMES=" + timeMES +
                 ", maxDelay=" + maxDelay +
-                ", realDelay=" + realMaxDelay +
+                ", realMaxDelay=" + realMaxDelay +
                 ", penalty=" + penalty +
                 ", InitPenalty=" + InitPenalty +
                 ", ST=" + ST +
                 ", ET=" + ET +
+                ", ExceptedTT=" + ExceptedTT +
                 '}';
     }
 }

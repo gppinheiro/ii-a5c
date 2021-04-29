@@ -2,22 +2,14 @@ package com.a5c;
 
 import com.a5c.DATA.RCS;
 import com.a5c.DATA.Transform;
-import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
 import com.a5c.NEXT.LCTF;
 import com.a5c.NEXT.RCTFUN;
 import com.a5c.OPC_UA.clientOPC_UA;
-import com.a5c.OPC_UA.readOPC;
 import com.a5c.UDP.clientUDP;
 import com.a5c.UDP.receiveUDP;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 /*
 TODO list:
@@ -36,11 +28,10 @@ TODO list:
 
   [X]  Unload
 
-  [.]  XML
+  [X]  XML
             - READ OK
             - WRITE CurrentStores OK
-            //TODO
-            - WRITE OrderSchedule
+            - WRITE OrderSchedule OK
             - Send XML OK
 
   [X]  Transformation

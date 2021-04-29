@@ -59,7 +59,7 @@ public class dbConnect {
     }
 
     public void addTransform(Transform tf) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Transform\" VALUES (?,?,?,?,?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Transform\" VALUES (?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
@@ -69,6 +69,7 @@ public class dbConnect {
         s.setInt(7,tf.getPenalty());
         s.setTimestamp(8,new Timestamp(System.currentTimeMillis()));
         s.setInt(9,tf.getTimeMES());
+        s.setInt(10,tf.getExceptedTT());
         s.executeUpdate();
     }
 
@@ -325,6 +326,19 @@ public class dbConnect {
         int tt = rs.getInt(1);
         int diff = rs.getInt(2);
         return (tt + diff*(quantity-1))/50;
+    }
+
+    public int[][] getAllExceptedTransformationTime() throws SQLException {
+        int[][] ep = new int[7][10];
+
+        PreparedStatement s = this.conn.prepareStatement("SELECT \"from\", \"to\", tt FROM ii.\"ExceptedPenalty\";");
+        ResultSet rs = s.executeQuery();
+
+        while (rs.next()) {
+            ep[rs.getInt(1)][rs.getInt(2)]=rs.getInt(3);
+        }
+
+        return ep;
     }
 
 }

@@ -69,9 +69,9 @@ public class LCTF implements Runnable{
                     long nowTime = System.currentTimeMillis();
 
                     Transform temp;
-                    tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) );
+                    tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[0].getExceptedTT() );
                     for (int i = 1; i < tfs.length; i++) {
-                        tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) );
+                        tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[0].getExceptedTT() );
                         for (int j = i; j > 0; j--) {
                             if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
                                 temp = tfs[j];
@@ -99,20 +99,16 @@ public class LCTF implements Runnable{
                             opcS.sendLeft(tf1.getPath());
                             tfs[0] = db.addElapseTransform(tfs[0],"left");
                             db.deleteTransform(tfs[0],"Transform");
-                        }
-                        else if (this.StateDifficult1LS==1 && opcR.getACKLeft() ) {
+                        } else if (this.StateDifficult1LS==1 && opcR.getACKLeft() ) {
                             this.StateDifficult1LS=2;
                             opcS.sendLeft(zeros);
-                        }
-                        else if (this.StateDifficult1LS==2 && !opcR.getACKLeft()) {
+                        } else if (this.StateDifficult1LS==2 && !opcR.getACKLeft()) {
                             this.StateDifficult1LS=3;
                             opcS.sendLeft(tf2.getPath());
-                        }
-                        else if (this.StateDifficult1LS==3 && opcR.getACKLeft() ) {
+                        } else if (this.StateDifficult1LS==3 && opcR.getACKLeft() ) {
                             this.StateDifficult1LS=4;
                             opcS.sendLeft(zeros);
-                        }
-                        else if ( this.StateDifficult1LS==4 && opcR.getLeftSide() && PenaltyLS ) {
+                        } else if ( this.StateDifficult1LS==4 && opcR.getLeftSide() && PenaltyLS ) {
                             this.StateDifficult1LS=0;
                             endTransformLeft=true;
                             // Statistics
@@ -137,20 +133,16 @@ public class LCTF implements Runnable{
                             opcS.sendLeft(tf1.getPath());
                             tfs[0] = db.addElapseTransform(tfs[0],"left");
                             db.deleteTransform(tfs[0],"Transform");
-                        }
-                        else if (this.StateDifficult2LS==1 && opcR.getACKLeft() ) {
+                        } else if (this.StateDifficult2LS==1 && opcR.getACKLeft() ) {
                             this.StateDifficult2LS=2;
                             opcS.sendLeft(zeros);
-                        }
-                        else if (this.StateDifficult2LS==2 && !opcR.getACKLeft()) {
+                        } else if (this.StateDifficult2LS==2 && !opcR.getACKLeft()) {
                             this.StateDifficult2LS=3;
                             opcS.sendLeft(tf2.getPath());
-                        }
-                        else if (this.StateDifficult2LS==3 && opcR.getACKLeft() ) {
+                        } else if (this.StateDifficult2LS==3 && opcR.getACKLeft() ) {
                             this.StateDifficult2LS=4;
                             opcS.sendLeft(zeros);
-                        }
-                        else if ( this.StateDifficult2LS==4 && opcR.getLeftSide() && PenaltyLS ) {
+                        } else if ( this.StateDifficult2LS==4 && opcR.getLeftSide() && PenaltyLS ) {
                             this.StateDifficult2LS=0;
                             endTransformLeft=true;
                         }
@@ -165,12 +157,10 @@ public class LCTF implements Runnable{
                             opcS.sendLeft(tfs[0].getPath());
                             tfs[0] = db.addElapseTransform(tfs[0],"left");
                             db.deleteTransform(tfs[0],"Transform");
-                        }
-                        else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
+                        } else if ( this.StateEasyLS==1 && opcR.getACKLeft() ) {
                             this.StateEasyLS=2;
                             opcS.sendLeft(zeros);
-                        }
-                        else if ( this.StateEasyLS==2 && opcR.getLeftSide() && PenaltyLS ) {
+                        } else if ( this.StateEasyLS==2 && opcR.getLeftSide() && PenaltyLS ) {
                             this.StateEasyLS=0;
                             endTransformLeft=true;
                         }
@@ -183,20 +173,17 @@ public class LCTF implements Runnable{
                             this.StatePenaltyLS=1;
                             timeLS = opcR.getLeftTimer();
                             opcS.sendNewTimerLeft(true);
-                        }
-                        else if (this.StatePenaltyLS==1 && !opcR.getNewTimerLeft()) {
+                        } else if (this.StatePenaltyLS==1 && !opcR.getNewTimerLeft()) {
                             this.StatePenaltyLS=2;
                             opcS.sendNewTimerLeft(false);
-                        }
-                        else if (this.StatePenaltyLS==2 && opcR.getNewTimerLeft() && (this.StateDifficult1LS==4 || this.StateDifficult2LS==4) ) {
+                        } else if (this.StatePenaltyLS==2 && opcR.getNewTimerLeft() && (this.StateDifficult1LS==4 || this.StateDifficult2LS==4) ) {
                             this.StatePenaltyLS=3;
                             timeLS += opcR.getLeftTimer();
                             // When end, we add it into a new table and delete from other
                             db.addEndTransform(tfs[0],"left",timeLS);
                             db.deleteTransform(tfs[0],"ElapseTransform");
                             opcS.sendNewTimerLeft(true);
-                        }
-                        else if (this.StatePenaltyLS==3 && !opcR.getNewTimerLeft()) {
+                        } else if (this.StatePenaltyLS==3 && !opcR.getNewTimerLeft()) {
                             this.StatePenaltyLS=0;
                             PenaltyLS=true;
                             opcS.sendNewTimerLeft(false);
@@ -212,8 +199,7 @@ public class LCTF implements Runnable{
                             db.addEndTransform(tfs[0],"left",timeLS);
                             db.deleteTransform(tfs[0],"ElapseTransform");
                             opcS.sendNewTimerLeft(true);
-                        }
-                        else if (this.StatePenaltyLS==1 && !opcR.getNewTimerLeft()) {
+                        } else if (this.StatePenaltyLS==1 && !opcR.getNewTimerLeft()) {
                             this.StatePenaltyLS=0;
                             PenaltyLS=true;
                             opcS.sendNewTimerLeft(false);

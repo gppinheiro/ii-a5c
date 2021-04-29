@@ -1,7 +1,6 @@
 package com.a5c.DATA;
 
 import com.a5c.DB.dbConnect;
-import com.a5c.NEXT.RCTFUN;
 import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.OPC_UA.readOPC;
 
@@ -40,8 +39,7 @@ public class RCS implements Runnable {
                     this.StateP1=1;
                     db.updatePushersStatistic(1,opcR.getPusher1());
                     db.updateCurrentStores(opcR.getWareHouse());
-                }
-                else if (this.StateP2==1 && !opcR.getPusher1BOOL()) {
+                } else if (this.StateP1==1 && !opcR.getPusher1BOOL()) {
                     this.StateP1=0;
                 }
 
@@ -49,8 +47,7 @@ public class RCS implements Runnable {
                     this.StateP2=1;
                     db.updatePushersStatistic(2,opcR.getPusher2());
                     db.updateCurrentStores(opcR.getWareHouse());
-                }
-                else if (this.StateP2==1 && !opcR.getPusher2BOOL()) {
+                } else if (this.StateP2==1 && !opcR.getPusher2BOOL()) {
                     this.StateP2=0;
                 }
 
@@ -58,8 +55,7 @@ public class RCS implements Runnable {
                     this.StateP3=1;
                     db.updatePushersStatistic(3,opcR.getPusher3());
                     db.updateCurrentStores(opcR.getWareHouse());
-                }
-                else if (this.StateP3==1 && !opcR.getPusher3BOOL()) {
+                } else if (this.StateP3==1 && !opcR.getPusher3BOOL()) {
                     this.StateP3=0;
                 }
 

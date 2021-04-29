@@ -54,45 +54,32 @@ public class clientOPC_UA {
      * Set Boolean Variable Value
      * @param Variable - Variable's Name
      * @param SetValue - Variable's Value
-     * @return true if sets ok
      */
-    public boolean setValue(String Variable, boolean SetValue) {
-        return SET(Variable,new Variant(SetValue));
-    }
-
-    /**
-     * Set INT Variable Value
-     * @param Variable - Variable's Name
-     * @param SetValue - Variable's Value
-     * @return true if sets ok
-     */
-    public boolean setValue(String Variable, int SetValue) {
-        return SET(Variable,new Variant((short) SetValue));
+    public void setValue(String Variable, boolean SetValue) {
+        SET(Variable, new Variant(SetValue));
     }
 
     /**
      * Set Short INT Variable Value
      * @param Variable - Variable's Name
      * @param SetValue - Variable's Value
-     * @return true if sets ok
      */
-    public boolean setValue(String Variable, int[] SetValue) {
+    public void setValue(String Variable, int[] SetValue) {
         short[] SetValueShort = new short[SetValue.length];
 
         for(int j = 0; j < SetValue.length; j++) {
             SetValueShort[j] = (short) SetValue[j];
         }
 
-        return SET(Variable,new Variant(SetValueShort));
+        SET(Variable, new Variant(SetValueShort));
     }
 
     /**
      * SET Value
      * @param Identifier - Identifier's Name
      * @param var - Variant Class to Set
-     * @return true if ok
      */
-    public boolean SET(String Identifier, Variant var) {
+    public void SET(String Identifier, Variant var) {
         NodeId nodeIDString = new NodeId(nsIndex, Identifier);
         DataValue dv = new DataValue(var);
 
@@ -100,10 +87,8 @@ public class clientOPC_UA {
             clientOPC.writeValue(nodeIDString, dv).get();
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
 
-        return true;
     }
 
 }

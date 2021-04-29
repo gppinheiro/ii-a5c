@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test slf4j">
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="done again">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/sendOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/sendOPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/clientUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/clientUDP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TEST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TEST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +119,7 @@
       <recent name="com.a5c.server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MES">
+  <component name="RunManager" selected="Application.TEST">
     <configuration name="MES" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.a5c.MES" />
       <module name="ii-a5c.main" />
@@ -129,13 +140,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -207,14 +220,8 @@
       <workItem from="1619423332357" duration="485000" />
       <workItem from="1619510808834" duration="1558000" />
       <workItem from="1619558233596" duration="3030000" />
-      <workItem from="1619617904230" duration="2437000" />
-    </task>
-    <task id="LOCAL-00070" summary="implement right side">
-      <created>1618497492264</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1618497492264</updated>
+      <workItem from="1619617904230" duration="2510000" />
+      <workItem from="1619642517698" duration="4282000" />
     </task>
     <task id="LOCAL-00071" summary="implement right side">
       <created>1618511067853</created>
@@ -552,7 +559,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619621433749</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="slf4j without warning">
+      <created>1619621804031</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1619621804031</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,8 +585,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="transform" />
-    <MESSAGE value="penalty" />
     <MESSAGE value="code refactoring" />
     <MESSAGE value="add just one to readOPC" />
     <MESSAGE value="delete db error" />
@@ -596,6 +608,8 @@
     <MESSAGE value="test penalty" />
     <MESSAGE value="improve delay" />
     <MESSAGE value="test slf4j" />
-    <option name="LAST_COMMIT_MESSAGE" value="test slf4j" />
+    <MESSAGE value="slf4j without warning" />
+    <MESSAGE value="done again" />
+    <option name="LAST_COMMIT_MESSAGE" value="done again" />
   </component>
 </project>

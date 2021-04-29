@@ -405,6 +405,21 @@ public class TEST {
 
     }
 
+    public static void getExceptedPenalty(dbConnect db) throws SQLException {
+        int[][] ep = new int[7][10];
+
+        PreparedStatement s = db.getConn().prepareStatement("SELECT \"from\", \"to\", tt FROM ii.\"ExceptedPenalty\";");
+        ResultSet rs = s.executeQuery();
+
+        while (rs.next()) {
+            ep[rs.getInt(1)][rs.getInt(2)]=rs.getInt(3);
+        }
+
+        for (int[] i: ep) {
+            System.out.println(Arrays.toString(i));
+        }
+    }
+
     public static void main(final String[] args) {
         dbConnect db = new dbConnect();
 
@@ -414,8 +429,8 @@ public class TEST {
             db.addTransform(new Transform(3,1,2,2,0,15,20));
             db.addTransform(new Transform(4,1,2,2,0,15,10));*/
             //db.addTransform(new Transform(5,1,2,2,0,30,30));
-            getTransformOld(db);
-        } catch (SQLException | InterruptedException throwables) {
+            getExceptedPenalty(db);
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 

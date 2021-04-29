@@ -22,7 +22,6 @@ import java.net.SocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.Arrays;
 
 public class receiveUDP implements Runnable {
@@ -32,12 +31,25 @@ public class receiveUDP implements Runnable {
     private int portServer;
     private DatagramPacket packUDP;
     private Thread thrUDP;
-    private Timestamp initTime;
+    private final long initTime;
+    private int[][] ttExcepted;
 
     public receiveUDP(clientUDP cl, dbConnect db) {
         this.client = cl;
         this.db = db;
-        this.initTime = new Timestamp(System.currentTimeMillis());
+        this.initTime = System.currentTimeMillis();
+        try {
+            this.ttExcepted = db.getAllExceptedTransformationTime();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void start() {
+        if(thrUDP==null) {
+            thrUDP = new Thread(this);
+            thrUDP.start();
+        }
     }
 
     @Override
@@ -74,13 +86,6 @@ public class receiveUDP implements Runnable {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void start() {
-        if(thrUDP==null) {
-            thrUDP = new Thread(this);
-            thrUDP.start();
         }
     }
 
@@ -148,8 +153,8 @@ public class receiveUDP implements Runnable {
 
                                 // New Transform Class
                                 Transform tf = new Transform(orderNumber,from,to,quantity,time,maxDelay,penalty);
-                                Timestamp ts = new Timestamp(System.currentTimeMillis());
-                                tf.setTimeMES((int) ( ts.getTime()-initTime.getTime())/1000 );
+                                tf.setTimeMES((int) ( System.currentTimeMillis()-initTime)/1000 );
+                                tf.setExceptedTT(this.ttExcepted[from][to]);
 
                                 // Add to DB
                                 db.addTransform(tf);
@@ -202,15 +207,14 @@ public class receiveUDP implements Runnable {
                 CSelem.appendChild(WPelem);
 
                 //type
-                Attr Tattr = doc.createAttribute("type");
-                Tattr.setValue("P"+i);
-                WPelem.setAttributeNode(Tattr);
+                Attr attr = doc.createAttribute("type");
+                attr.setValue("P"+i);
+                WPelem.setAttributeNode(attr);
 
                 //quantity
-                Attr Qattr = doc.createAttribute("quantity");
-                Qattr.setValue(npieces[i].toString());
-                WPelem.setAttributeNode(Qattr);
-
+                attr = doc.createAttribute("quantity");
+                attr.setValue(npieces[i].toString());
+                WPelem.setAttributeNode(attr);
             }
 
             //Create file XML

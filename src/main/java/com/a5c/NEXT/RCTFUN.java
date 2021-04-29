@@ -8,9 +8,6 @@ import com.a5c.OPC_UA.readOPC;
 import com.a5c.OPC_UA.sendOPC;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 // RCTFUN - Right Control Transform & Unload
 public class RCTFUN implements Runnable {
@@ -81,9 +78,9 @@ public class RCTFUN implements Runnable {
                         long nowTime = System.currentTimeMillis();
 
                         Transform temp;
-                        tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) );
+                        tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[0].getExceptedTT() );
                         for (int i = 1; i < tfs.length; i++) {
-                            tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) );
+                            tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[0].getExceptedTT() );
                             for (int j = i; j > 0; j--) {
                                 if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
                                     temp = tfs[j];
@@ -91,26 +88,6 @@ public class RCTFUN implements Runnable {
                                     tfs[j-1] = temp;
                                 }
                             }
-                        }
-
-                        // Add all transforms to an Array List
-                        ArrayList<Transform> tfsAL = new ArrayList<>(Arrays.asList(tfs).subList(0, tfs.length));
-
-                        // Search for easy
-                        boolean easy = false;
-                        int i=0;
-
-                        while(!easy && i<tfs.length) {
-                            temp = tfsAL.get(i);
-                            if ( !(temp.getFrom() == 1 && (temp.getTo() == 6 || temp.getTo() == 7 || temp.getTo() == 8 || temp.getTo() == 9)) && !( temp.getFrom() == 2 && (temp.getTo() == 7 || temp.getTo() == 8) ) ) {
-                                easy=true;
-                                tfs[0]=temp;
-                            }
-                            else {
-                                tfsAL.remove(temp);
-                                tfsAL.add(temp);
-                            }
-                            i+=1;
                         }
 
                     }
