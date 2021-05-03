@@ -18,7 +18,8 @@ com/a5c/OPC_UA/sendOPC.java
  com.a5c.OPC_UA.sendOPC
 com/a5c/NEXT/RCTFUN.java
  com.a5c.NEXT.RCTFUN
-com/a5c/MES.java
- com.a5c.MES
 com/a5c/OPC_UA/readOPC.java
  com.a5c.OPC_UA.readOPC
+com/a5c/MES.java
+ com.a5c.MES
+ com.a5c.MES$1

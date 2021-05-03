@@ -1,7 +1,6 @@
 package com.a5c;
 
 import com.a5c.DATA.RCS;
-import com.a5c.DATA.Transform;
 import com.a5c.DB.dbConnect;
 import com.a5c.NEXT.LCTF;
 import com.a5c.NEXT.RCTFUN;
@@ -66,28 +65,28 @@ public class MES {
         dbConnect db = new dbConnect();
 
         try {
-            db.addTransform(new Transform(1,1,2,1,0,10,10));
-            db.addTransform(new Transform(2,1,2,2,0,15,20));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            db.deleteTransform("Transform");
+            db.deleteTransform("ElapseTransform");
+        } catch (SQLException sql) {
+            sql.printStackTrace();
         }
 
         long initTime = System.currentTimeMillis();
 
         // Start UDP communication
         new receiveUDP(udp,db).start();
-        // Start right side
-        new RCTFUN(opc,db,initTime).start();
-        // Wait to start Left Side after Right Side begin
+        // Start left side
+        new LCTF(opc,db,initTime).start();
+        // Wait to start Right Side after Left Side begin
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        new LCTF(opc,db,initTime).start();
+                        new RCTFUN(opc,db,initTime).start();
                         new RCS(opc,db).start();
                     }
                 },
-                5000
+                10000
         );
     }
 }

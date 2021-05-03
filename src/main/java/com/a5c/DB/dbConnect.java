@@ -197,6 +197,18 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    public void deleteTransform(String table_name) throws SQLException {
+        PreparedStatement s = null;
+        if (table_name.equals("Transform")) {
+            s = this.conn.prepareStatement("DELETE FROM ii.\"Transform\" WHERE \"OrderNumber\";");
+        }
+        else if (table_name.equals("ElapseTransform")) {
+            s = this.conn.prepareStatement("DELETE FROM ii.\"ElapseTransform\" WHERE \"OrderNumber\";");
+        }
+        assert s != null;
+        s.executeUpdate();
+    }
+
     public void addUnload(Unload un) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Unload\" VALUES (?,?,?,?,?);");
         s.setInt(1,un.getOrderNumber());

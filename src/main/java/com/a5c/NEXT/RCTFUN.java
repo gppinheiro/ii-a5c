@@ -175,6 +175,12 @@ public class RCTFUN implements Runnable {
                         } else if (this.StateDifficult2RS == 4 && opcR.getRightSide() && PenaltyRS) {
                             this.StateDifficult2RS = 0;
                             endTransformRight = true;
+                            // Statistics
+                            db.updateMachinesStatistic(5, opcR.getMachine5Production());
+                            db.updateMachinesStatistic(6, opcR.getMachine6Production());
+                            db.updateMachinesStatistic(7, opcR.getMachine7Production());
+                            db.updateMachinesStatistic(8, opcR.getMachine8Production());
+                            db.updateCurrentStores(opcR.getWareHouse());
                         }
 
                     }
@@ -193,6 +199,12 @@ public class RCTFUN implements Runnable {
                         } else if (this.StateEasyRS == 2 && opcR.getRightSide() && PenaltyRS) {
                             this.StateEasyRS = 0;
                             endTransformRight = true;
+                            // Statistics
+                            db.updateMachinesStatistic(5, opcR.getMachine5Production());
+                            db.updateMachinesStatistic(6, opcR.getMachine6Production());
+                            db.updateMachinesStatistic(7, opcR.getMachine7Production());
+                            db.updateMachinesStatistic(8, opcR.getMachine8Production());
+                            db.updateCurrentStores(opcR.getWareHouse());
                         }
                     }
 
