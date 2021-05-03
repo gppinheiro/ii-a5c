@@ -33,11 +33,13 @@ public class receiveUDP implements Runnable {
     private Thread thrUDP;
     private final long initTime;
     private int[][] ttExcepted;
+    public boolean receivedT;
 
     public receiveUDP(clientUDP cl, dbConnect db) {
         this.client = cl;
         this.db = db;
         this.initTime = System.currentTimeMillis();
+        this.receivedT = false;
         try {
             this.ttExcepted = db.getAllExceptedTransformationTime();
         } catch (SQLException throwables) {
@@ -116,6 +118,7 @@ public class receiveUDP implements Runnable {
 
             // Lets search on order
             for (int i=0; i< orderList.getLength(); i++) {
+                this.receivedT = true;
                 // Search for nodes like a binary tree
                 Node nod = orderList.item(i);
 
