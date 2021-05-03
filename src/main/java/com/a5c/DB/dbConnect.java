@@ -200,10 +200,10 @@ public class dbConnect {
     public void deleteTransform(String table_name) throws SQLException {
         PreparedStatement s = null;
         if (table_name.equals("Transform")) {
-            s = this.conn.prepareStatement("DELETE FROM ii.\"Transform\" WHERE \"OrderNumber\";");
+            s = this.conn.prepareStatement("DELETE FROM ii.\"Transform\";");
         }
         else if (table_name.equals("ElapseTransform")) {
-            s = this.conn.prepareStatement("DELETE FROM ii.\"ElapseTransform\" WHERE \"OrderNumber\";");
+            s = this.conn.prepareStatement("DELETE FROM ii.\"ElapseTransform\";");
         }
         assert s != null;
         s.executeUpdate();

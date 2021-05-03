@@ -422,14 +422,14 @@ public class TEST {
 
     public static void main(final String[] args) {
         dbConnect db = new dbConnect();
-
         try {
             /*db.addTransform(new Transform(1,1,2,1,0,10,10));
             db.addTransform(new Transform(2,1,2,2,0,10,20));
             db.addTransform(new Transform(3,1,2,2,0,15,20));
             db.addTransform(new Transform(4,1,2,2,0,15,10));*/
             //db.addTransform(new Transform(5,1,2,2,0,30,30));
-            getExceptedPenalty(db);
+            db.deleteTransform("Transform");
+            db.deleteTransform("ElapseTransform");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
