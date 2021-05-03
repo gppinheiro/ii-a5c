@@ -75,26 +75,30 @@ public class MES {
         long initTime = System.currentTimeMillis();
 
         // Start UDP communication
-        receiveUDP rUDP = new receiveUDP(udp,db);
-        rUDP.start();
+        new receiveUDP(udp,db).start();
 
-        int i=0;
-        while(rUDP.receivedT && i<1) {
-            // Start left side
-            new LCTF(opc,db,initTime).start();
-            // Wait to start Right Side after Left Side begin
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
-                        @Override
-                        public void run() {
-                            new RCTFUN(opc,db,initTime).start();
-                            new RCS(opc,db).start();
-                        }
-                    },
-                    10000
-            );
-            i++;
-        }
+        // Start left side
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        new LCTF(opc, db, initTime).start();
+                    }
+                },
+                5000
+        );
+
+        // Wait to start Right Side after Left Side begin
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        new RCTFUN(opc,db,initTime).start();
+                        new RCS(opc,db).start();
+                    }
+                },
+                10000
+        );
 
     }
 }
