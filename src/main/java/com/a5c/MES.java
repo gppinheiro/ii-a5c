@@ -79,7 +79,7 @@ public class MES {
         rUDP.start();
 
         int i=0;
-        while(rUDP.receivedT && i<2) {
+        while(rUDP.receivedT && i<1) {
             // Start left side
             new RCTFUN(opc,db,initTime).start();
             // Wait to start Right Side after Left Side begin

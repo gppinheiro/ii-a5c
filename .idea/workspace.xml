@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test this">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,14 +207,7 @@
       <workItem from="1619558233596" duration="3030000" />
       <workItem from="1619617904230" duration="2510000" />
       <workItem from="1619642517698" duration="4312000" />
-      <workItem from="1620027800527" duration="2573000" />
-    </task>
-    <task id="LOCAL-00076" summary="test left side to init">
-      <created>1618593111882</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1618593111882</updated>
+      <workItem from="1620027800527" duration="2610000" />
     </task>
     <task id="LOCAL-00077" summary="final... Mariozito">
       <created>1618593413763</created>
@@ -554,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620030189212</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="test this">
+      <created>1620030489484</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1620030489484</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
