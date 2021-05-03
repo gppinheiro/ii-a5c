@@ -81,13 +81,13 @@ public class MES {
         int i=0;
         while(rUDP.receivedT && i<1) {
             // Start left side
-            new RCTFUN(opc,db,initTime).start();
+            new LCTF(opc,db,initTime).start();
             // Wait to start Right Side after Left Side begin
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
                         public void run() {
-                            new LCTF(opc,db,initTime).start();
+                            new RCTFUN(opc,db,initTime).start();
                             new RCS(opc,db).start();
                         }
                     },
