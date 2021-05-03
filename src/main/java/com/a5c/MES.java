@@ -67,6 +67,7 @@ public class MES {
         try {
             db.deleteTransform("Transform");
             db.deleteTransform("ElapseTransform");
+            db.deleteUnload();
         } catch (SQLException sql) {
             sql.printStackTrace();
         }
@@ -76,13 +77,13 @@ public class MES {
         // Start UDP communication
         new receiveUDP(udp,db).start();
         // Start left side
-        new LCTF(opc,db,initTime).start();
+        new RCTFUN(opc,db,initTime).start();
         // Wait to start Right Side after Left Side begin
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        new RCTFUN(opc,db,initTime).start();
+                        new LCTF(opc,db,initTime).start();
                         new RCS(opc,db).start();
                     }
                 },

@@ -272,6 +272,11 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    public void deleteUnload() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("DELETE FROM ii.\"Unload\";");
+        s.executeUpdate();
+    }
+
     public void updateCurrentStores(int[] wv) throws SQLException {
         PreparedStatement s;
         for(int i=0; i<wv.length; i++) {
