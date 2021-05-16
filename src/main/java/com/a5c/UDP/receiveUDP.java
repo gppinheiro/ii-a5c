@@ -3,6 +3,8 @@ package com.a5c.UDP;
 import com.a5c.DATA.Transform;
 import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
+import com.a5c.OPC_UA.clientOPC_UA;
+import com.a5c.OPC_UA.readOPC;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -34,12 +36,14 @@ public class receiveUDP implements Runnable {
     private final long initTime;
     private int[][] ttExcepted;
     public boolean receivedT;
+    private final readOPC opcR;
 
-    public receiveUDP(clientUDP cl, dbConnect db) {
+    public receiveUDP(clientUDP cl, dbConnect db, clientOPC_UA op) {
         this.client = cl;
         this.db = db;
         this.initTime = System.currentTimeMillis();
         this.receivedT = false;
+        this.opcR = new readOPC(op);
         try {
             this.ttExcepted = db.getAllExceptedTransformationTime();
         } catch (SQLException throwables) {
@@ -313,12 +317,12 @@ public class receiveUDP implements Runnable {
 
                 pi=0;
                 for(int a=i; a>=i; a--){
-                    pi += db.getPenaltyExcepted(tfTODO[a].getFrom(),tfTODO[a].getTo(),tfTODO[a].getQuantity());
+                    pi += db.getPenaltyExcepted(tfTODO[a].getFrom(),tfTODO[a].getTo(),tfTODO[a].getQuantity(), tfTODO[a].getMaxDelay());
                 }
 
                 //start excepted
                 attr = doc.createAttribute("Start");
-                attr.setValue(String.valueOf( (pi-db.getPenaltyExcepted(tfTODO[i].getFrom(),tfTODO[i].getTo(),tfTODO[i].getQuantity()))*50 ));
+                attr.setValue(String.valueOf( (pi-db.getPenaltyExcepted(tfTODO[i].getFrom(),tfTODO[i].getTo(),tfTODO[i].getQuantity(), tfTODO[i].getMaxDelay()))*50 ));
                 OrderElem.setAttributeNode(attr);
 
                 //end excepted
@@ -360,16 +364,41 @@ public class receiveUDP implements Runnable {
 
                 //quantity1
                 attr = doc.createAttribute("Quantity1");
-                attr.setValue(String.valueOf(0));
+                if(tfDOING[i].getSide().equals("right")) {
+                    attr.setValue(String.valueOf(opcR.getCountRightProd()));
+                }
+                else if(tfDOING[i].getSide().equals("left")) {
+                    attr.setValue(String.valueOf(opcR.getCountLeftProd()));
+                }
+                else {
+                    attr.setValue(String.valueOf(0));
+                }
                 OrderElem.setAttributeNode(attr);
 
                 //quantity2
                 attr = doc.createAttribute("Quantity2");
-                attr.setValue(String.valueOf(tfDOING[i].getQuantity()));
+                if(tfDOING[i].getSide().equals("right")) {
+                    attr.setValue(String.valueOf(tfDOING[i].getQuantity() - opcR.getCountRightProd() - opcR.getCountRightPorProd()));
+                }
+                else if(tfDOING[i].getSide().equals("left")) {
+                    attr.setValue(String.valueOf(tfDOING[i].getQuantity() - opcR.getCountLeftProd() - opcR.getCountLeftPorProd()));
+                }
+                else {
+                    attr.setValue(String.valueOf(0));
+                }
                 OrderElem.setAttributeNode(attr);
 
                 //quantity3
                 attr = doc.createAttribute("Quantity3");
+                if(tfDOING[i].getSide().equals("right")) {
+                    attr.setValue(String.valueOf(opcR.getCountRightPorProd()));
+                }
+                else if(tfDOING[i].getSide().equals("left")) {
+                    attr.setValue(String.valueOf(opcR.getCountLeftPorProd()));
+                }
+                else {
+                    attr.setValue(String.valueOf(0));
+                }
                 attr.setValue(String.valueOf(0));
                 OrderElem.setAttributeNode(attr);
 
@@ -395,7 +424,7 @@ public class receiveUDP implements Runnable {
 
                 pi=0;
                 for(int a=i; a>=i; a--){
-                    pi += db.getPenaltyExcepted(tfDOING[a].getFrom(),tfDOING[a].getTo(),tfDOING[a].getQuantity());
+                    pi += db.getPenaltyExcepted(tfDOING[a].getFrom(),tfDOING[a].getTo(),tfDOING[a].getQuantity(),tfDOING[a].getMaxDelay());
                 }
 
                 //start

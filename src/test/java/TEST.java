@@ -168,12 +168,12 @@ public class TEST {
 
                 pi=0;
                 for(int a=i; a>=i; a--){
-                    pi += db.getPenaltyExcepted(tfTODO[a].getFrom(),tfTODO[a].getTo(),tfTODO[a].getQuantity());
+                    pi += db.getPenaltyExcepted(tfTODO[a].getFrom(),tfTODO[a].getTo(),tfTODO[a].getQuantity(),tfTODO[a].getMaxDelay());
                 }
 
                 //start excepted
                 attr = doc.createAttribute("Start");
-                attr.setValue(String.valueOf( (pi-db.getPenaltyExcepted(tfTODO[i].getFrom(),tfTODO[i].getTo(),tfTODO[i].getQuantity()))*50 ));
+                attr.setValue(String.valueOf( (pi-db.getPenaltyExcepted(tfTODO[i].getFrom(),tfTODO[i].getTo(),tfTODO[i].getQuantity(),tfTODO[i].getMaxDelay()))*50 ));
                 OrderElem.setAttributeNode(attr);
 
                 //end excepted
@@ -250,7 +250,7 @@ public class TEST {
 
                 pi=0;
                 for(int a=i; a>=i; a--){
-                    pi += db.getPenaltyExcepted(tfDOING[a].getFrom(),tfDOING[a].getTo(),tfDOING[a].getQuantity());
+                    pi += db.getPenaltyExcepted(tfDOING[a].getFrom(),tfDOING[a].getTo(),tfDOING[a].getQuantity(),tfDOING[a].getMaxDelay());
                 }
 
                 //start
@@ -428,8 +428,10 @@ public class TEST {
             db.addTransform(new Transform(3,1,2,2,0,15,20));
             db.addTransform(new Transform(4,1,2,2,0,15,10));*/
             //db.addTransform(new Transform(5,1,2,2,0,30,30));
-            db.deleteTransform("Transform");
-            db.deleteTransform("ElapseTransform");
+            //db.deleteTransform("Transform");
+            //db.deleteTransform("ElapseTransform");
+            //db.addUnload(new Unload(1,1,2,4));
+            db.getTransform();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

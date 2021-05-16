@@ -75,7 +75,7 @@ public class MES {
         long initTime = System.currentTimeMillis();
 
         // Start UDP communication
-        new receiveUDP(udp,db).start();
+        new receiveUDP(udp,db,opc).start();
 
         // Start left side
         new java.util.Timer().schedule(

@@ -96,8 +96,7 @@ public class dbConnect {
     public void addEndTransform(Transform tf, String side, int ft) throws SQLException {
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         tf.setET((int) (ts.getTime()-initTime.getTime())/1000);
-        //tf.setPenalty( ft/50 * tf.getPenalty() );
-        tf.setPenalty( (tf.getET()-tf.getTimeMES())/50 * tf.getInitPenalty() );
+        tf.setPenalty( (tf.getET()-tf.getTimeMES()-tf.getMaxDelay())/50 * tf.getInitPenalty() );
 
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
@@ -149,7 +148,7 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\"  FROM ii.\"ElapseTransform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"side\"  FROM ii.\"ElapseTransform\";");
         rs = s.executeQuery();
 
         int i=0;
@@ -157,6 +156,7 @@ public class dbConnect {
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
             Transforms[i].setST(rs.getInt(8));
             Transforms[i].setTimeMES(rs.getInt(9));
+            Transforms[i].setSide(rs.getString(10));
             i++;
         }
 
@@ -334,7 +334,7 @@ public class dbConnect {
         s.executeUpdate();
     }
 
-    public int getPenaltyExcepted(int from, int to, int quantity) throws SQLException {
+    public int getPenaltyExcepted(int from, int to, int quantity, int maxDelay) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT tt, diff FROM ii.\"ExceptedPenalty\" WHERE \"from\"=? AND \"to\"=?;");
         s.setInt(1,from);
         s.setInt(2,to);
@@ -342,7 +342,7 @@ public class dbConnect {
         rs.next();
         int tt = rs.getInt(1);
         int diff = rs.getInt(2);
-        return (tt + diff*(quantity-1))/50;
+        return (tt + diff*(quantity-1) -maxDelay)/50;
     }
 
     public int[][] getAllExceptedTransformationTime() throws SQLException {

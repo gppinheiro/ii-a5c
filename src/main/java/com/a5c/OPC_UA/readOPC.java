@@ -33,6 +33,14 @@ public class readOPC {
         }
     }
 
+    public int getCountRightProd() {
+        return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.count_right");
+    }
+
+    public int getCountRightPorProd() {
+        return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_ro");
+    }
+
     public boolean getACKLeft() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ack_left");
     }
@@ -57,6 +65,14 @@ public class readOPC {
         else {
             return Integer.parseInt(sparts[0]);
         }
+    }
+
+    public int getCountLeftProd() {
+        return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.count_left");
+    }
+
+    public int getCountLeftPorProd() {
+        return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_lo");
     }
 
     public int[] transformOPCintoINT(String identifier) {

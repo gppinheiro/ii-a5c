@@ -14,6 +14,7 @@ public class Transform {
     private int ST;
     private int ET;
     private int ExceptedTT;
+    private String side;
 
     public Transform(int orderNumber, int from, int to, int quantity, int time, int maxDelay, int penalty) {
         this.orderNumber = orderNumber;
@@ -113,6 +114,14 @@ public class Transform {
 
     public void setExceptedTT(int exceptedTT) {
         ExceptedTT = exceptedTT;
+    }
+
+    public String getSide() {
+        return side;
+    }
+
+    public void setSide(String side) {
+        this.side = side;
     }
 
     @Override
