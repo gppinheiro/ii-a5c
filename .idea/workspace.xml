@@ -4,30 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test this">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="some stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/UDP/receiveUDP.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/UDP/receiveUDP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/TEST.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/TEST.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TEST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TEST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +88,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="database.data.extractors.current.export.id" value="Comma-separated (CSV)_id" />
+    <property name="database.data.extractors.current.export.id" value="Excel (xlsx)" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -236,14 +214,7 @@
       <workItem from="1620336274803" duration="2298000" />
       <workItem from="1620384044887" duration="811000" />
       <workItem from="1620632293546" duration="837000" />
-      <workItem from="1621173047726" duration="4762000" />
-    </task>
-    <task id="LOCAL-00080" summary="to test statistics">
-      <created>1618869151220</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1618869151223</updated>
+      <workItem from="1621173047726" duration="7422000" />
     </task>
     <task id="LOCAL-00081" summary="to test statistics">
       <created>1619040146102</created>
@@ -581,7 +552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620030965236</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="some stuff">
+      <created>1621180397302</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1621180397302</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +578,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add just one to readOPC" />
     <MESSAGE value="delete db error" />
     <MESSAGE value="test diff" />
     <MESSAGE value="clean error" />
@@ -625,6 +602,7 @@
     <MESSAGE value="slf4j without warning" />
     <MESSAGE value="done again" />
     <MESSAGE value="test this" />
-    <option name="LAST_COMMIT_MESSAGE" value="test this" />
+    <MESSAGE value="some stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="some stuff" />
   </component>
 </project>
