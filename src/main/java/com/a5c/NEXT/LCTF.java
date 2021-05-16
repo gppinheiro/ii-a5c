@@ -117,6 +117,7 @@ public class LCTF implements Runnable{
                             db.updateMachinesStatistic(3, opcR.getMachine3Production());
                             db.updateMachinesStatistic(4, opcR.getMachine4Production());
                             db.updateCurrentStores(opcR.getWareHouse());
+                            Thread.sleep(1000);
                         }
 
                     }
@@ -151,6 +152,7 @@ public class LCTF implements Runnable{
                             db.updateMachinesStatistic(3, opcR.getMachine3Production());
                             db.updateMachinesStatistic(4, opcR.getMachine4Production());
                             db.updateCurrentStores(opcR.getWareHouse());
+                            Thread.sleep(1000);
                         }
 
                     }
@@ -175,6 +177,7 @@ public class LCTF implements Runnable{
                             db.updateMachinesStatistic(3, opcR.getMachine3Production());
                             db.updateMachinesStatistic(4, opcR.getMachine4Production());
                             db.updateCurrentStores(opcR.getWareHouse());
+                            Thread.sleep(1000);
                         }
                     }
 
@@ -221,7 +224,7 @@ public class LCTF implements Runnable{
 
                 }
 
-            } catch (SQLException e) {
+            } catch (SQLException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
