@@ -66,17 +66,11 @@ public class MES {
         dbConnect db = new dbConnect();
 
         // See if there is any ElapseTransform to do again
-        boolean right, left = false;
         try {
             if (db.ElapseTransformLength()!=0) {
                 Transform[] tfDOING = db.getElapseTransform();
                 for (Transform tf: tfDOING) {
-                    if (tf.getSide().equals("right")) {
-                        right = true;
-                    }
-                    else if (tf.getSide().equals("left")) {
-                        left = true;
-                    }
+                    db.addTransform(tf);
                 }
             }
         } catch (SQLException sql) {
