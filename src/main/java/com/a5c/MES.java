@@ -1,6 +1,7 @@
 package com.a5c;
 
 import com.a5c.DATA.RCS;
+import com.a5c.DATA.Transform;
 import com.a5c.DB.dbConnect;
 import com.a5c.NEXT.LCTF;
 import com.a5c.NEXT.RCTFUN;
@@ -64,10 +65,20 @@ public class MES {
         clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
 
+        // See if there is any ElapseTransform to do again
+        boolean right, left = false;
         try {
-            db.deleteTransform("Transform");
-            db.deleteTransform("ElapseTransform");
-            db.deleteUnload();
+            if (db.ElapseTransformLength()!=0) {
+                Transform[] tfDOING = db.getElapseTransform();
+                for (Transform tf: tfDOING) {
+                    if (tf.getSide().equals("right")) {
+                        right = true;
+                    }
+                    else if (tf.getSide().equals("left")) {
+                        left = true;
+                    }
+                }
+            }
         } catch (SQLException sql) {
             sql.printStackTrace();
         }

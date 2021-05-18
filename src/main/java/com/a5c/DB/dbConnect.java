@@ -96,7 +96,7 @@ public class dbConnect {
     public void addEndTransform(Transform tf, String side, int ft) throws SQLException {
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         tf.setET((int) (ts.getTime()-initTime.getTime())/1000);
-        tf.setPenalty( (tf.getET()-tf.getTimeMES()-tf.getMaxDelay())/50 * tf.getInitPenalty() );
+        tf.setPenalty(Math.max((tf.getET()-tf.getTimeMES()-tf.getMaxDelay())/50 * tf.getInitPenalty(), 0));
 
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
@@ -118,6 +118,13 @@ public class dbConnect {
 
     public int TransformLength() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Transform\";");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+
+    public int ElapseTransformLength() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"ElapseTransform\";");
         ResultSet rs = s.executeQuery();
         rs.next();
         return rs.getInt(1);
@@ -286,6 +293,14 @@ public class dbConnect {
         }
     }
 
+    // T1: P1-P2 15
+    // T2: P2-P3 15
+    // T3: P3-P4 15
+    // T4: P4-P5 15
+    // T5: P5-P6 30
+    // T6: P6-P7 30
+    // T7: P6-P8 15
+    // T8: P5-P9 30
     public void updateMachinesStatistic (int id, int[] values) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"MachinesStatistic\" SET t1=?,t2=?,t3=?,t4=?,t5=?,t6=?,t7=?,t8=?,total=? WHERE machine=?;");
         s.setInt(1,values[0]);
@@ -307,6 +322,20 @@ public class dbConnect {
         else if (id==6) { str="RM2"; }
         else if (id==7) { str="RM3"; }
         else if (id==8) { str="RM4"; }
+        s.setString(10,str);
+
+        s.executeUpdate();
+
+        s = this.conn.prepareStatement("UPDATE ii.\"MachinesTimes\" SET t1=?,t2=?,t3=?,t4=?,t5=?,t6=?,t7=?,t8=?,total=? WHERE machine=?;");
+        s.setInt(1,values[0]*15);
+        s.setInt(2,values[1]*15);
+        s.setInt(3,values[2]*15);
+        s.setInt(4,values[3]*15);
+        s.setInt(5,values[4]*30);
+        s.setInt(6,values[5]*30);
+        s.setInt(7,values[6]*15);
+        s.setInt(8,values[7]*30);
+        s.setInt(9,values[0]*15+values[1]*15+values[2]*15+values[3]*15+values[4]*30+values[5]*30+values[6]*15+values[7]*30);
         s.setString(10,str);
 
         s.executeUpdate();
@@ -342,7 +371,7 @@ public class dbConnect {
         rs.next();
         int tt = rs.getInt(1);
         int diff = rs.getInt(2);
-        return (tt + diff*(quantity-1) -maxDelay)/50;
+        return Math.max((tt + diff*(quantity-1) -maxDelay)/50,0);
     }
 
     public int[][] getAllExceptedTransformationTime() throws SQLException {
