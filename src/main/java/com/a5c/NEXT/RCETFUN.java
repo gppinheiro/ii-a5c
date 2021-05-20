@@ -61,10 +61,10 @@ public class RCETFUN implements Runnable{
                     db.addEndTransform(tfs,"right",timeRS);
                     db.deleteTransform(tfs,"ElapseTransform");
                     // Statistics
-                    db.updateMachinesStatistic(5, opcR.getMachine1Production());
-                    db.updateMachinesStatistic(6, opcR.getMachine2Production());
-                    db.updateMachinesStatistic(7, opcR.getMachine3Production());
-                    db.updateMachinesStatistic(8, opcR.getMachine4Production());
+                    db.updateMachinesStatistic(5, opcR.getMachine5Production());
+                    db.updateMachinesStatistic(6, opcR.getMachine6Production());
+                    db.updateMachinesStatistic(7, opcR.getMachine7Production());
+                    db.updateMachinesStatistic(8, opcR.getMachine8Production());
                     db.updateCurrentStores(opcR.getWareHouse());
                     // Send Codesys confirmation
                     opcS.sendReadAckRight(true);

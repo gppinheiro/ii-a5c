@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="some new improvements">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="new way">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Unload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Unload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCETFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCETFUN.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/sendOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/sendOPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,28 +223,7 @@
       <workItem from="1621336200687" duration="31000" />
       <workItem from="1621348481524" duration="2262000" />
       <workItem from="1621352462512" duration="1276000" />
-      <workItem from="1621518764275" duration="6465000" />
-    </task>
-    <task id="LOCAL-00085" summary="final machines statistics">
-      <created>1619044911901</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1619044911901</updated>
-    </task>
-    <task id="LOCAL-00086" summary="reorganize packages">
-      <created>1619045346923</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1619045346923</updated>
-    </task>
-    <task id="LOCAL-00087" summary="todos - only 3 are left">
-      <created>1619045656739</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1619045656739</updated>
+      <workItem from="1621518764275" duration="7442000" />
     </task>
     <task id="LOCAL-00088" summary="test pushers statistics">
       <created>1619080166752</created>
@@ -575,7 +547,28 @@
       <option name="project" value="LOCAL" />
       <updated>1621351290685</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="new way">
+      <created>1621526507318</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1621526507319</updated>
+    </task>
+    <task id="LOCAL-00135" summary="new way">
+      <created>1621526527890</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1621526527890</updated>
+    </task>
+    <task id="LOCAL-00136" summary="new way">
+      <created>1621526539866</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1621526539866</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +587,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test diff" />
     <MESSAGE value="clean error" />
     <MESSAGE value="new way of thinking" />
     <MESSAGE value="implement right side" />
@@ -619,6 +611,7 @@
     <MESSAGE value="test this" />
     <MESSAGE value="some stuff" />
     <MESSAGE value="some new improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="some new improvements" />
+    <MESSAGE value="new way" />
+    <option name="LAST_COMMIT_MESSAGE" value="new way" />
   </component>
 </project>
