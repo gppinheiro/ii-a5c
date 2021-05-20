@@ -27,15 +27,15 @@ public class readOPC {
     }
 
     public int getCountRightProd() {
-        return Integer.parseInt((String)client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_right"));
+        return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_right");
     }
 
     public int getCountRightPorProd() {
-        return Integer.parseInt((String)client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_ro"));
+        return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_ro");
     }
 
     public int getNOrderRight() {
-        return Integer.parseInt((String)client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.norder_right"));
+        return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.norder_right");
     }
 
     // Left Side
@@ -58,15 +58,15 @@ public class readOPC {
     }
 
     public int getNOrderLeft() {
-        return Integer.parseInt((String) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.norder_left"));
+        return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.norder_left");
     }
 
     public int getCountLeftProd() {
-        return Integer.parseInt((String)client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_left"));
+        return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_left");
     }
 
     public int getCountLeftPorProd() {
-        return Integer.parseInt((String)client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_lo"));
+        return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_lo");
     }
 
     // WareHouse
