@@ -7,16 +7,9 @@ public class readOPC {
         this.client = cl;
     }
 
+    // Right Side
     public boolean getACKRight() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ack_right");
-    }
-
-    public boolean getRightSide() {
-        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.free_right");
-    }
-
-    public boolean getNewTimerRight() {
-        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.nt_right");
     }
 
     public int getRightTimer() {
@@ -41,16 +34,13 @@ public class readOPC {
         return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_ro");
     }
 
+    public int getNOrderRight() {
+        return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.norder_right");
+    }
+
+    // Left Side
     public boolean getACKLeft() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ack_left");
-    }
-
-    public boolean getLeftSide() {
-        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.free_left");
-    }
-
-    public boolean getNewTimerLeft() {
-        return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.nt_left");
     }
 
     public int getLeftTimer() {
@@ -67,6 +57,10 @@ public class readOPC {
         }
     }
 
+    public int getNOrderLeft() {
+        return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.norder_left");
+    }
+
     public int getCountLeftProd() {
         return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.count_left");
     }
@@ -75,19 +69,12 @@ public class readOPC {
         return (int) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_lo");
     }
 
-    public int[] transformOPCintoINT(String identifier) {
-        Object[] obj = (Object[]) client.getValue(identifier);
-        int[] nint = new int[obj.length];
-        for (int i=0; i<obj.length; i++) {
-            nint[i] = (short) obj[i];
-        }
-        return nint;
-    }
-
+    // WareHouse
     public int[] getWareHouse() {
         return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.warehouse");
     }
 
+    // Machine Statistics
     public int[] getMachine1Production() {
         return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p1");
     }
@@ -120,6 +107,7 @@ public class readOPC {
         return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.p8");
     }
 
+    // Pushers Statistics
     public int[] getPusher1(){
         return transformOPCintoINT("|var|CODESYS Control Win V3 x64.Application.GVL.pusher1");
     }
@@ -142,6 +130,16 @@ public class readOPC {
 
     public boolean getPusher3BOOL(){
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.pr_cr2t5");
+    }
+
+    // Function to Help
+    public int[] transformOPCintoINT(String identifier) {
+        Object[] obj = (Object[]) client.getValue(identifier);
+        int[] nint = new int[obj.length];
+        for (int i=0; i<obj.length; i++) {
+            nint[i] = (short) obj[i];
+        }
+        return nint;
     }
 
 }

@@ -3,7 +3,9 @@ package com.a5c;
 import com.a5c.DATA.RCS;
 import com.a5c.DATA.Transform;
 import com.a5c.DB.dbConnect;
+import com.a5c.NEXT.LCETF;
 import com.a5c.NEXT.LCTF;
+import com.a5c.NEXT.RCETFUN;
 import com.a5c.NEXT.RCTFUN;
 import com.a5c.OPC_UA.clientOPC_UA;
 import com.a5c.UDP.clientUDP;
@@ -88,6 +90,7 @@ public class MES {
                     @Override
                     public void run() {
                         new LCTF(opc, db, initTime).start();
+                        new LCETF(opc,db).start();
                     }
                 },
                 5000
@@ -99,7 +102,8 @@ public class MES {
                     @Override
                     public void run() {
                         new RCTFUN(opc,db,initTime).start();
-                        new RCS(opc,db).start();
+                        new RCETFUN(opc,db).start();
+                        //new RCS(opc,db).start();
                     }
                 },
                 10000

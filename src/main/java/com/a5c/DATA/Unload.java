@@ -12,12 +12,13 @@ public class Unload {
     }
 
     public int[] getPath() {
-        int[] factory = new int[]{0, 0, 0, 0};
+        int[] factory = new int[]{0, 0, 0, 0, 0};
 
         factory[0] = this.type;
         factory[1] = -1;
         factory[2] = this.quantity;
         factory[3] = this.destination;
+        factory[4] = this.orderNumber;
 
         return factory;
     }

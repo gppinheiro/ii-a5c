@@ -29,11 +29,12 @@ public class Transform {
     }
 
     public int[] getPath() {
-        int[] factory = new int[]{0, 0, 0, 0};
+        int[] factory = new int[]{0, 0, 0, 0, 0};
 
         factory[0] = this.from;
         factory[1] = this.to;
         factory[2] = this.quantity;
+        factory[4] = this.orderNumber;
 
         return factory;
     }

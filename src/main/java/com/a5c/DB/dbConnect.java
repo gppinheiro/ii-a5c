@@ -170,6 +170,21 @@ public class dbConnect {
         return Transforms;
     }
 
+    public Transform getElapseTransform(int number_order, String side) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\"  FROM ii.\"ElapseTransform\" WHERE \"OrderNumber\"=? AND side=?;");
+        s.setInt(1,number_order);
+        s.setString(2,side);
+
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        Transform tfs = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+        tfs.setST(rs.getInt(8));
+        tfs.setTimeMES(rs.getInt(9));
+        tfs.setSide(side);
+
+        return tfs;
+    }
+
     public Transform[] getEndTransform() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"EndTransform\";");
         ResultSet rs = s.executeQuery();
@@ -199,18 +214,6 @@ public class dbConnect {
         }
         else if (table_name.equals("ElapseTransform")) {
             s = this.conn.prepareStatement("DELETE FROM ii.\"ElapseTransform\" WHERE \"OrderNumber\"="+tf.getOrderNumber()+";");
-        }
-        assert s != null;
-        s.executeUpdate();
-    }
-
-    public void deleteTransform(String table_name) throws SQLException {
-        PreparedStatement s = null;
-        if (table_name.equals("Transform")) {
-            s = this.conn.prepareStatement("DELETE FROM ii.\"Transform\";");
-        }
-        else if (table_name.equals("ElapseTransform")) {
-            s = this.conn.prepareStatement("DELETE FROM ii.\"ElapseTransform\";");
         }
         assert s != null;
         s.executeUpdate();
@@ -279,11 +282,6 @@ public class dbConnect {
         s.executeUpdate();
     }
 
-    public void deleteUnload() throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("DELETE FROM ii.\"Unload\";");
-        s.executeUpdate();
-    }
-
     public void updateCurrentStores(int[] wv) throws SQLException {
         PreparedStatement s;
         for(int i=0; i<wv.length; i++) {
@@ -293,7 +291,7 @@ public class dbConnect {
         }
     }
 
-    // T1: P1-P2 15
+    // T1: 15 15
     // T2: P2-P3 15
     // T3: P3-P4 15
     // T4: P4-P5 15
