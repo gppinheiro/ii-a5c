@@ -176,13 +176,15 @@ public class dbConnect {
         s.setString(2,side);
 
         ResultSet rs = s.executeQuery();
-        rs.next();
-        Transform tfs = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
-        tfs.setST(rs.getInt(8));
-        tfs.setTimeMES(rs.getInt(9));
-        tfs.setSide(side);
+        if (rs.next()) {
+            Transform tfs = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
+            tfs.setST(rs.getInt(8));
+            tfs.setTimeMES(rs.getInt(9));
+            tfs.setSide(side);
 
-        return tfs;
+            return tfs;
+        }
+        else return null;
     }
 
     public Transform[] getEndTransform() throws SQLException {

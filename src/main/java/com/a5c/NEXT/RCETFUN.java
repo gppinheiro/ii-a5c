@@ -58,8 +58,10 @@ public class RCETFUN implements Runnable{
                     timeRS = opcR.getRightTimer();
                     // Work on DB
                     Transform tfs = db.getElapseTransform(number_order,"right");
-                    db.addEndTransform(tfs,"right",timeRS);
-                    db.deleteTransform(tfs,"ElapseTransform");
+                    if (tfs!=null) {
+                        db.addEndTransform(tfs,"right",timeRS);
+                        db.deleteTransform(tfs,"ElapseTransform");
+                    }
                     // Statistics
                     db.updateMachinesStatistic(5, opcR.getMachine5Production());
                     db.updateMachinesStatistic(6, opcR.getMachine6Production());
