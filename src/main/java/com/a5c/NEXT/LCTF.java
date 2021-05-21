@@ -78,10 +78,12 @@ public class LCTF implements Runnable{
                 // Left Side Transform
                 // Machine to control this transformation
                 if ( this.StateLS==0 && !opcR.getACKLeft() && transforms ) {
+                    db.reading=true;
                     this.StateLS = 1;
                     opcS.sendLeft(tfs[0].getPath());
                     tfs[0] = db.addElapseTransform(tfs[0],"left");
                     db.deleteTransform(tfs[0],"Transform");
+                    db.reading=false;
                 } else if ( this.StateLS ==1 && opcR.getACKLeft() ) {
                     this.StateLS = 0;
                     opcS.sendLeft(zeros);
