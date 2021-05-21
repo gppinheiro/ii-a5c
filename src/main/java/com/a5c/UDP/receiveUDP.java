@@ -25,6 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.io.File;
 
 public class receiveUDP implements Runnable {
     private final clientUDP client;
@@ -191,6 +192,8 @@ public class receiveUDP implements Runnable {
         } catch (ParserConfigurationException | SAXException | IOException | SQLException e) {
             e.printStackTrace();
         }
+
+        new File("receiveOrdersXML.xml").delete();
 
     }
 
