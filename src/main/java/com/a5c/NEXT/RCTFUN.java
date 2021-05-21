@@ -56,6 +56,7 @@ public class RCTFUN implements Runnable {
                     // Priority for unload
                     if ( db.UnloadLength()!=0 ) {
                         unloads = true;
+                        transforms = false;
                         this.unls = db.getUnload();
                     }
                     // Next transform
@@ -108,6 +109,8 @@ public class RCTFUN implements Runnable {
                         this.StateRS = 0;
                         opcS.sendRight(zeros);
                     }
+
+                    System.out.println("StateRS"+this.StateRS);
 
                 }
 
