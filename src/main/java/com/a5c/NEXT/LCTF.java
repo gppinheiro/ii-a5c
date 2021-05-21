@@ -47,8 +47,9 @@ public class LCTF implements Runnable{
         while(true) {
             try {
                 // Get DB
-                if ( !opcR.getACKLeft() && db.TransformLength()!=0 ) {
+                if ( !opcR.getACKLeft() && db.TransformLength()!=0 && !db.reading ) {
                     transforms = true;
+                    db.reading = true;
                     tfs = db.getTransform();
 
                     // Prioridade:
@@ -71,6 +72,7 @@ public class LCTF implements Runnable{
                 }
                 else {
                     transforms = false;
+                    db.reading = false;
                 }
 
                 // Left Side Transform

@@ -26,6 +26,8 @@ public class dbConnect {
     private Connection conn = null;
     private final Timestamp initTime;
 
+    public boolean reading;
+
     public Connection getConn() {
         return conn;
     }
@@ -35,6 +37,7 @@ public class dbConnect {
      */
     public dbConnect() {
         this.initTime = new Timestamp(System.currentTimeMillis());
+        this.reading = false;
         try {
             this.conn = getConnection();
         } catch (Exception e) {
