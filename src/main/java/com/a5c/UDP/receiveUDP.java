@@ -25,7 +25,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.io.File;
 
 public class receiveUDP implements Runnable {
     private final clientUDP client;
@@ -62,14 +61,14 @@ public class receiveUDP implements Runnable {
     @Override
     public void run() {
         try {
-            // Fill with 0s -  Byte Array
-            byte[] buffer = new byte[65536];
-            Arrays.fill(buffer , (byte) 0);
-
-            // DatagramPacker
-            packUDP = new DatagramPacket(buffer, 0, buffer.length);
-
             while(true) {
+                // Fill with 0s -  Byte Array
+                byte[] buffer = new byte[65536];
+                Arrays.fill(buffer , (byte) 0);
+
+                // DatagramPacker
+                packUDP = new DatagramPacket(buffer, 0, buffer.length);
+
                 // Receive what ERP sent to us
                 client.socket.receive(packUDP);
 
@@ -192,8 +191,6 @@ public class receiveUDP implements Runnable {
         } catch (ParserConfigurationException | SAXException | IOException | SQLException e) {
             e.printStackTrace();
         }
-
-        new File("receiveOrdersXML.xml").delete();
 
     }
 
