@@ -144,7 +144,7 @@ public class dbConnect {
 
         int i=0;
         while (rs.next()) {
-            if(Transforms.length < i) { break; }
+            if(Transforms.length < i || Transforms.length==0) { break; }
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
             Transforms[i].setTimeMES(rs.getInt(8));
             i++;
