@@ -113,6 +113,8 @@ public class RCTFUN implements Runnable {
                         this.StateRS = 0;
                         opcS.sendRight(zeros);
                     }
+
+                    System.out.println(this.StateRS);
                 }
 
             } catch (SQLException e) {
