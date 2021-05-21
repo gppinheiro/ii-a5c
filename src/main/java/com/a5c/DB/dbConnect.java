@@ -144,6 +144,7 @@ public class dbConnect {
 
         int i=0;
         while (rs.next()) {
+            if(Transforms.length < i) { break; }
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
             Transforms[i].setTimeMES(rs.getInt(8));
             i++;
@@ -158,7 +159,7 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"side\"  FROM ii.\"ElapseTransform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"side\" FROM ii.\"ElapseTransform\";");
         rs = s.executeQuery();
 
         int i=0;
