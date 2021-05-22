@@ -52,7 +52,7 @@ public class MES {
         }
 
         // Then Start left side
-        new LCTF(opc, db, initTime, rs).start();
+        new LCTF(opc, db, initTime).start();
         new LCETF(opc,db).start();
 
     }

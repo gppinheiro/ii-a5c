@@ -15,7 +15,6 @@ public class LCTF implements Runnable{
     private final dbConnect db;
     private final readOPC opcR;
     private final sendOPC opcS;
-    private final RCTFUN rs;
 
     // Global var
     private static final int[] zeros = {0,0,0,0,0};
@@ -27,14 +26,13 @@ public class LCTF implements Runnable{
     // LS - Left Side
     private int StateLS;
 
-    public LCTF(clientOPC_UA cl, dbConnect dbc, long ts, RCTFUN rs) {
+    public LCTF(clientOPC_UA cl, dbConnect dbc, long ts) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
         this.opcS = new sendOPC(cl);
         this.StateLS = 0;
         this.MESInitTime = ts;
         this.transforms = false;
-        this.rs = rs;
     }
 
     public void start() {
