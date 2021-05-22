@@ -139,14 +139,14 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"timeMES\" FROM ii.\"Transform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"timeMES\", \"TransformTimeExcepted\" FROM ii.\"Transform\";");
         rs = s.executeQuery();
 
         int i=0;
-        while (rs.next()) {
-            if(Transforms.length <= i) { break; }
+        while (rs.next() && i<Transforms.length) {
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
             Transforms[i].setTimeMES(rs.getInt(8));
+            Transforms[i].setExceptedTT(rs.getInt(9));
             i++;
         }
 
