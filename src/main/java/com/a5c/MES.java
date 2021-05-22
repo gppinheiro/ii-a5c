@@ -46,9 +46,12 @@ public class MES {
         rs.start();
         new RCETFUN(opc,db).start();
 
+        System.out.println(rs.stopLeftSide);
+
         // First Wait
         while(rs.stopLeftSide) {
             //Wait until right side don't finish it
+            System.out.println(1);
         }
 
         // Then Start left side
