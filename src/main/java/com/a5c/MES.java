@@ -85,29 +85,12 @@ public class MES {
         new receiveUDP(udp,db,opc).start();
 
         // Start left side
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        new LCTF(opc, db, initTime).start();
-                        new LCETF(opc,db).start();
-                    }
-                },
-                5000
-        );
+        new LCTF(opc, db, initTime).start();
+        new LCETF(opc,db).start();
 
         // Wait to start Right Side after Left Side begin
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        new RCTFUN(opc,db,initTime).start();
-                        new RCETFUN(opc,db).start();
-                        //new RCS(opc,db).start();
-                    }
-                },
-                10000
-        );
+        new RCTFUN(opc,db,initTime).start();
+        new RCETFUN(opc,db).start();
 
     }
 }

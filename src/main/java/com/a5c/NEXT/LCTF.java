@@ -44,6 +44,14 @@ public class LCTF implements Runnable{
 
     @Override
     public void run() {
+        // Sleep 1s
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // RUN Forever
         while(true) {
             try {
                 // Get DB
