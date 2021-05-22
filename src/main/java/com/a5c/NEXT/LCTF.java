@@ -21,6 +21,7 @@ public class LCTF implements Runnable{
     private Transform[] tfs;
     private final long MESInitTime;
     private boolean transforms;
+    private boolean stop;
 
     // Global Variables for State Machines
     // LS - Left Side
@@ -33,6 +34,7 @@ public class LCTF implements Runnable{
         this.StateLS = 0;
         this.MESInitTime = ts;
         this.transforms = false;
+        this.stop=true;
     }
 
     public void start() {
@@ -44,16 +46,15 @@ public class LCTF implements Runnable{
 
     @Override
     public void run() {
-        // Sleep 1s
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         // RUN Forever
         while(true) {
             try {
+                // To be independent, left side must stop one time to not collide with the right side
+                if ( db.TransformLength()!=0 && stop) {
+                    Thread.sleep(1000);
+                    stop=false;
+                }
+
                 // Get DB
                 if ( !opcR.getACKLeft() && db.TransformLength()!=0 && !db.reading ) {
                     transforms = true;
@@ -95,7 +96,7 @@ public class LCTF implements Runnable{
                     opcS.sendLeft(zeros);
                 }
 
-            } catch (SQLException e) {
+            } catch (SQLException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
