@@ -49,68 +49,63 @@ public class RCTFUN implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             try {
+                // Priority for unload
+                if (db.UnloadLength() != 0) {
+                    unloads = true;
+                    db.reading = false;
+                    this.unls = db.getUnload();
+                }
+                // Next transform
+                else if (db.TransformLength() != 0 && !db.reading) {
+                    unloads = false;
+                    transforms = true;
+                    db.reading = true;
+                    this.tfs = db.getTransform();
 
-                if ( !opcR.getACKRight() ) {
-                    // Priority for unload
-                    if ( db.UnloadLength()!=0 ) {
-                        unloads = true;
-                        db.reading = false;
-                        this.unls = db.getUnload();
-                    }
-                    // Next transform
-                    else if ( db.TransformLength()!=0 && !db.reading ) {
-                        unloads = false;
-                        transforms = true;
-                        db.reading = true;
-                        this.tfs = db.getTransform();
+                    long nowTime = System.currentTimeMillis();
 
-                        long nowTime = System.currentTimeMillis();
-
-                        Transform temp;
-                        tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[0].getExceptedTT() );
-                        for (int i = 1; i < tfs.length; i++) {
-                            tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[i].getExceptedTT() );
-                            for (int j = i; j > 0; j--) {
-                                if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
-                                    temp = tfs[j];
-                                    tfs[j] = tfs[j - 1];
-                                    tfs[j-1] = temp;
-                                }
+                    Transform temp;
+                    tfs[0].setRealMaxDelay((int) (tfs[0].getMaxDelay() - (nowTime - MESInitTime) / 1000) - tfs[0].getExceptedTT());
+                    for (int i = 1; i < tfs.length; i++) {
+                        tfs[i].setRealMaxDelay((int) (tfs[i].getMaxDelay() - (nowTime - MESInitTime) / 1000) - tfs[i].getExceptedTT());
+                        for (int j = i; j > 0; j--) {
+                            if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
+                                temp = tfs[j];
+                                tfs[j] = tfs[j - 1];
+                                tfs[j - 1] = temp;
                             }
                         }
                     }
-                    else {
-                        unloads = false;
-                        transforms = false;
-                        db.reading = false;
-                    }
+                } else {
+                    unloads = false;
+                    transforms = false;
+                    db.reading = false;
+                }
 
-                    // Unloads
-                    // Machine to control unloads
-                    if ( this.StateUnload==0 && !opcR.getACKRight() && unloads ) {
-                        this.StateUnload=1;
-                        opcS.sendRight(unls[0].getPath());
-                        db.addEndUnload(unls[0]);
-                        db.deleteUnload(unls[0]);
-                    }
-                    else if ( this.StateUnload==1 && opcR.getACKRight() ) {
-                        this.StateUnload=0;
-                        opcS.sendRight(zeros);
-                    }
+                // Unloads
+                // Machine to control unloads
+                if (this.StateUnload == 0 && !opcR.getACKRight() && unloads) {
+                    this.StateUnload = 1;
+                    opcS.sendRight(unls[0].getPath());
+                    db.addEndUnload(unls[0]);
+                    db.deleteUnload(unls[0]);
+                } else if (this.StateUnload == 1 && opcR.getACKRight()) {
+                    this.StateUnload = 0;
+                    opcS.sendRight(zeros);
+                }
 
-                    // Right Side Transform
-                    // Machine to control this transformation
-                    if ( this.StateRS==0 && !opcR.getACKRight() && transforms) {
-                        this.StateRS = 1;
-                        opcS.sendRight(tfs[0].getPath());
-                        tfs[0] = db.addElapseTransform(tfs[0],"right");
-                        db.deleteTransform(tfs[0],"Transform");
-                    } else if ( this.StateRS ==1 && opcR.getACKRight() ) {
-                        this.StateRS = 0;
-                        opcS.sendRight(zeros);
-                    }
+                // Right Side Transform
+                // Machine to control this transformation
+                if (this.StateRS == 0 && !opcR.getACKRight() && transforms) {
+                    this.StateRS = 1;
+                    opcS.sendRight(tfs[0].getPath());
+                    tfs[0] = db.addElapseTransform(tfs[0], "right");
+                    db.deleteTransform(tfs[0], "Transform");
+                } else if (this.StateRS == 1 && opcR.getACKRight()) {
+                    this.StateRS = 0;
+                    opcS.sendRight(zeros);
                 }
 
             } catch (SQLException e) {
