@@ -42,17 +42,8 @@ public class MES {
         new receiveUDP(udp,db,opc).start();
 
         // Start right side
-        RCTFUN rs = new RCTFUN(opc,db,initTime);
-        rs.start();
+        new RCTFUN(opc,db,initTime).start();
         new RCETFUN(opc,db).start();
-
-        System.out.println(rs.stopLeftSide);
-
-        // First Wait
-        while(rs.stopLeftSide) {
-            //Wait until right side don't finish it
-            System.out.println(1);
-        }
 
         // Then Start left side
         new LCTF(opc, db, initTime).start();
