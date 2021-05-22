@@ -46,7 +46,10 @@ public class MES {
         rs.start();
         new RCETFUN(opc,db).start();
 
-        // Start left side
+        // First Wait
+        while(rs.stopLeftSide);
+
+        // Then Start left side
         new LCTF(opc, db, initTime, rs).start();
         new LCETF(opc,db).start();
 

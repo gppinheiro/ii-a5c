@@ -48,8 +48,6 @@ public class LCTF implements Runnable{
     public void run() {
         // RUN Forever
         while(true) {
-            // To be independent, left side must stop one time to not collide with the right side
-            while(rs.stopLeftSide);
             try {
                 // Get DB
                 if ( !opcR.getACKLeft() && db.TransformLength()!=0 && !db.reading ) {
