@@ -56,13 +56,14 @@ public class RCTFUN implements Runnable {
                     // Priority for unload
                     if ( db.UnloadLength()!=0 ) {
                         unloads = true;
-                        transforms = false;
+                        db.reading = false;
                         this.unls = db.getUnload();
                     }
                     // Next transform
                     else if ( db.TransformLength()!=0 && !db.reading ) {
                         unloads = false;
                         transforms = true;
+                        db.reading = true;
                         this.tfs = db.getTransform();
 
                         long nowTime = System.currentTimeMillis();
@@ -83,6 +84,7 @@ public class RCTFUN implements Runnable {
                     else {
                         unloads = false;
                         transforms = false;
+                        db.reading = false;
                     }
 
                     // Unloads
@@ -109,9 +111,6 @@ public class RCTFUN implements Runnable {
                         this.StateRS = 0;
                         opcS.sendRight(zeros);
                     }
-
-                    System.out.println("StateRS"+this.StateRS);
-
                 }
 
             } catch (SQLException e) {
