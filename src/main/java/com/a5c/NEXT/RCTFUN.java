@@ -23,6 +23,7 @@ public class RCTFUN implements Runnable {
     private boolean unloads;
     private boolean transforms;
     private final long MESInitTime;
+    public boolean stopLeftSide;
 
     // Global Variables for State Machines
     // RS - Right Side
@@ -38,6 +39,7 @@ public class RCTFUN implements Runnable {
         this.unloads = false;
         this.transforms = false;
         this.MESInitTime = ts;
+        this.stopLeftSide = true;
     }
 
     public void start() {
@@ -55,6 +57,7 @@ public class RCTFUN implements Runnable {
                 if (db.UnloadLength() != 0) {
                     unloads = true;
                     db.reading = false;
+                    this.stopLeftSide=false;
                     this.unls = db.getUnload();
                 }
                 // Next transform
@@ -103,6 +106,7 @@ public class RCTFUN implements Runnable {
                     opcS.sendRight(tfs[0].getPath());
                     tfs[0] = db.addElapseTransform(tfs[0], "right");
                     db.deleteTransform(tfs[0], "Transform");
+                    this.stopLeftSide=false;
                 } else if (this.StateRS == 1 && opcR.getACKRight()) {
                     this.StateRS = 0;
                     opcS.sendRight(zeros);

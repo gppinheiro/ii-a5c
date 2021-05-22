@@ -15,26 +15,26 @@ public class LCTF implements Runnable{
     private final dbConnect db;
     private final readOPC opcR;
     private final sendOPC opcS;
+    private final RCTFUN rs;
 
     // Global var
     private static final int[] zeros = {0,0,0,0,0};
     private Transform[] tfs;
     private final long MESInitTime;
     private boolean transforms;
-    private boolean stop;
 
     // Global Variables for State Machines
     // LS - Left Side
     private int StateLS;
 
-    public LCTF(clientOPC_UA cl, dbConnect dbc, long ts) {
+    public LCTF(clientOPC_UA cl, dbConnect dbc, long ts, RCTFUN rs) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
         this.opcS = new sendOPC(cl);
         this.StateLS = 0;
         this.MESInitTime = ts;
         this.transforms = false;
-        this.stop=true;
+        this.rs = rs;
     }
 
     public void start() {
@@ -46,15 +46,11 @@ public class LCTF implements Runnable{
 
     @Override
     public void run() {
+        // To be independent, left side must stop one time to not collide with the right side
+        while(rs.stopLeftSide);
         // RUN Forever
         while(true) {
             try {
-                // To be independent, left side must stop one time to not collide with the right side
-                if ( db.TransformLength()!=0 && stop) {
-                    Thread.sleep(1000);
-                    stop=false;
-                }
-
                 // Get DB
                 if ( !opcR.getACKLeft() && db.TransformLength()!=0 && !db.reading ) {
                     transforms = true;
@@ -96,7 +92,7 @@ public class LCTF implements Runnable{
                     opcS.sendLeft(zeros);
                 }
 
-            } catch (SQLException | InterruptedException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

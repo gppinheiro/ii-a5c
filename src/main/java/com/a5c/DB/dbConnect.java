@@ -345,6 +345,26 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    public void resetMachinesStatistic() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"MachinesStatistic\" SET t1=0,t2=0,t3=0,t4=0,t5=0,t6=0,t7=0,t8=0,total=0 WHERE machine=?;");
+        PreparedStatement ss = this.conn.prepareStatement("UPDATE ii.\"MachinesTimes\" SET t1=0,t2=0,t3=0,t4=0,t5=0,t6=0,t7=0,t8=0,total=0 WHERE machine=?;");
+        String str = null;
+        for(int id=1; id<9; id++) {
+            if (id==1) { str="LM1"; }
+            else if (id==2) { str="LM2"; }
+            else if (id==3) { str="LM3"; }
+            else if (id==4) { str="LM4"; }
+            else if (id==5) { str="RM1"; }
+            else if (id==6) { str="RM2"; }
+            else if (id==7) { str="RM3"; }
+            else if (id==8) { str="RM4"; }
+            s.setString(1,str);
+            ss.setString(1,str);
+            s.executeUpdate();
+            ss.executeUpdate();
+        }
+    }
+
     public void updatePushersStatistic (int id, int[] values) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"PushersStatistic\" SET p1=?,p2=?,p3=?,p4=?,p5=?,p6=?,p7=?,p8=?,p9=?,total=? WHERE pusher=?;");
         s.setInt(1,values[0]);
@@ -365,6 +385,19 @@ public class dbConnect {
         s.setString(11,str);
 
         s.executeUpdate();
+    }
+
+    public void resetPushersStatistic () throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"PushersStatistic\" SET p1=0,p2=0,p3=0,p4=0,p5=0,p6=0,p7=0,p8=0,p9=0,total=0 WHERE pusher=?;");
+
+        String str = null;
+        for (int id=1; id<4; id++) {
+            if (id==1) { str="Pusher1"; }
+            else if (id==2) { str="Pusher2"; }
+            else if (id==3) { str="Pusher3"; }
+            s.setString(1,str);
+            s.executeUpdate();
+        }
     }
 
     public int getPenaltyExcepted(int from, int to, int quantity, int maxDelay) throws SQLException {
