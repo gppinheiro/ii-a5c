@@ -14,7 +14,7 @@ import com.a5c.UDP.receiveUDP;
 import java.sql.SQLException;
 
 public class MES {
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws InterruptedException {
         clientOPC_UA opc = new clientOPC_UA();
         clientUDP udp = new clientUDP();
         dbConnect db = new dbConnect();
@@ -46,6 +46,7 @@ public class MES {
         new RCETFUN(opc,db).start();
 
         // Then Start left side
+        Thread.sleep(1000);
         new LCTF(opc, db, initTime).start();
         new LCETF(opc,db).start();
 
