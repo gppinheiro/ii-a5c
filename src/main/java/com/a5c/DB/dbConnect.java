@@ -163,7 +163,7 @@ public class dbConnect {
         rs = s.executeQuery();
 
         int i=0;
-        while (rs.next()) {
+        while (rs.next() && i<Transforms.length) {
             Transforms[i] = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
             Transforms[i].setST(rs.getInt(8));
             Transforms[i].setTimeMES(rs.getInt(9));
