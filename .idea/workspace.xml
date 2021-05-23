@@ -5,17 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="some stuff">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/DB/dbConnect.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/DB/dbConnect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/MES.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/LCETF.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/LCETF.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/LCTF.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/LCTF.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/RCETFUN.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/RCETFUN.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/RCTFUN.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/NEXT/RCTFUN.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/OPC_UA/readOPC.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/OPC_UA/readOPC.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/a5c/UDP/receiveUDP.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/a5c/UDP/receiveUDP.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/TEST.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/TEST.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCETF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCETF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCETFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCETFUN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/TEST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TEST.java" afterDir="false" />
     </list>
@@ -234,14 +249,7 @@
       <workItem from="1621348481524" duration="2210000" />
       <workItem from="1621689830831" duration="6419000" />
       <workItem from="1621777249471" duration="6000" />
-      <workItem from="1621777486467" duration="6232000" />
-    </task>
-    <task id="LOCAL-00099" summary="error States Difficults">
-      <created>1619358041403</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1619358041403</updated>
+      <workItem from="1621777486467" duration="6808000" />
     </task>
     <task id="LOCAL-00100" summary="error States Difficults">
       <created>1619358256744</created>
@@ -579,7 +587,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621777692467</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="some stuff">
+      <created>1621784374050</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1621784374050</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

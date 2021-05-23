@@ -3,6 +3,7 @@ package com.a5c.UDP;
 import com.a5c.DATA.Transform;
 import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
+import com.a5c.OPC_UA.readOPC;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -203,6 +204,7 @@ public class receiveUDP implements Runnable {
 
             // P1 to P9
             //<WorkPiece type="Px" quantity="XX"/>
+            db.updateCurrentStores();
             Integer[] npieces = db.getCurrentStores();
             for(int i=1; i<10; i++) {
                 //<WorkPiece/>

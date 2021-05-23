@@ -17,8 +17,8 @@ public class MES {
     public static void main(final String[] args) throws InterruptedException {
         clientOPC_UA opc = new clientOPC_UA();
         clientUDP udp = new clientUDP();
-        dbConnect db = new dbConnect();
         readOPC opcR = new readOPC(opc);
+        dbConnect db = new dbConnect(opcR);
 
         // See if there is any ElapseTransform to do again
         try {

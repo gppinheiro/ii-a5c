@@ -2,6 +2,7 @@ package com.a5c.DB;
 
 import com.a5c.DATA.Transform;
 import com.a5c.DATA.Unload;
+import com.a5c.OPC_UA.readOPC;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,6 +26,7 @@ public class dbConnect {
      */
     private Connection conn = null;
     private final Timestamp initTime;
+    private final readOPC opcR;
 
     public boolean reading;
 
@@ -35,9 +37,10 @@ public class dbConnect {
     /**
      * Constructor that creates connection with DataBase.
      */
-    public dbConnect() {
+    public dbConnect(readOPC opc) {
         this.initTime = new Timestamp(System.currentTimeMillis());
         this.reading = false;
+        this.opcR = opc;
         try {
             this.conn = getConnection();
         } catch (Exception e) {
@@ -299,6 +302,16 @@ public class dbConnect {
     }
 
     public void updateCurrentStores(int[] wv) throws SQLException {
+        PreparedStatement s;
+        for(int i=0; i<wv.length; i++) {
+            s = this.conn.prepareStatement("UPDATE ii.\"CurrentStores\" SET quantity=? WHERE \"type\"="+(i+1)+";");
+            s.setInt(1,wv[i]);
+            s.executeUpdate();
+        }
+    }
+
+    public void updateCurrentStores() throws SQLException {
+        int[] wv = opcR.getWareHouse();
         PreparedStatement s;
         for(int i=0; i<wv.length; i++) {
             s = this.conn.prepareStatement("UPDATE ii.\"CurrentStores\" SET quantity=? WHERE \"type\"="+(i+1)+";");

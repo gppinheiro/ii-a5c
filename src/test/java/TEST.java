@@ -37,15 +37,7 @@ public class TEST {
 
     }
 
-    public static int getTFdb() {
-        dbConnect db = new dbConnect();
-        try {
-            return db.getTransform().length;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return 1000;
-    }
+
 
     public static int TestIfGoodOrNot(dbConnect db) {
         try {
@@ -439,7 +431,6 @@ public class TEST {
     }
 
     public static void main(final String[] args) {
-        dbConnect db = new dbConnect();
         /*db.addTransform(new Transform(1,1,2,1,0,10,10));
         db.addTransform(new Transform(2,1,2,2,0,10,20));
         db.addTransform(new Transform(3,1,2,2,0,15,20));
