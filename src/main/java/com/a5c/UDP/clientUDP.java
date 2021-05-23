@@ -7,7 +7,7 @@ public class clientUDP {
     //public final String ip = "localhost";
     public final String ip = "193.136.33.135";
     public DatagramSocket socket;
-    public InetAddress address;
+    //public InetAddress address;
 
     /**
      * Create a new clientUDP.
@@ -15,8 +15,8 @@ public class clientUDP {
     public clientUDP() {
         try {
             socket = new DatagramSocket(port);
-            address = InetAddress.getByName(ip);
-        } catch (SocketException | UnknownHostException e) {
+            //address = InetAddress.getByName(ip);
+        } catch (SocketException e) {
             e.printStackTrace();
         }
     }
