@@ -3,7 +3,6 @@ package com.a5c.UDP;
 import com.a5c.DATA.Transform;
 import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
-import com.a5c.OPC_UA.readOPC;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -503,7 +502,7 @@ public class receiveUDP implements Runnable {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("sendCurrentStores.xml"));
+            StreamResult result = new StreamResult(new File("sendRequestOrders.xml"));
             transformer.transform(source, result);
 
         } catch (ParserConfigurationException | SQLException | TransformerException e) {
