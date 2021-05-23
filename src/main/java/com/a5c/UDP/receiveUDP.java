@@ -75,7 +75,13 @@ public class receiveUDP implements Runnable {
                 // Address
                 String address = aux.substring(1, aux.indexOf(":"));
                 // Port
-                portServer = Integer.parseInt(aux.substring(aux.indexOf(":") + 1));
+                String port = aux.substring(aux.indexOf(":") + 1);
+                // TODO
+                System.out.println("Aux: "+aux);
+                System.out.println("Address: "+address);
+                System.out.println("Port: "+port);
+                // Port
+                portServer = Integer.parseInt(port);
                 // InetAddress with the before result
                 addressServer = InetAddress.getByName(address);
 
