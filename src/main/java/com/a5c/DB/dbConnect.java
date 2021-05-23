@@ -442,7 +442,7 @@ public class dbConnect {
         rs.next();
         int tt = rs.getInt(1);
         double diffDP = rs.getDouble(2);
-        int totalTimeToProd = (int) (tt + diffDP*quantity - time);
+        int totalTimeToProd = (int) (tt + diffDP*(quantity-1) - time);
         return (int)(totalTimeToProd/diffDP)-1;
     }
 

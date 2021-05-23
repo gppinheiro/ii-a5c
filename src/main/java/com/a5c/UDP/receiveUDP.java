@@ -361,7 +361,7 @@ public class receiveUDP implements Runnable {
 
                 //quantity1
                 attr = doc.createAttribute("Quantity1");
-                long ttNow = System.currentTimeMillis() - tfDOING[i].getST();
+                long ttNow = (System.currentTimeMillis()- initTime)/1000 - tfDOING[i].getST();
                 int q1;
                 if (tfDOING[i].getQuantity()==1) { q1=0; }
                 else { q1=db.getPiecesProd(tfDOING[i].getFrom(),tfDOING[i].getTo(),tfDOING[i].getQuantity(),ttNow); }
