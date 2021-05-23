@@ -46,7 +46,10 @@ public class MES {
         new RCETFUN(opc,db).start();
 
         // Then Start left side
-        Thread.sleep(1000);
+        Thread.sleep(2500);
+        while(db.reading) {
+            // Direito vai ler, portanto espera
+        }
         new LCTF(opc, db, initTime).start();
         new LCETF(opc,db).start();
 
