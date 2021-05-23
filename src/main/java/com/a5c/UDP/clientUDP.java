@@ -4,6 +4,8 @@ import java.net.*;
 
 public class clientUDP {
     public final int port = 54321;
+    //public final String ip = "localhost";
+    public final String ip = "193.136.33.135";
     public DatagramSocket socket;
     public InetAddress address;
 
@@ -13,7 +15,7 @@ public class clientUDP {
     public clientUDP() {
         try {
             socket = new DatagramSocket(port);
-            address = InetAddress.getByName("localhost");
+            address = InetAddress.getByName(ip);
         } catch (SocketException | UnknownHostException e) {
             e.printStackTrace();
         }
