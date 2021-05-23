@@ -52,9 +52,11 @@ public class LCETF implements Runnable{
                     timeLS = opcR.getLeftTimer();
                     // Work on DB
                     Transform tfs = db.getElapseTransform(number_order,"left");
-                    if (tfs!=null) {
-                        db.addEndTransform(tfs,"left",timeLS);
-                        db.deleteTransform(tfs,"ElapseTransform");
+                    if(timeLS!=0) {
+                        if (tfs != null) {
+                            db.addEndTransform(tfs, "left", timeLS);
+                            db.deleteTransform(tfs, "ElapseTransform");
+                        }
                     }
                     // Statistics
                     db.updateMachinesStatistic(1, opcR.getMachine1Production());

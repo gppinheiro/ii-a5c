@@ -21,6 +21,7 @@ public class LCTF implements Runnable{
     private Transform[] tfs;
     private final long MESInitTime;
     private boolean transforms;
+    private int old_count;
 
     // Global Variables for State Machines
     // LS - Left Side
@@ -84,10 +85,20 @@ public class LCTF implements Runnable{
                     opcS.sendLeft(tfs[0].getPath());
                     tfs[0] = db.addElapseTransform(tfs[0],"left");
                     db.deleteTransform(tfs[0],"Transform");
+                    old_count = tfs[0].getQuantity();
                     db.reading=false;
-                } else if ( this.StateLS ==1 && opcR.getACKLeft() ) {
+                } else if ( this.StateLS==1 && opcR.getACKLeft() ) {
                     this.StateLS = 0;
                     opcS.sendLeft(zeros);
+                } else if ( this.StateLS==1 && !opcR.getACKLeft() ) {
+                    if ( tfs[0].isDifficult() ) {
+                        if( old_count > opcR.getCountLeftPorProd() ) {
+                            old_count = opcR.getCountLeftPorProd();
+                            db.updateElapseTransform( tfs[0].getOrderNumber() , opcR.getCountLeftPorProd());
+                        }
+                    } else {
+                        db.updateElapseTransform( tfs[0].getOrderNumber() , opcR.getCountLeftPorProd());
+                    }
                 }
 
             } catch (SQLException e) {

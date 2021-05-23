@@ -77,7 +77,7 @@ public class dbConnect {
     }
 
     public Transform addElapseTransform(Transform tf, String side) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+        PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
         s.setInt(2,tf.getFrom());
         s.setInt(3,tf.getTo());
@@ -91,6 +91,7 @@ public class dbConnect {
         s.setInt(9,tf.getTime());
         s.setInt(10,tf.getST());
         s.setInt(11,tf.getTimeMES());
+        s.setInt(12,tf.getQuantity());
         s.executeUpdate();
 
         return tf;
@@ -159,7 +160,7 @@ public class dbConnect {
         rs.next();
         Transform[] Transforms = new Transform[rs.getInt(1)];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"side\" FROM ii.\"ElapseTransform\";");
+        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"side\", \"PorProd\" FROM ii.\"ElapseTransform\";");
         rs = s.executeQuery();
 
         int i=0;
@@ -168,6 +169,7 @@ public class dbConnect {
             Transforms[i].setST(rs.getInt(8));
             Transforms[i].setTimeMES(rs.getInt(9));
             Transforms[i].setSide(rs.getString(10));
+            Transforms[i].setPorProd(rs.getInt(11));
             i++;
         }
 
@@ -175,7 +177,7 @@ public class dbConnect {
     }
 
     public Transform getElapseTransform(int number_order, String side) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\"  FROM ii.\"ElapseTransform\" WHERE \"OrderNumber\"=? AND side=?;");
+        PreparedStatement s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"PorProd\"  FROM ii.\"ElapseTransform\" WHERE \"OrderNumber\"=? AND side=?;");
         s.setInt(1,number_order);
         s.setString(2,side);
 
@@ -184,11 +186,19 @@ public class dbConnect {
             Transform tfs = new Transform(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7));
             tfs.setST(rs.getInt(8));
             tfs.setTimeMES(rs.getInt(9));
+            tfs.setPorProd(rs.getInt(10));
             tfs.setSide(side);
 
             return tfs;
         }
         else return null;
+    }
+
+    public void updateElapseTransform(int nOrder, int val) throws SQLException {
+        PreparedStatement s =  this.conn.prepareStatement("UPDATE ii.\"ElapseTransform\" SET \"PorProd\"=? WHERE \"OrderNumber\"=?;");
+        s.setInt(1,val);
+        s.setInt(2,nOrder);
+        s.executeUpdate();
     }
 
     public Transform[] getEndTransform() throws SQLException {
@@ -409,6 +419,18 @@ public class dbConnect {
         int tt = rs.getInt(1);
         int diff = rs.getInt(2);
         return Math.max((tt + diff*(quantity-1) -maxDelay)/50,0);
+    }
+
+    public int getPiecesProd(int from, int to, int quantity, long time) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT tt, \"diffDP\" FROM ii.\"ExceptedPenalty\" WHERE \"from\"=? AND \"to\"=?;");
+        s.setInt(1,from);
+        s.setInt(2,to);
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        int tt = rs.getInt(1);
+        double diffDP = rs.getDouble(2);
+        int totalTimeToProd = (int) (tt + diffDP*quantity - time);
+        return (int)(totalTimeToProd/diffDP)-1;
     }
 
     public int[][] getAllExceptedTransformationTime() throws SQLException {

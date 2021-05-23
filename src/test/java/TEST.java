@@ -420,21 +420,36 @@ public class TEST {
         }
     }
 
+    public static int getTimer(String s) {
+        if (!s.equals("")) {
+            s = s.replace("T#","");
+            String[] sparts = s.split("s");
+
+            if (sparts[0].contains("m")) {
+                String[] mparts = sparts[0].split("m");
+                return Integer.parseInt(mparts[0])*60 + Integer.parseInt(mparts[1]);
+            }
+            else {
+                return Integer.parseInt(sparts[0]);
+            }
+        }
+        else {
+            return 0;
+        }
+    }
+
     public static void main(final String[] args) {
         dbConnect db = new dbConnect();
-        try {
-            /*db.addTransform(new Transform(1,1,2,1,0,10,10));
-            db.addTransform(new Transform(2,1,2,2,0,10,20));
-            db.addTransform(new Transform(3,1,2,2,0,15,20));
-            db.addTransform(new Transform(4,1,2,2,0,15,10));*/
-            //db.addTransform(new Transform(5,1,2,2,0,30,30));
-            //db.deleteTransform("Transform");
-            //db.deleteTransform("ElapseTransform");
-            //db.addUnload(new Unload(1,1,2,4));
-            db.getTransform();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        /*db.addTransform(new Transform(1,1,2,1,0,10,10));
+        db.addTransform(new Transform(2,1,2,2,0,10,20));
+        db.addTransform(new Transform(3,1,2,2,0,15,20));
+        db.addTransform(new Transform(4,1,2,2,0,15,10));*/
+        //db.addTransform(new Transform(5,1,2,2,0,30,30));
+        //db.deleteTransform("Transform");
+        //db.deleteTransform("ElapseTransform");
+        //db.addUnload(new Unload(1,1,2,4));
+        //db.getTransform();
+        System.out.println(getTimer(""));
 
     }
 }

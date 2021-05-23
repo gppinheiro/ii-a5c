@@ -56,12 +56,17 @@ public class RCETFUN implements Runnable{
                     // Get values from codesys
                     number_order = opcR.getNOrderRight();
                     timeRS = opcR.getRightTimer();
+
                     // Work on DB
                     Transform tfs = db.getElapseTransform(number_order,"right");
-                    if (tfs!=null) {
-                        db.addEndTransform(tfs,"right",timeRS);
-                        db.deleteTransform(tfs,"ElapseTransform");
+                    if(timeRS!=0) {
+                        // Work on DB
+                        if (tfs!=null) {
+                            db.addEndTransform(tfs,"right",timeRS);
+                            db.deleteTransform(tfs,"ElapseTransform");
+                        }
                     }
+
                     // Statistics
                     db.updateMachinesStatistic(5, opcR.getMachine5Production());
                     db.updateMachinesStatistic(6, opcR.getMachine6Production());

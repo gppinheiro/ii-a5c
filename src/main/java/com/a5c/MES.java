@@ -39,7 +39,7 @@ public class MES {
         long initTime = System.currentTimeMillis();
 
         // Start UDP communication
-        new receiveUDP(udp,db,opc).start();
+        new receiveUDP(udp,db).start();
 
         // Start right side
         new RCTFUN(opc,db,initTime).start();

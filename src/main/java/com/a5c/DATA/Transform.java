@@ -15,6 +15,7 @@ public class Transform {
     private int ET;
     private int ExceptedTT;
     private String side;
+    private int PorProd;
 
     public Transform(int orderNumber, int from, int to, int quantity, int time, int maxDelay, int penalty) {
         this.orderNumber = orderNumber;
@@ -123,6 +124,20 @@ public class Transform {
 
     public void setSide(String side) {
         this.side = side;
+    }
+
+    public int getPorProd() {
+        return PorProd;
+    }
+
+    public void setPorProd(int porProd) {
+        PorProd = porProd;
+    }
+
+    public boolean isDifficult() {
+        if ( this.getFrom()==1 && ( this.getTo()==6 || this.getTo()==7 || this.getTo()==8 || this.getTo()==9  ) ) { return true; }
+        else if ( this.getFrom()==2 && ( this.getTo()==7 || this.getTo()==8 ) ) { return true; }
+        else { return false; }
     }
 
     @Override

@@ -14,20 +14,21 @@ public class readOPC {
 
     public int getRightTimer() {
         String s = (String) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.timer_r");
-        s = s.replace("T#","");
-        String[] sparts = s.split("s");
+        if (s.contains("T")) {
+            s = s.replace("T#","");
+            String[] sparts = s.split("s");
 
-        if (sparts[0].contains("m")) {
-            String[] mparts = sparts[0].split("m");
-            return Integer.parseInt(mparts[0])*60 + Integer.parseInt(mparts[1]);
+            if (sparts[0].contains("m")) {
+                String[] mparts = sparts[0].split("m");
+                return Integer.parseInt(mparts[0])*60 + Integer.parseInt(mparts[1]);
+            }
+            else {
+                return Integer.parseInt(sparts[0]);
+            }
         }
         else {
-            return Integer.parseInt(sparts[0]);
+            return 0;
         }
-    }
-
-    public int getCountRightProd() {
-        return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_right");
     }
 
     public int getCountRightPorProd() {
@@ -45,24 +46,25 @@ public class readOPC {
 
     public int getLeftTimer() {
         String s = (String) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.timer_l");
-        s = s.replace("T#","");
-        String[] sparts = s.split("s");
+        if (s.contains("T")) {
+            s = s.replace("T#","");
+            String[] sparts = s.split("s");
 
-        if (sparts[0].contains("m")) {
-            String[] mparts = sparts[0].split("m");
-            return Integer.parseInt(mparts[0])*60 + Integer.parseInt(mparts[1]);
+            if (sparts[0].contains("m")) {
+                String[] mparts = sparts[0].split("m");
+                return Integer.parseInt(mparts[0])*60 + Integer.parseInt(mparts[1]);
+            }
+            else {
+                return Integer.parseInt(sparts[0]);
+            }
         }
         else {
-            return Integer.parseInt(sparts[0]);
+            return 0;
         }
     }
 
     public int getNOrderLeft() {
         return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.norder_left");
-    }
-
-    public int getCountLeftProd() {
-        return (short) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.quant_left");
     }
 
     public int getCountLeftPorProd() {

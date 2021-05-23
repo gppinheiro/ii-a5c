@@ -3,8 +3,6 @@ package com.a5c.UDP;
 import com.a5c.DATA.Transform;
 import com.a5c.DATA.Unload;
 import com.a5c.DB.dbConnect;
-import com.a5c.OPC_UA.clientOPC_UA;
-import com.a5c.OPC_UA.readOPC;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -36,14 +34,12 @@ public class receiveUDP implements Runnable {
     private final long initTime;
     private int[][] ttExcepted;
     public boolean receivedT;
-    private final readOPC opcR;
 
-    public receiveUDP(clientUDP cl, dbConnect db, clientOPC_UA op) {
+    public receiveUDP(clientUDP cl, dbConnect db) {
         this.client = cl;
         this.db = db;
         this.initTime = System.currentTimeMillis();
         this.receivedT = false;
-        this.opcR = new readOPC(op);
         try {
             this.ttExcepted = db.getAllExceptedTransformationTime();
         } catch (SQLException throwables) {
@@ -364,42 +360,22 @@ public class receiveUDP implements Runnable {
 
                 //quantity1
                 attr = doc.createAttribute("Quantity1");
-                if(tfDOING[i].getSide().equals("right")) {
-                    attr.setValue(String.valueOf(opcR.getCountRightProd()));
-                }
-                else if(tfDOING[i].getSide().equals("left")) {
-                    attr.setValue(String.valueOf(opcR.getCountLeftProd()));
-                }
-                else {
-                    attr.setValue(String.valueOf(0));
-                }
-                OrderElem.setAttributeNode(attr);
-
-                //quantity2
-                attr = doc.createAttribute("Quantity2");
-                if(tfDOING[i].getSide().equals("right")) {
-                    attr.setValue(String.valueOf(tfDOING[i].getQuantity() - opcR.getCountRightProd() - opcR.getCountRightPorProd()));
-                }
-                else if(tfDOING[i].getSide().equals("left")) {
-                    attr.setValue(String.valueOf(tfDOING[i].getQuantity() - opcR.getCountLeftProd() - opcR.getCountLeftPorProd()));
-                }
-                else {
-                    attr.setValue(String.valueOf(0));
-                }
+                long ttNow = System.currentTimeMillis() - tfDOING[i].getST();
+                int q1;
+                if (tfDOING[i].getQuantity()==1) { q1=0; }
+                else { q1=db.getPiecesProd(tfDOING[i].getFrom(),tfDOING[i].getTo(),tfDOING[i].getQuantity(),ttNow); }
+                attr.setValue(String.valueOf(q1));
                 OrderElem.setAttributeNode(attr);
 
                 //quantity3
                 attr = doc.createAttribute("Quantity3");
-                if(tfDOING[i].getSide().equals("right")) {
-                    attr.setValue(String.valueOf(opcR.getCountRightPorProd()));
-                }
-                else if(tfDOING[i].getSide().equals("left")) {
-                    attr.setValue(String.valueOf(opcR.getCountLeftPorProd()));
-                }
-                else {
-                    attr.setValue(String.valueOf(0));
-                }
-                attr.setValue(String.valueOf(0));
+                int q3 = tfDOING[i].getPorProd();
+                attr.setValue(String.valueOf(q3));
+                OrderElem.setAttributeNode(attr);
+
+                //quantity2
+                attr = doc.createAttribute("Quantity2");
+                attr.setValue(String.valueOf(tfDOING[i].getQuantity()-q1-q3));
                 OrderElem.setAttributeNode(attr);
 
                 //time

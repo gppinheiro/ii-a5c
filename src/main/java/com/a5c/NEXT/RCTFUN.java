@@ -23,6 +23,7 @@ public class RCTFUN implements Runnable {
     private boolean unloads;
     private boolean transforms;
     private final long MESInitTime;
+    private int old_count;
 
     // Global Variables for State Machines
     // RS - Right Side
@@ -108,6 +109,15 @@ public class RCTFUN implements Runnable {
                 } else if (this.StateRS == 1 && opcR.getACKRight()) {
                     this.StateRS = 0;
                     opcS.sendRight(zeros);
+                } else if ( this.StateRS==1 && !opcR.getACKRight() ) {
+                    if ( tfs[0].isDifficult() ) {
+                        if( old_count > opcR.getCountRightPorProd() ) {
+                            old_count = opcR.getCountRightPorProd();
+                            db.updateElapseTransform( tfs[0].getOrderNumber() , opcR.getCountRightPorProd());
+                        }
+                    } else {
+                        db.updateElapseTransform( tfs[0].getOrderNumber() , opcR.getCountRightPorProd());
+                    }
                 }
 
             } catch (SQLException e) {
