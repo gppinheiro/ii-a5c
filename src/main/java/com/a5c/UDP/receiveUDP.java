@@ -76,10 +76,6 @@ public class receiveUDP implements Runnable {
                 String address = aux.substring(1, aux.indexOf(":"));
                 // Port
                 String port = aux.substring(aux.indexOf(":") + 1);
-                // TODO
-                System.out.println("Aux: "+aux);
-                System.out.println("Address: "+address);
-                System.out.println("Port: "+port);
                 // Port
                 portServer = Integer.parseInt(port);
                 // InetAddress with the before result
@@ -520,7 +516,7 @@ public class receiveUDP implements Runnable {
     public void sendXML(String file) {
         try {
             byte[] buffer = Files.readAllBytes(Paths.get(file));
-            packUDP = new DatagramPacket(buffer, buffer.length, addressServer, portServer);
+            packUDP = new DatagramPacket(buffer, buffer.length, addressServer, 54321);
             client.socket.send(packUDP);
         } catch (IOException e) {
             e.printStackTrace();
