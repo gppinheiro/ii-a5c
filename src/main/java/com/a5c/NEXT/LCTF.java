@@ -89,6 +89,7 @@ public class LCTF implements Runnable{
                     db.reading=false;
                 } else if ( this.StateLS==1 && opcR.getACKLeft() ) {
                     this.StateLS = 0;
+                    db.updateElapseTransform( tfs[0].getOrderNumber() , 0);
                     opcS.sendLeft(zeros);
                 } else if ( this.StateLS==1 && !opcR.getACKLeft() ) {
                     if ( tfs[0].isDifficult() ) {

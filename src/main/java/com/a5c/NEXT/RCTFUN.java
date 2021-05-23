@@ -108,6 +108,7 @@ public class RCTFUN implements Runnable {
                     db.reading=false;
                 } else if (this.StateRS == 1 && opcR.getACKRight()) {
                     this.StateRS = 0;
+                    db.updateElapseTransform( tfs[0].getOrderNumber() , 0);
                     opcS.sendRight(zeros);
                 } else if ( this.StateRS==1 && !opcR.getACKRight() ) {
                     if ( tfs[0].isDifficult() ) {
