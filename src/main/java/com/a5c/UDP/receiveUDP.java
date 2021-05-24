@@ -70,6 +70,7 @@ public class receiveUDP implements Runnable {
 
                 // SocketAddress - This value are need to send back to server some information, if only necessary.
                 SocketAddress SocketAddr = packUDP.getSocketAddress();
+
                 // Address + Port
                 String aux = SocketAddr.toString();
                 // Address
@@ -80,6 +81,10 @@ public class receiveUDP implements Runnable {
                 portServer = Integer.parseInt(port);
                 // InetAddress with the before result
                 addressServer = InetAddress.getByName(address);
+
+                System.out.println("Aux: "+aux);
+                System.out.println("Address: "+address);
+                System.out.println("Port: "+port);
 
                 // Receive Orders XML
                 byte[] buffer2 = Arrays.copyOfRange(packUDP.getData(), 0, packUDP.getLength());
@@ -516,7 +521,7 @@ public class receiveUDP implements Runnable {
     public void sendXML(String file) {
         try {
             byte[] buffer = Files.readAllBytes(Paths.get(file));
-            packUDP = new DatagramPacket(buffer, buffer.length, addressServer, 54321);
+            packUDP = new DatagramPacket(buffer, buffer.length, addressServer, portServer);
             client.socket.send(packUDP);
         } catch (IOException e) {
             e.printStackTrace();
