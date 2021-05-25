@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test 2 things">
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test all">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TEST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TEST.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,14 +222,10 @@
       <workItem from="1621802708981" duration="1931000" />
       <workItem from="1621843926489" duration="633000" />
       <workItem from="1621951993241" duration="1113000" />
-      <workItem from="1621956114175" duration="329000" />
-    </task>
-    <task id="LOCAL-00110" summary="test final xml">
-      <created>1619375079002</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1619375079002</updated>
+      <workItem from="1621956114175" duration="834000" />
+      <workItem from="1621963095883" duration="651000" />
+      <workItem from="1621976575270" duration="177000" />
+      <workItem from="1621982301136" duration="1928000" />
     </task>
     <task id="LOCAL-00111" summary="test penalty">
       <created>1619382054729</created>
@@ -563,7 +563,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621952205339</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="test all">
+      <created>1621956612043</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1621956612043</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +589,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test diff" />
     <MESSAGE value="clean error" />
     <MESSAGE value="new way of thinking" />
     <MESSAGE value="implement right side" />
@@ -607,6 +613,7 @@
     <MESSAGE value="test this" />
     <MESSAGE value="some stuff" />
     <MESSAGE value="test 2 things" />
-    <option name="LAST_COMMIT_MESSAGE" value="test 2 things" />
+    <MESSAGE value="test all" />
+    <option name="LAST_COMMIT_MESSAGE" value="test all" />
   </component>
 </project>

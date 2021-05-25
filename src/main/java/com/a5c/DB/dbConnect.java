@@ -137,6 +137,14 @@ public class dbConnect {
         return rs.getInt(1);
     }
 
+    public int HowManyAreDoing(String side) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"ElapseTransform\" WHERE side=?;");
+        s.setString(1,side);
+        ResultSet rs = s.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
+
     public Transform[] getTransform() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Transform\";");
         ResultSet rs = s.executeQuery();
@@ -424,27 +432,41 @@ public class dbConnect {
     }
 
     public int getPenaltyExcepted(int from, int to, int quantity, int maxDelay) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("SELECT tt, diff FROM ii.\"ExceptedPenalty\" WHERE \"from\"=? AND \"to\"=?;");
+        PreparedStatement s = this.conn.prepareStatement("SELECT tt FROM \"ExceptedTT\" WHERE \"from\"=? AND \"to\"=?;");
         s.setInt(1,from);
         s.setInt(2,to);
+
         ResultSet rs = s.executeQuery();
         rs.next();
+
         int tt = rs.getInt(1);
-        int diff = rs.getInt(2);
-        return Math.max((tt + diff*(quantity-1) -maxDelay)/50,0);
+
+        int res;
+        if (quantity>=5)
+            res = ( (quantity/4)*(tt+2*3) + ( tt + 2*( quantity-4*(quantity/4) ) ) - maxDelay)/50;
+        else
+            res = ((tt+2*(quantity-1) ) - maxDelay)/50;
+
+        return Math.max(res,0);
     }
 
     public int getPiecesProd(int from, int to, int quantity, long time) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("SELECT tt, \"diffDP\" FROM ii.\"ExceptedPenalty\" WHERE \"from\"=? AND \"to\"=?;");
+        PreparedStatement s = this.conn.prepareStatement("SELECT tt FROM \"ExceptedTT\" WHERE \"from\"=? AND \"to\"=?;");
         s.setInt(1,from);
         s.setInt(2,to);
+
         ResultSet rs = s.executeQuery();
         rs.next();
         int tt = rs.getInt(1);
-        double diffDP = rs.getDouble(2);
 
+        int eTT;
         for(int i=0; i<quantity; i++) {
-            if(time < (tt+diffDP*(i)) ) { return i; }
+            if (i>=5)
+                eTT = (i/4)*(tt+2*3) + tt + 2*(i-4*(i/4));
+            else
+                eTT = tt + 2*(i-1);
+
+            if(time < eTT ) { return i; }
         }
 
         return quantity;
@@ -453,7 +475,7 @@ public class dbConnect {
     public int[][] getAllExceptedTransformationTime() throws SQLException {
         int[][] ep = new int[7][10];
 
-        PreparedStatement s = this.conn.prepareStatement("SELECT \"from\", \"to\", tt FROM ii.\"ExceptedPenalty\";");
+        PreparedStatement s = this.conn.prepareStatement("SELECT \"from\", \"to\", tt FROM \"ExceptedTT\";");
         ResultSet rs = s.executeQuery();
 
         while (rs.next()) {

@@ -37,8 +37,6 @@ public class TEST {
 
     }
 
-
-
     public static int TestIfGoodOrNot(dbConnect db) {
         try {
             Transform[] tfs = db.getTransform();
@@ -397,21 +395,6 @@ public class TEST {
 
     }
 
-    public static void getExceptedPenalty(dbConnect db) throws SQLException {
-        int[][] ep = new int[7][10];
-
-        PreparedStatement s = db.getConn().prepareStatement("SELECT \"from\", \"to\", tt FROM ii.\"ExceptedPenalty\";");
-        ResultSet rs = s.executeQuery();
-
-        while (rs.next()) {
-            ep[rs.getInt(1)][rs.getInt(2)]=rs.getInt(3);
-        }
-
-        for (int[] i: ep) {
-            System.out.println(Arrays.toString(i));
-        }
-    }
-
     public static int getTimer(String s) {
         if (!s.equals("")) {
             s = s.replace("T#","");
@@ -440,7 +423,6 @@ public class TEST {
         //db.deleteTransform("ElapseTransform");
         //db.addUnload(new Unload(1,1,2,4));
         //db.getTransform();
-        System.out.println(getTimer(""));
 
     }
 }
