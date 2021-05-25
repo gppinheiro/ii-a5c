@@ -65,7 +65,7 @@ public class RCTFUN implements Runnable {
                     db.reading = true;
                     this.tfs = db.getTransform();
 
-                    long nowTime = System.currentTimeMillis();
+                    /*long nowTime = System.currentTimeMillis();
 
                     Transform temp;
                     tfs[0].setRealMaxDelay((int) (tfs[0].getMaxDelay() - (nowTime - MESInitTime) / 1000) - tfs[0].getExceptedTT());
@@ -78,7 +78,7 @@ public class RCTFUN implements Runnable {
                                 tfs[j - 1] = temp;
                             }
                         }
-                    }
+                    }*/
                 } else {
                     unloads = false;
                     transforms = false;

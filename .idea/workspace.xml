@@ -7,7 +7,8 @@
     <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="test 2 things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/UDP/receiveUDP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,14 +217,8 @@
       <workItem from="1621777486467" duration="9767000" />
       <workItem from="1621802708981" duration="1931000" />
       <workItem from="1621843926489" duration="633000" />
-      <workItem from="1621951993241" duration="161000" />
-    </task>
-    <task id="LOCAL-00109" summary="test final xml">
-      <created>1619374483636</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1619374483636</updated>
+      <workItem from="1621951993241" duration="1113000" />
+      <workItem from="1621956114175" duration="329000" />
     </task>
     <task id="LOCAL-00110" summary="test final xml">
       <created>1619375079002</created>
@@ -561,7 +556,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621844348872</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="test 2 things">
+      <created>1621952205338</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1621952205339</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

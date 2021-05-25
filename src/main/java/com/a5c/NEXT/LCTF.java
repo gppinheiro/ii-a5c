@@ -58,7 +58,7 @@ public class LCTF implements Runnable{
                     // Penalty - Se for grande, fazer esta primeiro
                     // MaxDelay - Se for pequeno, fazer esta primeiro
                     // Sort tfs vector with base on MaxDelay and Penalty
-                    long nowTime = System.currentTimeMillis();
+                    /*long nowTime = System.currentTimeMillis();
                     Transform temp;
                     tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[0].getExceptedTT() );
                     for (int i = 1; i < tfs.length; i++) {
@@ -70,7 +70,7 @@ public class LCTF implements Runnable{
                                 tfs[j-1] = temp;
                             }
                         }
-                    }
+                    }*/
                 }
                 else {
                     transforms = false;
