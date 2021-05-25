@@ -82,10 +82,6 @@ public class receiveUDP implements Runnable {
                 // InetAddress with the before result
                 addressServer = InetAddress.getByName(address);
 
-                System.out.println("Aux: "+aux);
-                System.out.println("Address: "+address);
-                System.out.println("Port: "+port);
-
                 // Receive Orders XML
                 byte[] buffer2 = Arrays.copyOfRange(packUDP.getData(), 0, packUDP.getLength());
                 Files.write(Paths.get("receiveOrdersXML.xml"), buffer2);

@@ -22,16 +22,12 @@ public class MES {
 
         // See if there is any ElapseTransform to do again
         try {
-            if (db.ElapseTransformLength()!=0) {
-                Transform[] tfDOING = db.getElapseTransform();
-                for (Transform tf: tfDOING) {
-                    db.addTransform(tf);
-                }
+            if (db.ElapseTransformLength()==0) {
+                // Reset all tables
+                db.resetMachinesStatistic();
+                db.resetPushersStatistic();
+                db.updateCurrentStores(opcR.getWareHouse());
             }
-            // Reset all tables
-            db.resetMachinesStatistic();
-            db.resetPushersStatistic();
-            db.updateCurrentStores(opcR.getWareHouse());
         } catch (SQLException sql) {
             sql.printStackTrace();
         }
