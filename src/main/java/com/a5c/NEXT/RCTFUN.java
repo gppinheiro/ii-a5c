@@ -108,16 +108,17 @@ public class RCTFUN implements Runnable {
                     db.reading=false;
                 } else if (this.StateRS == 1 && opcR.getACKRight()) {
                     this.StateRS = 0;
-                    db.updateElapseTransform( tfs[0].getOrderNumber() , 0);
                     opcS.sendRight(zeros);
+                    db.updateElapseTransform( tfs[0].getOrderNumber() , 0);
                 } else if ( this.StateRS==1 && !opcR.getACKRight() ) {
+                    int porProd = opcR.getCountRightPorProd();
                     if ( tfs[0].isDifficult() ) {
-                        if( old_count > opcR.getCountRightPorProd() ) {
-                            old_count = opcR.getCountRightPorProd();
-                            db.updateElapseTransform( tfs[0].getOrderNumber() , opcR.getCountRightPorProd());
+                        if( old_count > porProd ) {
+                            old_count = porProd;
+                            db.updateElapseTransform( tfs[0].getOrderNumber() , porProd);
                         }
                     } else {
-                        db.updateElapseTransform( tfs[0].getOrderNumber() , opcR.getCountRightPorProd());
+                        db.updateElapseTransform( tfs[0].getOrderNumber() , porProd);
                     }
                 }
 

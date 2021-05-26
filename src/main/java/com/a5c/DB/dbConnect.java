@@ -142,6 +142,7 @@ public class dbConnect {
         s.setString(1,side);
         ResultSet rs = s.executeQuery();
         rs.next();
+        System.out.println("side: "+side+" val: "+rs.getInt(1));
         return rs.getInt(1);
     }
 

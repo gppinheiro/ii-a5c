@@ -248,13 +248,10 @@ public class receiveUDP implements Runnable {
             Element CSelem = doc.createElement("Order_Schedule");
             doc.appendChild(CSelem);
 
-            Transform[] tfTODO = db.getTransform();
-            Transform[] tfDOING = db.getElapseTransform();
-            Transform[] tfDONE = db.getEndTransform();
-
             // pi = Penalty Incurred or Excepted
             int pi;
 
+            Transform[] tfTODO = db.getTransform();
             for (int i=0; i< tfTODO.length ; i++) {
                 //<Order/>
                 Element OrderElem = doc.createElement("Order");
@@ -337,6 +334,7 @@ public class receiveUDP implements Runnable {
 
             }
 
+            Transform[] tfDOING = db.getElapseTransform();
             for (int i=0; i< tfDOING.length ; i++) {
                 //<Order/>
                 Element OrderElem = doc.createElement("Order");
@@ -373,7 +371,9 @@ public class receiveUDP implements Runnable {
 
                 //quantity3
                 attr = doc.createAttribute("Quantity3");
-                int q3 = tfDOING[i].getPorProd();
+                int q3;
+                if (q1!=0) { q3 = 0; }
+                else { q3 = tfDOING[i].getPorProd(); }
                 attr.setValue(String.valueOf(q3));
                 OrderElem.setAttributeNode(attr);
 
@@ -424,6 +424,7 @@ public class receiveUDP implements Runnable {
 
             }
 
+            Transform[] tfDONE = db.getEndTransform();
             for (Transform transform : tfDONE) {
                 //<Order/>
                 Element OrderElem = doc.createElement("Order");
