@@ -92,13 +92,15 @@ public class LCTF implements Runnable{
                     db.updateElapseTransform( tfs[0].getOrderNumber() , 0);
                     opcS.sendLeft(zeros);
                 } else if ( this.StateLS==1 && !opcR.getACKLeft() ) {
+                    int porProd = opcR.getCountLeftPorProd();
+                    System.out.println(porProd);
                     if ( tfs[0].isDifficult() ) {
-                        if( old_count > opcR.getCountLeftPorProd() ) {
-                            old_count = opcR.getCountLeftPorProd();
-                            db.updateElapseTransform( tfs[0].getOrderNumber() , opcR.getCountLeftPorProd());
+                        if( old_count > porProd ) {
+                            old_count = porProd;
+                            db.updateElapseTransform( tfs[0].getOrderNumber() , porProd);
                         }
                     } else {
-                        db.updateElapseTransform( tfs[0].getOrderNumber() , opcR.getCountLeftPorProd());
+                        db.updateElapseTransform( tfs[0].getOrderNumber() , porProd);
                     }
                 }
 
