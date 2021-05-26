@@ -443,7 +443,7 @@ public class dbConnect {
 
         int res;
         if (quantity>=5)
-            res = ( (quantity/4)*(tt+2*3) + ( tt + 2*( quantity-4*(quantity/4) ) ) - maxDelay)/50;
+            res = ( (quantity/4)*(tt+2*3) + ( tt + 2*(quantity%4) ) - maxDelay)/50;
         else
             res = ((tt+2*(quantity-1) ) - maxDelay)/50;
 
@@ -462,7 +462,7 @@ public class dbConnect {
         int eTT;
         for(int i=0; i<quantity; i++) {
             if (i>=5)
-                eTT = (i/4)*(tt+2*3) + tt + 2*(i-4*(i/4));
+                eTT = (i/4)*(tt+2*3) + tt + 2*(quantity%4);
             else
                 eTT = tt + 2*(i-1);
 
