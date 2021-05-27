@@ -4,8 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="limit queue and penalty - need test to prove this is working">
+    <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="new way">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/RCS.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Transform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Unload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DATA/Unload.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCETF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCETF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/LCTF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCETFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCETFUN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/NEXT/RCTFUN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/clientOPC_UA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/OPC_UA/readOPC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

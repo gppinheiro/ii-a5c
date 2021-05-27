@@ -3,15 +3,17 @@ package com.a5c.OPC_UA;
 public class readOPC {
     private final clientOPC_UA client;
 
+    // Constructor.
     public readOPC(clientOPC_UA cl) {
         this.client = cl;
     }
 
-    // Right Side
+    // Right Side ACK.
     public boolean getACKRight() {
         return (boolean) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.ack_right");
     }
 
+    // Get Right Transformations Time.
     public int getRightTimer() {
         String s = (String) client.getValue("|var|CODESYS Control Win V3 x64.Application.GVL.timer_r");
         if (s.contains("T")) {

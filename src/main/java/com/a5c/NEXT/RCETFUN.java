@@ -27,6 +27,7 @@ public class RCETFUN implements Runnable{
     private int StateP2;
     private int StateP3;
 
+    // Constructor.
     public RCETFUN(clientOPC_UA cl, dbConnect dbc) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
@@ -39,6 +40,7 @@ public class RCETFUN implements Runnable{
         this.StateP3=0;
     }
 
+    // Init thread.
     public void start() {
         if(thrRCETFUN ==null) {
             thrRCETFUN = new Thread(this);
@@ -46,6 +48,7 @@ public class RCETFUN implements Runnable{
         }
     }
 
+    // ALWAYS RUNNING
     @Override
     public void run() {
         while(true) {
@@ -112,4 +115,5 @@ public class RCETFUN implements Runnable{
             }
         }
     }
+
 }

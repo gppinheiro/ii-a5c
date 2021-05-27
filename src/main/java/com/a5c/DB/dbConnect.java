@@ -14,12 +14,14 @@ import java.sql.*;
  * @author Group A5_C.
  */
 public class dbConnect {
+
     /**
      * Store Heroku URI: User + Password + Host + Port + Database.
      * Private - Nobody needs to know what URI we are using.
      * Static and Final - Never changes.
      */
     private static final String heroku_url="postgres://vkgvpttoqwwjti:241f4c5e49e1ff17e84ecab4bbe8c63ead0a80d1684405a3c5fa8542f36de5c0@ec2-54-74-35-87.eu-west-1.compute.amazonaws.com:5432/d2j57fljq86oa0";
+
     /**
      * Store DB Connection.
      * Private - Nobody needs to know the db connection.
@@ -27,7 +29,6 @@ public class dbConnect {
     private Connection conn = null;
     private final Timestamp initTime;
     private final readOPC opcR;
-
     public boolean reading;
 
     public Connection getConn() {
@@ -64,6 +65,7 @@ public class dbConnect {
         return DriverManager.getConnection(dbUrl, username, password);
     }
 
+    // Method to add a Transform on DB.
     public void addTransform(Transform tf) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Transform\" VALUES (?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
@@ -79,6 +81,7 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to add a Elapse Transform on DB.
     public Transform addElapseTransform(Transform tf, String side) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
         s.setInt(1,tf.getOrderNumber());
@@ -100,6 +103,7 @@ public class dbConnect {
         return tf;
     }
 
+    // Method to add an End Transform on DB.
     public void addEndTransform(Transform tf, String side, int ft) throws SQLException {
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         tf.setET((int) (ts.getTime()-initTime.getTime())/1000);
@@ -123,6 +127,7 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to know Transform Table Length.
     public int TransformLength() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Transform\";");
         ResultSet rs = s.executeQuery();
@@ -130,6 +135,7 @@ public class dbConnect {
         return rs.getInt(1);
     }
 
+    // Method to know Elapse Transform Table Length.
     public int ElapseTransformLength() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"ElapseTransform\";");
         ResultSet rs = s.executeQuery();
@@ -137,6 +143,7 @@ public class dbConnect {
         return rs.getInt(1);
     }
 
+    // Method to know how many orders PLC is doing in the same time at a determine side.
     public int HowManyAreDoing(String side) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"ElapseTransform\" WHERE side=?;");
         s.setString(1,side);
@@ -145,14 +152,12 @@ public class dbConnect {
         return rs.getInt(1);
     }
 
+    // Method to get all rows from Transform Table.
     public Transform[] getTransform() throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Transform\";");
-        ResultSet rs = s.executeQuery();
-        rs.next();
-        Transform[] Transforms = new Transform[rs.getInt(1)];
+        Transform[] Transforms = new Transform[TransformLength()];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"timeMES\", \"TransformTimeExcepted\" FROM ii.\"Transform\";");
-        rs = s.executeQuery();
+        PreparedStatement s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, \"timeMES\", \"TransformTimeExcepted\" FROM ii.\"Transform\";");
+        ResultSet rs = s.executeQuery();
 
         int i=0;
         while (rs.next() && i<Transforms.length) {
@@ -165,14 +170,12 @@ public class dbConnect {
         return Transforms;
     }
 
+    // Method to get all rows from Elapse Transform Table.
     public Transform[] getElapseTransform() throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"ElapseTransform\";");
-        ResultSet rs = s.executeQuery();
-        rs.next();
-        Transform[] Transforms = new Transform[rs.getInt(1)];
+        Transform[] Transforms = new Transform[ElapseTransformLength()];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"side\", \"PorProd\" FROM ii.\"ElapseTransform\";");
-        rs = s.executeQuery();
+        PreparedStatement s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"side\", \"PorProd\" FROM ii.\"ElapseTransform\";");
+        ResultSet rs = s.executeQuery();
 
         int i=0;
         while (rs.next() && i<Transforms.length) {
@@ -187,6 +190,7 @@ public class dbConnect {
         return Transforms;
     }
 
+    // Method to get from Elapse Transform Table a specific order on the side right or left.
     public Transform getElapseTransform(int number_order, String side) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT \"OrderNumber\", \"from\", \"to\", quantity, time, \"MaxDelay\", penalty, st, \"timeMES\", \"PorProd\"  FROM ii.\"ElapseTransform\" WHERE \"OrderNumber\"=? AND side=?;");
         s.setInt(1,number_order);
@@ -205,6 +209,7 @@ public class dbConnect {
         else return null;
     }
 
+    // Method to update Elapse Transform Table.
     public void updateElapseTransform(int nOrder, int val) throws SQLException {
         PreparedStatement s =  this.conn.prepareStatement("UPDATE ii.\"ElapseTransform\" SET \"PorProd\"=? WHERE \"OrderNumber\"=?;");
         s.setInt(1,val);
@@ -212,6 +217,7 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to get all rows from End Transform Table.
     public Transform[] getEndTransform() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"EndTransform\";");
         ResultSet rs = s.executeQuery();
@@ -234,6 +240,7 @@ public class dbConnect {
         return Transforms;
     }
 
+    // Method to delete a transform from Transform or Elapse Transform tables.
     public void deleteTransform(Transform tf, String table_name) throws SQLException {
         PreparedStatement s = null;
         if (table_name.equals("Transform")) {
@@ -246,6 +253,7 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to add a new unload on DB.
     public void addUnload(Unload un) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"Unload\" VALUES (?,?,?,?,?);");
         s.setInt(1,un.getOrderNumber());
@@ -256,6 +264,7 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to add a new end unload on DB.
     public void addEndUnload(Unload un) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"EndUnload\" VALUES (?,?,?,?,?);");
         s.setInt(1,un.getOrderNumber());
@@ -266,6 +275,7 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to get Unload Table Lenght.
     public int UnloadLength() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Unload\";");
         ResultSet rs = s.executeQuery();
@@ -273,14 +283,12 @@ public class dbConnect {
         return rs.getInt(1);
     }
 
+    // Method to get all rows from Unload Table.
     public Unload[] getUnload() throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.\"Unload\";");
-        ResultSet rs = s.executeQuery();
-        rs.next();
-        Unload[] Unloads = new Unload[rs.getInt(1)];
+        Unload[] Unloads = new Unload[UnloadLength()];
 
-        s = this.conn.prepareStatement("SELECT \"OrderNumber\", type, destination, quantity FROM ii.\"Unload\";");
-        rs = s.executeQuery();
+        PreparedStatement s = this.conn.prepareStatement("SELECT \"OrderNumber\", type, destination, quantity FROM ii.\"Unload\";");
+        ResultSet rs = s.executeQuery();
 
         int i=0;
         while (rs.next()) {
@@ -291,6 +299,13 @@ public class dbConnect {
         return Unloads;
     }
 
+    // Method to delete an unload from Unload Table.
+    public void deleteUnload(Unload un) throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("DELETE FROM ii.\"Unload\" WHERE \"OrderNumber\"="+un.getOrderNumber()+";");
+        s.executeUpdate();
+    }
+
+    // Method to get all rows from Warehouse Table.
     public Integer[] getCurrentStores() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT type, quantity FROM ii.\"CurrentStores\";");
         ResultSet rs = s.executeQuery();
@@ -304,11 +319,7 @@ public class dbConnect {
         return pieces;
     }
 
-    public void deleteUnload(Unload un) throws SQLException {
-        PreparedStatement s = this.conn.prepareStatement("DELETE FROM ii.\"Unload\" WHERE \"OrderNumber\"="+un.getOrderNumber()+";");
-        s.executeUpdate();
-    }
-
+    // Method to update All values on WareHouse.
     public void updateCurrentStores(int[] wv) throws SQLException {
         PreparedStatement s;
         for(int i=0; i<wv.length; i++) {
@@ -318,6 +329,7 @@ public class dbConnect {
         }
     }
 
+    // Method to update All values on WareHouse.
     public void updateCurrentStores() throws SQLException {
         int[] wv = opcR.getWareHouse();
         PreparedStatement s;
@@ -328,7 +340,8 @@ public class dbConnect {
         }
     }
 
-    // T1: 15 15
+    // To us:
+    // T1: P1-P2 15
     // T2: P2-P3 15
     // T3: P3-P4 15
     // T4: P4-P5 15
@@ -336,6 +349,8 @@ public class dbConnect {
     // T6: P6-P7 30
     // T7: P6-P8 15
     // T8: P5-P9 30
+
+    // Method to update Machines Statistics.
     public void updateMachinesStatistic (int id, int[] values) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"MachinesStatistic\" SET t1=?,t2=?,t3=?,t4=?,t5=?,t6=?,t7=?,t8=?,total=? WHERE machine=?;");
         s.setInt(1,values[0]);
@@ -376,10 +391,11 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to reset Machines Statistics to 0.
     public void resetMachinesStatistic() throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"MachinesStatistic\" SET t1=0,t2=0,t3=0,t4=0,t5=0,t6=0,t7=0,t8=0,total=0 WHERE machine=?;");
         PreparedStatement ss = this.conn.prepareStatement("UPDATE ii.\"MachinesTimes\" SET t1=0,t2=0,t3=0,t4=0,t5=0,t6=0,t7=0,t8=0,total=0 WHERE machine=?;");
-        String str = null;
+        String str;
         for(int id=1; id<9; id++) {
             if (id==1) { str="LM1"; }
             else if (id==2) { str="LM2"; }
@@ -388,7 +404,7 @@ public class dbConnect {
             else if (id==5) { str="RM1"; }
             else if (id==6) { str="RM2"; }
             else if (id==7) { str="RM3"; }
-            else if (id==8) { str="RM4"; }
+            else { str="RM4"; }
             s.setString(1,str);
             ss.setString(1,str);
             s.executeUpdate();
@@ -396,6 +412,7 @@ public class dbConnect {
         }
     }
 
+    // Method to update Pushers Statistics.
     public void updatePushersStatistic (int id, int[] values) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"PushersStatistic\" SET p1=?,p2=?,p3=?,p4=?,p5=?,p6=?,p7=?,p8=?,p9=?,total=? WHERE pusher=?;");
         s.setInt(1,values[0]);
@@ -418,19 +435,21 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to reset Pushers Statistics to 0.
     public void resetPushersStatistic () throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("UPDATE ii.\"PushersStatistic\" SET p1=0,p2=0,p3=0,p4=0,p5=0,p6=0,p7=0,p8=0,p9=0,total=0 WHERE pusher=?;");
 
-        String str = null;
+        String str;
         for (int id=1; id<4; id++) {
             if (id==1) { str="Pusher1"; }
             else if (id==2) { str="Pusher2"; }
-            else if (id==3) { str="Pusher3"; }
+            else { str="Pusher3"; }
             s.setString(1,str);
             s.executeUpdate();
         }
     }
 
+    // Method to get the Penalty Excepted from the Order from - to with a x quantity and y maxDelay
     public int getPenaltyExcepted(int from, int to, int quantity, int maxDelay) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT tt FROM \"ExceptedTT\" WHERE \"from\"=? AND \"to\"=?;");
         s.setInt(1,from);
@@ -450,6 +469,7 @@ public class dbConnect {
         return Math.max(res,0);
     }
 
+    // Method to approximate the pieces produced until the time.
     public int getPiecesProd(int from, int to, int quantity, long time) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("SELECT tt FROM \"ExceptedTT\" WHERE \"from\"=? AND \"to\"=?;");
         s.setInt(1,from);
@@ -472,6 +492,7 @@ public class dbConnect {
         return quantity;
     }
 
+    // Method to get all Excepted TT
     public int[][] getAllExceptedTransformationTime() throws SQLException {
         int[][] ep = new int[7][10];
 

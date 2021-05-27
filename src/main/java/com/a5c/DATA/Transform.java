@@ -118,10 +118,6 @@ public class Transform {
         ExceptedTT = exceptedTT;
     }
 
-    public String getSide() {
-        return side;
-    }
-
     public void setSide(String side) {
         this.side = side;
     }
@@ -136,10 +132,10 @@ public class Transform {
 
     public boolean isDifficult() {
         if ( this.getFrom()==1 && ( this.getTo()==6 || this.getTo()==7 || this.getTo()==8 || this.getTo()==9  ) ) { return true; }
-        else if ( this.getFrom()==2 && ( this.getTo()==7 || this.getTo()==8 ) ) { return true; }
-        else { return false; }
+        else return this.getFrom() == 2 && (this.getTo() == 7 || this.getTo() == 8);
     }
 
+    // Help to debug
     @Override
     public String toString() {
         return "Transform{" +
@@ -158,4 +154,5 @@ public class Transform {
                 ", ExceptedTT=" + ExceptedTT +
                 '}';
     }
+
 }

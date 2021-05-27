@@ -1,6 +1,5 @@
 package com.a5c;
 
-import com.a5c.DATA.Transform;
 import com.a5c.DB.dbConnect;
 import com.a5c.NEXT.LCETF;
 import com.a5c.NEXT.LCTF;
@@ -13,8 +12,10 @@ import com.a5c.UDP.receiveUDP;
 
 import java.sql.SQLException;
 
+// IF YOU ARE TESTING IT, PLEASE WAIT 35 SECONDS!!
 public class MES {
     public static void main(final String[] args) throws InterruptedException {
+        // START EVERYTHING WE NEED
         clientOPC_UA opc = new clientOPC_UA();
         clientUDP udp = new clientUDP();
         readOPC opcR = new readOPC(opc);
@@ -22,6 +23,8 @@ public class MES {
 
         // See if there is any ElapseTransform to do again
         try {
+            // If we don't have anything in Elapse Transform, it means that we can init everything.
+            // If we have, it is a restart, so we don't touch in anything.
             if (db.ElapseTransformLength()==0) {
                 // Reset all tables
                 db.resetMachinesStatistic();
@@ -41,7 +44,7 @@ public class MES {
         new RCTFUN(opc,db,initTime).start();
         new RCETFUN(opc,db).start();
 
-        // Then Start left side
+        // Then Start left side, giving 2500ms delay. We want them to be independent.
         Thread.sleep(2500);
         while(db.reading) {
             // Direito vai ler, portanto espera

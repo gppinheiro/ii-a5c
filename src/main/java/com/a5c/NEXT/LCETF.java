@@ -24,6 +24,7 @@ public class LCETF implements Runnable{
     // LS - Left Side
     private int StateLS;
 
+    // Constructor.
     public LCETF(clientOPC_UA cl, dbConnect dbc) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
@@ -33,6 +34,7 @@ public class LCETF implements Runnable{
         this.number_order = 0;
     }
 
+    // Init thread.
     public void start() {
         if(thrLCETF ==null) {
             thrLCETF = new Thread(this);
@@ -40,6 +42,7 @@ public class LCETF implements Runnable{
         }
     }
 
+    // ALWAYS RUNNING
     @Override
     public void run() {
         while(true) {
@@ -78,4 +81,5 @@ public class LCETF implements Runnable{
             }
         }
     }
+
 }

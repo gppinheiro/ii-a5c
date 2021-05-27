@@ -11,7 +11,6 @@ import org.eclipse.milo.opcua.stack.core.types.enumerated.TimestampsToReturn;
 import java.util.concurrent.ExecutionException;
 
 public class clientOPC_UA {
-
     private OpcUaClient clientOPC;
 
     // Probably we will need to change Node Identifier, endpointURL and nsIndex -> UA Expert shows

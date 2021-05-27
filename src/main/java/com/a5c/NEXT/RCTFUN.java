@@ -30,6 +30,7 @@ public class RCTFUN implements Runnable {
     private int StateRS;
     private int StateUnload;
 
+    // Constructor.
     public RCTFUN(clientOPC_UA cl, dbConnect dbc, long ts) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
@@ -41,6 +42,7 @@ public class RCTFUN implements Runnable {
         this.MESInitTime = ts;
     }
 
+    // Init thread.
     public void start() {
         if(thrRCTFUN==null) {
             thrRCTFUN = new Thread(this);
@@ -48,6 +50,7 @@ public class RCTFUN implements Runnable {
         }
     }
 
+    // ALWAYS RUNNING
     @Override
     public void run() {
         while (true) {
@@ -127,4 +130,5 @@ public class RCTFUN implements Runnable {
             }
         }
     }
+
 }

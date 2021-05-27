@@ -27,6 +27,7 @@ public class LCTF implements Runnable{
     // LS - Left Side
     private int StateLS;
 
+    // Constructor.
     public LCTF(clientOPC_UA cl, dbConnect dbc, long ts) {
         this.db = dbc;
         this.opcR = new readOPC(cl);
@@ -36,6 +37,7 @@ public class LCTF implements Runnable{
         this.transforms = false;
     }
 
+    // Init thread.
     public void start() {
         if(thrLCTF ==null) {
             thrLCTF = new Thread(this);
@@ -43,6 +45,7 @@ public class LCTF implements Runnable{
         }
     }
 
+    // ALWAYS RUNNING
     @Override
     public void run() {
         // RUN Forever
@@ -108,4 +111,5 @@ public class LCTF implements Runnable{
             }
         }
     }
+
 }
