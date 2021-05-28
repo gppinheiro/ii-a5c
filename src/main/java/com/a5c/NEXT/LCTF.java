@@ -54,42 +54,20 @@ public class LCTF implements Runnable{
                 // Get DB
                 if ( !opcR.getACKLeft() && db.TransformLength()!=0 && !db.reading && db.HowManyAreDoing("left")<=3 ) {
                     transforms = true;
-                    db.reading = true;
-                    tfs = db.getTransform();
-
-                    // Prioridade:
-                    // Penalty - Se for grande, fazer esta primeiro
-                    // MaxDelay - Se for pequeno, fazer esta primeiro
-                    // Sort tfs vector with base on MaxDelay and Penalty
-                    long nowTime = System.currentTimeMillis();
-                    Transform temp;
-                    tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[0].getExceptedTT() );
-                    for (int i = 1; i < tfs.length; i++) {
-                        tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[i].getExceptedTT() );
-                        for (int j = i; j > 0; j--) {
-                            if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
-                                temp = tfs[j];
-                                tfs[j] = tfs[j - 1];
-                                tfs[j-1] = temp;
-                            }
-                        }
-                    }
+                    tfs = db.getAllTransformsSort(MESInitTime);
                 }
                 else {
                     transforms = false;
-                    db.reading = false;
                 }
 
                 // Left Side Transform
                 // Machine to control this transformation
                 if ( this.StateLS==0 && !opcR.getACKLeft() && transforms ) {
-                    db.reading=true;
                     this.StateLS = 1;
                     opcS.sendLeft(tfs[0].getPath());
                     tfs[0] = db.addElapseTransform(tfs[0],"left");
                     db.deleteTransform(tfs[0],"Transform");
                     old_count = tfs[0].getQuantity();
-                    db.reading=false;
                 } else if ( this.StateLS==1 && opcR.getACKLeft() ) {
                     this.StateLS = 0;
                     opcS.sendLeft(zeros);

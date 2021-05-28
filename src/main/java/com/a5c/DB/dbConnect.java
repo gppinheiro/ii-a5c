@@ -81,6 +81,33 @@ public class dbConnect {
         s.executeUpdate();
     }
 
+    // Method to get all Transforms Sorted.
+    public Transform[] getAllTransformsSort(long MESInitTime) throws SQLException {
+        this.reading = true;
+        Transform[] tfs = getTransform();
+
+        // Prioridade:
+        // Penalty - Se for grande, fazer esta primeiro
+        // MaxDelay - Se for pequeno, fazer esta primeiro
+        // Sort tfs vector with base on MaxDelay and Penalty
+        long nowTime = System.currentTimeMillis();
+        Transform temp;
+        tfs[0].setRealMaxDelay((int) ( tfs[0].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[0].getExceptedTT() );
+        for (int i = 1; i < tfs.length; i++) {
+            tfs[i].setRealMaxDelay((int) ( tfs[i].getMaxDelay() - ( nowTime - MESInitTime )/1000 ) - tfs[i].getExceptedTT() );
+            for (int j = i; j > 0; j--) {
+                if ((tfs[j].getRealMaxDelay() < tfs[j - 1].getRealMaxDelay()) || (tfs[j].getRealMaxDelay() == tfs[j - 1].getRealMaxDelay() && tfs[j].getPenalty() > tfs[j - 1].getPenalty())) {
+                    temp = tfs[j];
+                    tfs[j] = tfs[j - 1];
+                    tfs[j-1] = temp;
+                }
+            }
+        }
+
+        this.reading = false;
+        return tfs;
+    }
+
     // Method to add a Elapse Transform on DB.
     public Transform addElapseTransform(Transform tf, String side) throws SQLException {
         PreparedStatement s = this.conn.prepareStatement("INSERT INTO ii.\"ElapseTransform\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
