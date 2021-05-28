@@ -18,7 +18,7 @@ public class LCTF implements Runnable{
 
     // Global var
     private static final int[] zeros = {0,0,0,0,0};
-    private Transform[] tfs;
+    private Transform tfs;
     private final long MESInitTime;
     private boolean transforms;
     private int old_count;
@@ -51,37 +51,29 @@ public class LCTF implements Runnable{
         // RUN Forever
         while(true) {
             try {
-                // Get DB
-                if ( !opcR.getACKLeft() && db.TransformLength()!=0 && !db.reading && db.HowManyAreDoing("left")<=3 ) {
-                    transforms = true;
-                    tfs = db.getAllTransformsSort(MESInitTime);
-                }
-                else {
-                    transforms = false;
-                }
-
                 // Left Side Transform
                 // Machine to control this transformation
-                if ( this.StateLS==0 && !opcR.getACKLeft() && transforms ) {
+                if ( this.StateLS==0 && !opcR.getACKLeft() && db.TransformLength()!=0 && !db.reading && db.HowManyAreDoing("left")<=3 ) {
                     this.StateLS = 1;
-                    opcS.sendLeft(tfs[0].getPath());
-                    tfs[0] = db.addElapseTransform(tfs[0],"left");
-                    db.deleteTransform(tfs[0],"Transform");
-                    old_count = tfs[0].getQuantity();
+                    tfs = db.getFirstTransformSort(MESInitTime);
+                    opcS.sendLeft(tfs.getPath());
+                    tfs = db.addElapseTransform(tfs,"left");
+                    db.deleteTransform(tfs,"Transform");
+                    old_count = tfs.getQuantity();
                     db.reading = false;
                 } else if ( this.StateLS==1 && opcR.getACKLeft() ) {
                     this.StateLS = 0;
                     opcS.sendLeft(zeros);
-                    db.updateElapseTransform( tfs[0].getOrderNumber() , 0);
+                    db.updateElapseTransform( tfs.getOrderNumber() , 0);
                 } else if ( this.StateLS==1 && !opcR.getACKLeft() ) {
                     int porProd = opcR.getCountLeftPorProd();
-                    if ( tfs[0].isDifficult() ) {
+                    if ( tfs.isDifficult() ) {
                         if( old_count > porProd ) {
                             old_count = porProd;
-                            db.updateElapseTransform( tfs[0].getOrderNumber() , porProd);
+                            db.updateElapseTransform( tfs.getOrderNumber() , porProd);
                         }
                     } else {
-                        db.updateElapseTransform( tfs[0].getOrderNumber() , porProd);
+                        db.updateElapseTransform( tfs.getOrderNumber() , porProd);
                     }
                 }
 

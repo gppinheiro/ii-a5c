@@ -18,7 +18,7 @@ public class RCTFUN implements Runnable {
 
     // Global var
     private static final int[] zeros = {0,0,0,0,0};
-    private Transform[] tfs = null;
+    private Transform tfs = null;
     private Unload[] unls = null;
     private boolean unloads;
     private boolean transforms;
@@ -65,7 +65,6 @@ public class RCTFUN implements Runnable {
                 else if (db.TransformLength() != 0 && !db.reading && db.HowManyAreDoing("right")<=2 ) {
                     unloads = false;
                     transforms = true;
-                    tfs = db.getAllTransformsSort(MESInitTime);
                 } else {
                     unloads = false;
                     transforms = false;
@@ -87,23 +86,24 @@ public class RCTFUN implements Runnable {
                 // Machine to control this transformation
                 if (this.StateRS == 0 && !opcR.getACKRight() && transforms) {
                     this.StateRS = 1;
-                    opcS.sendRight(tfs[0].getPath());
-                    tfs[0] = db.addElapseTransform(tfs[0], "right");
-                    db.deleteTransform(tfs[0], "Transform");
+                    tfs = db.getFirstTransformSort(MESInitTime);
+                    opcS.sendRight(tfs.getPath());
+                    tfs = db.addElapseTransform(tfs, "right");
+                    db.deleteTransform(tfs, "Transform");
                     db.reading = false;
                 } else if (this.StateRS == 1 && opcR.getACKRight()) {
                     this.StateRS = 0;
                     opcS.sendRight(zeros);
-                    db.updateElapseTransform( tfs[0].getOrderNumber() , 0);
+                    db.updateElapseTransform( tfs.getOrderNumber() , 0);
                 } else if ( this.StateRS==1 && !opcR.getACKRight() ) {
                     int porProd = opcR.getCountRightPorProd();
-                    if ( tfs[0].isDifficult() ) {
+                    if ( tfs.isDifficult() ) {
                         if( old_count > porProd ) {
                             old_count = porProd;
-                            db.updateElapseTransform( tfs[0].getOrderNumber() , porProd);
+                            db.updateElapseTransform( tfs.getOrderNumber() , porProd);
                         }
                     } else {
-                        db.updateElapseTransform( tfs[0].getOrderNumber() , porProd);
+                        db.updateElapseTransform( tfs.getOrderNumber() , porProd);
                     }
                 }
 

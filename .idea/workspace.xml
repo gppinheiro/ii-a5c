@@ -224,14 +224,7 @@
       <workItem from="1621982301136" duration="2121000" />
       <workItem from="1622019973043" duration="1445000" />
       <workItem from="1622153040173" duration="2022000" />
-      <workItem from="1622209240941" duration="786000" />
-    </task>
-    <task id="LOCAL-00118" summary="test slf4j">
-      <created>1619621433748</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1619621433749</updated>
+      <workItem from="1622209240941" duration="1464000" />
     </task>
     <task id="LOCAL-00119" summary="slf4j without warning">
       <created>1619621804031</created>
@@ -569,7 +562,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622209943755</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="add some comments">
+      <created>1622210198304</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1622210198304</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

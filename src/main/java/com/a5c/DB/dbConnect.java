@@ -82,7 +82,7 @@ public class dbConnect {
     }
 
     // Method to get all Transforms Sorted.
-    public Transform[] getAllTransformsSort(long MESInitTime) throws SQLException {
+    public Transform getFirstTransformSort(long MESInitTime) throws SQLException {
         this.reading = true;
         Transform[] tfs = getTransform();
 
@@ -104,7 +104,7 @@ public class dbConnect {
             }
         }
 
-        return tfs;
+        return tfs[0];
     }
 
     // Method to add a Elapse Transform on DB.
