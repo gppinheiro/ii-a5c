@@ -29,7 +29,6 @@ public class dbConnect {
     private Connection conn = null;
     private final Timestamp initTime;
     private final readOPC opcR;
-    public boolean reading;
 
     public Connection getConn() {
         return conn;
@@ -40,7 +39,6 @@ public class dbConnect {
      */
     public dbConnect(readOPC opc) {
         this.initTime = new Timestamp(System.currentTimeMillis());
-        this.reading = false;
         this.opcR = opc;
         try {
             this.conn = getConnection();
@@ -83,7 +81,6 @@ public class dbConnect {
 
     // Method to get all Transforms Sorted.
     public Transform getFirstTransformSort(long MESInitTime) throws SQLException {
-        this.reading = true;
         Transform[] tfs = getTransform();
 
         // Prioridade:

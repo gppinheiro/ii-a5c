@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 // IF YOU ARE TESTING IT, PLEASE WAIT 35 SECONDS!!
 public class MES {
-    public static void main(final String[] args) throws InterruptedException {
+    public static void main(final String[] args) {
         // START EVERYTHING WE NEED
         clientOPC_UA opc = new clientOPC_UA();
         clientUDP udp = new clientUDP();
@@ -40,11 +40,25 @@ public class MES {
         // Start UDP communication
         new receiveUDP(udp,db).start();
 
-        // Start right side
-        new RCTFUN(opc,db,initTime).start();
-        new RCETFUN(opc,db).start();
+        while(true) {
+            try {
+                if (!(db.UnloadLength()==0 && db.TransformLength()==0)) {
+                    // Start right side
+                    new RCTFUN(opc,db,initTime).start();
+                    new RCETFUN(opc,db).start();
+                    break;
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
 
         // Then Start left side.
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         new LCTF(opc, db, initTime).start();
         new LCETF(opc,db).start();
 
