@@ -20,7 +20,6 @@ public class LCTF implements Runnable{
     private static final int[] zeros = {0,0,0,0,0};
     private Transform tfs;
     private final long MESInitTime;
-    private boolean transforms;
     private int old_count;
 
     // Global Variables for State Machines
@@ -34,12 +33,12 @@ public class LCTF implements Runnable{
         this.opcS = new sendOPC(cl);
         this.StateLS = 0;
         this.MESInitTime = ts;
-        this.transforms = false;
     }
 
     // Init thread.
-    public void start() {
+    public void start() throws InterruptedException {
         if(thrLCTF ==null) {
+            Thread.sleep(2500);
             thrLCTF = new Thread(this);
             thrLCTF.start();
         }

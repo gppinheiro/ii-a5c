@@ -44,8 +44,7 @@ public class MES {
         new RCTFUN(opc,db,initTime).start();
         new RCETFUN(opc,db).start();
 
-        // Then Start left side, giving 1500ms delay. We want them to be independent.
-        Thread.sleep(1500);
+        // Then Start left side.
         new LCTF(opc, db, initTime).start();
         new LCETF(opc,db).start();
 
