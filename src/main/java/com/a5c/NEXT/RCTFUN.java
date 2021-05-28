@@ -62,7 +62,7 @@ public class RCTFUN implements Runnable {
                     this.unls = db.getUnload();
                 }
                 // Next transform
-                else if (db.TransformLength() != 0 && !db.reading && db.HowManyAreDoing("right")<=2 ) {
+                else if (db.TransformLength() != 0 ) {
                     unloads = false;
                     transforms = true;
                 } else {
@@ -84,7 +84,7 @@ public class RCTFUN implements Runnable {
 
                 // Right Side Transform
                 // Machine to control this transformation
-                if (this.StateRS == 0 && !opcR.getACKRight() && transforms) {
+                if (this.StateRS == 0 && !opcR.getACKRight() && transforms && !db.reading && db.HowManyAreDoing("right")<=2) {
                     this.StateRS = 1;
                     tfs = db.getFirstTransformSort(MESInitTime);
                     opcS.sendRight(tfs.getPath());
