@@ -90,6 +90,7 @@ public class RCTFUN implements Runnable {
                     opcS.sendRight(tfs[0].getPath());
                     tfs[0] = db.addElapseTransform(tfs[0], "right");
                     db.deleteTransform(tfs[0], "Transform");
+                    db.reading = false;
                 } else if (this.StateRS == 1 && opcR.getACKRight()) {
                     this.StateRS = 0;
                     opcS.sendRight(zeros);

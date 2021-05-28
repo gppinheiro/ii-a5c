@@ -68,6 +68,7 @@ public class LCTF implements Runnable{
                     tfs[0] = db.addElapseTransform(tfs[0],"left");
                     db.deleteTransform(tfs[0],"Transform");
                     old_count = tfs[0].getQuantity();
+                    db.reading = false;
                 } else if ( this.StateLS==1 && opcR.getACKLeft() ) {
                     this.StateLS = 0;
                     opcS.sendLeft(zeros);

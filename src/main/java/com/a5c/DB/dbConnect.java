@@ -104,7 +104,6 @@ public class dbConnect {
             }
         }
 
-        this.reading = false;
         return tfs;
     }
 
