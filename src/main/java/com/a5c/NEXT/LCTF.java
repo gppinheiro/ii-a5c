@@ -51,13 +51,14 @@ public class LCTF implements Runnable{
             try {
                 // Left Side Transform
                 // Machine to control this transformation
-                if ( this.StateLS==0 && !opcR.getACKLeft() && db.TransformLength()!=0 && db.HowManyAreDoing("left")<=3 ) {
+                if ( this.StateLS==0 && !opcR.getACKLeft() && db.TransformLength()!=0 && db.HowManyAreDoing("left")<=3 && !db.reading ) {
                     this.StateLS = 1;
                     tfs = db.getFirstTransformSort(MESInitTime);
                     opcS.sendLeft(tfs.getPath());
                     tfs = db.addElapseTransform(tfs,"left");
                     db.deleteTransform(tfs,"Transform");
                     old_count = tfs.getQuantity();
+                    db.reading = false;
                 } else if ( this.StateLS==1 && opcR.getACKLeft() ) {
                     this.StateLS = 0;
                     opcS.sendLeft(zeros);

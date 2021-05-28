@@ -84,12 +84,13 @@ public class RCTFUN implements Runnable {
 
                 // Right Side Transform
                 // Machine to control this transformation
-                if (this.StateRS == 0 && !opcR.getACKRight() && transforms && db.HowManyAreDoing("right")<=2) {
+                if (this.StateRS == 0 && !opcR.getACKRight() && transforms && db.HowManyAreDoing("right")<=2 && !db.reading) {
                     this.StateRS = 1;
                     tfs = db.getFirstTransformSort(MESInitTime);
                     opcS.sendRight(tfs.getPath());
                     tfs = db.addElapseTransform(tfs, "right");
                     db.deleteTransform(tfs, "Transform");
+                    db.reading = false;
                 } else if (this.StateRS == 1 && opcR.getACKRight()) {
                     this.StateRS = 0;
                     opcS.sendRight(zeros);
