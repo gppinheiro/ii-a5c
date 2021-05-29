@@ -78,12 +78,13 @@ public class RCETFUN implements Runnable{
                     db.updateCurrentStores(opcR.getWareHouse());
                     // Send Codesys confirmation
                     opcS.sendReadAckRight(true);
-                }
-                else if (this.StateRS==1 && opcR.getNOrderRight()==0) {
+                } else if (this.StateRS==1 && opcR.getNOrderRight()==0) {
                     this.StateRS=0;
                     opcS.sendReadAckRight(false);
                     timeRS = 0;
                     number_order = 0;
+                } else if (this.StateRS==1 && opcR.getNOrderRight()!=0) {
+                    this.StateRS=0;
                 }
 
                 if(this.StateP1==0 && opcR.getPusher1BOOL()) {
