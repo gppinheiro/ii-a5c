@@ -317,7 +317,7 @@ public class dbConnect {
         ResultSet rs = s.executeQuery();
 
         int i=0;
-        while (rs.next()) {
+        while (rs.next() && i<Unloads.length) {
             Unloads[i] = new Unload(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4));
             i++;
         }
