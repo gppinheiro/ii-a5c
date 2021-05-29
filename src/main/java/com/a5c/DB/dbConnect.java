@@ -73,12 +73,12 @@ public class dbConnect {
 
         if (rs.getInt(1)!=0) {
             s = this.conn.prepareStatement("DELETE FROM ii.when_mes_init;");
-            s.executeQuery();
+            s.executeUpdate();
         }
 
         s = this.conn.prepareStatement("INSERT INTO ii.when_mes_init VALUES (?);");
         s.setTimestamp(1,initTime);
-        s.executeQuery();
+        s.executeUpdate();
     }
 
     // Method to get the init Time.
