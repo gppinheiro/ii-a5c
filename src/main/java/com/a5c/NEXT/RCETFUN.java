@@ -83,8 +83,6 @@ public class RCETFUN implements Runnable{
                     opcS.sendReadAckRight(false);
                     timeRS = 0;
                     number_order = 0;
-                } else if (this.StateRS==1 && opcR.getNOrderRight()!=0) {
-                    this.StateRS=0;
                 }
 
                 if(this.StateP1==0 && opcR.getPusher1BOOL()) {

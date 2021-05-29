@@ -22,6 +22,7 @@ public class MES {
         dbConnect db = new dbConnect(opcR);
 
         long initTime = 0;
+        boolean restart = false;
 
         // See if there is any ElapseTransform to do again
         try {
@@ -37,17 +38,18 @@ public class MES {
             }
             else {
                 initTime = db.getInitTime().getTime();
+                restart = true;
             }
         } catch (SQLException sql) {
             sql.printStackTrace();
         }
-        
+
         // Start UDP communication
         new receiveUDP(udp,db).start();
 
         while(true) {
             try {
-                if (!(db.UnloadLength()==0 && db.TransformLength()==0)) {
+                if ( !(db.UnloadLength()==0 && db.TransformLength()==0) || restart ) {
                     // Start right side
                     new RCTFUN(opc,db,initTime).start();
                     new RCETFUN(opc,db).start();

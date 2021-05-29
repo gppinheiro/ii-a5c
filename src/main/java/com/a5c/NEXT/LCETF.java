@@ -69,14 +69,14 @@ public class LCETF implements Runnable{
                     db.updateCurrentStores(opcR.getWareHouse());
                     // Send Codesys confirmation
                     opcS.sendReadAckLeft(true);
-                } else if (this.StateLS==1 && opcR.getNOrderLeft()==0) {
+                }
+                else if (this.StateLS==1 && opcR.getNOrderLeft()==0) {
                     this.StateLS=0;
                     opcS.sendReadAckLeft(false);
                     timeLS = 0;
                     number_order = 0;
-                } else if (this.StateLS==1 && opcR.getNOrderLeft()!=0) {
-                    this.StateLS=0;
                 }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
