@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="add some comments">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_05_2021,_14_20_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,14 +227,7 @@
       <workItem from="1622153040173" duration="2022000" />
       <workItem from="1622209240941" duration="3474000" />
       <workItem from="1622237570541" duration="458000" />
-      <workItem from="1622296091236" duration="84000" />
-    </task>
-    <task id="LOCAL-00124" summary="test this">
-      <created>1620030189211</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1620030189212</updated>
+      <workItem from="1622296091236" duration="1660000" />
     </task>
     <task id="LOCAL-00125" summary="test this">
       <created>1620030489484</created>
@@ -570,7 +565,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622213497438</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="add some comments">
+      <created>1622296213659</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1622296213660</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

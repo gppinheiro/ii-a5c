@@ -27,7 +27,7 @@ public class dbConnect {
      * Private - Nobody needs to know the db connection.
      */
     private Connection conn = null;
-    private final Timestamp initTime;
+    public final Timestamp initTime;
     private final readOPC opcR;
     public boolean reading;
 
@@ -63,6 +63,30 @@ public class dbConnect {
         String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
 
         return DriverManager.getConnection(dbUrl, username, password);
+    }
+
+    // Method to store the init Time.
+    public void storeInitTime() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT COUNT(*) FROM ii.when_mes_init;");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+
+        if (rs.getInt(1)!=0) {
+            s = this.conn.prepareStatement("DELETE FROM ii.when_mes_init;");
+            s.executeQuery();
+        }
+
+        s = this.conn.prepareStatement("INSERT INTO ii.when_mes_init VALUES (?);");
+        s.setTimestamp(1,initTime);
+    }
+
+    // Method to get the init Time.
+    public Timestamp getInitTime() throws SQLException {
+        PreparedStatement s = this.conn.prepareStatement("SELECT * FROM ii.when_mes_init;");
+        ResultSet rs = s.executeQuery();
+        rs.next();
+
+        return rs.getTimestamp(1);
     }
 
     // Method to add a Transform on DB.

@@ -21,22 +21,27 @@ public class MES {
         readOPC opcR = new readOPC(opc);
         dbConnect db = new dbConnect(opcR);
 
+        long initTime = 0;
+
         // See if there is any ElapseTransform to do again
         try {
             // If we don't have anything in Elapse Transform, it means that we can init everything.
             // If we have, it is a restart, so we don't touch in anything.
-            if (db.ElapseTransformLength()==0) {
+            if (db.ElapseTransformLength()==0 && db.UnloadLength()==0) {
                 // Reset all tables
                 db.resetMachinesStatistic();
                 db.resetPushersStatistic();
                 db.updateCurrentStores(opcR.getWareHouse());
+                db.storeInitTime();
+                initTime = db.initTime.getTime();
+            }
+            else {
+                initTime = db.getInitTime().getTime();
             }
         } catch (SQLException sql) {
             sql.printStackTrace();
         }
-
-        long initTime = System.currentTimeMillis();
-
+        
         // Start UDP communication
         new receiveUDP(udp,db).start();
 
