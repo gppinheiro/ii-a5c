@@ -78,6 +78,7 @@ public class dbConnect {
 
         s = this.conn.prepareStatement("INSERT INTO ii.when_mes_init VALUES (?);");
         s.setTimestamp(1,initTime);
+        s.executeQuery();
     }
 
     // Method to get the init Time.

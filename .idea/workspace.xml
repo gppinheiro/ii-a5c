@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b347b91b-58c3-4ef0-ac5b-18150545ca0a" name="Default Changelist" comment="add some comments">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/df511b42-7219-499b-aa80-1086945a577e/storage_v2/_src_/database/d2j57fljq86oa0.tXyD4A/schema/ii.IA0AAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/DB/dbConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/a5c/MES.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,14 +223,7 @@
       <workItem from="1622153040173" duration="2022000" />
       <workItem from="1622209240941" duration="3474000" />
       <workItem from="1622237570541" duration="458000" />
-      <workItem from="1622296091236" duration="1660000" />
-    </task>
-    <task id="LOCAL-00125" summary="test this">
-      <created>1620030489484</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1620030489484</updated>
+      <workItem from="1622296091236" duration="2031000" />
     </task>
     <task id="LOCAL-00126" summary="test this">
       <created>1620030529915</created>
@@ -572,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622296213660</updated>
     </task>
-    <option name="localTasksCounter" value="174" />
+    <task id="LOCAL-00174" summary="add some comments">
+      <created>1622297865481</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1622297865481</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
